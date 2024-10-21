@@ -1,0 +1,611 @@
+import { 
+	createInGameMenu, 
+	navbarIconClick, 
+	closeInGameMenu 
+} from '../menu/create-in-game-menu.mjs';
+import { inGameMenuOperations } from '../menu/in-game-menu-operations.mjs';
+import { qs } from '../utils/commons.mjs';
+import { choicePopup } from '../utils/choice-popup.mjs';
+import { incrementPaginationNumberByExtraScene } from '../utils/increment-pagination-number-by-extra-scene.mjs';
+import { playSound } from '../utils/play-sound.mjs';
+import { saveGame } from '../utils/save-game.mjs';
+import { setStoryComponentFromMultiple } from '../utils/set-story-component-from-multiple.mjs';
+import { stepBackward } from '../utils/step-backward.mjs';
+import { stepForward } from '../utils/step-forward.mjs';
+import { typingText } from '../utils/typing-text.mjs';
+import { showTimeSkipPage } from '../utils/show-time-skip-page.mjs';
+import { mobilePage } from './mobile-page.mjs';
+import { mobileParts } from '../constants/mobile-parts.mjs';
+
+export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFromLoad = false) => {
+	if (partindex >= data.length) {
+		localStorage.setItem('sceneChanged', 'false');
+		console.log('All parts completed');
+		return;
+	}
+
+	const slotNumber = +localStorage.getItem('slotNumber') || 0;
+	const selectedStep = localStorage.getItem('sceneChanged') === undefined 
+		|| localStorage.getItem('sceneChanged') === 'false' 
+		? gameSettings.savingSlots[slotNumber].currentStep
+		: 1;
+	let step = selectedStep;
+	const root = qs('#root');
+	root.classList.remove('fadeOut');
+	root.classList.add('fadeIn');
+	let isTyping = !gameSettings.settings.screen.isTypingOff;
+	let firstLoad = true;
+	localStorage.setItem('sceneChanged', 'false');
+
+	root.insertAdjacentHTML("afterbegin", `
+		${createInGameMenu()}
+		<div id="storyContainer" class="" tabindex="0">
+			<div id="backgroundContainer"></div>
+			<div id="characterContainer">
+				<div id="char-left" class="chars">
+					<img src="" alt="character" class="notVisible">
+				</div>
+				<div id="char-middle" class="chars">
+					<img src="" alt="character" class="notVisible">
+				</div>
+				<div id="char-right" class="chars">
+					<img src="" alt="character" class="notVisible">
+				</div>
+			</div>
+			<div id="textContainer">
+				<div id="textContainer-inner">
+					<div id="char-name">${setStoryComponentFromMultiple(data[partindex].story[step].name, data[partindex].story[step], gameSettings)}</div>
+					<p id="char-text"></p>
+				</div>
+			</div>
+		</div>
+		<div id="storyButtonContainer" class="fadeIn">
+			<button type="button" id="saveBtn" class="storyButtons">Save Game</button>	
+			<button type="button" id="quickSaveBtn" class="storyButtons">Quick Save</button>	
+			<button type="button"id="quickReadBtn" class="storyButtons">Quick reading</button>
+		</div>
+	`);
+	
+	const backgroundContainer = qs('#backgroundContainer');
+	const storyContainer = qs('#storyContainer');
+	const characterContainer = qs('#characterContainer');
+	const textContainer = qs('#textContainer');
+	const characterName = qs('#char-name');
+	const characterText = qs('#char-text');
+	const saveBtn = qs('#saveBtn');
+	const quickSaveBtn = qs('#quickSaveBtn');
+	const quickReadBtn = qs('#quickReadBtn');
+	const navbarIcon = qs('#inGame_navbar_icon');
+	const navbarBG = qs('#unclickable_navbar_BG');
+	const innerMenu_window = qs('#innerMenu_window');
+
+	saveBtn.disabled = true;
+	quickSaveBtn.disabled = true;
+	quickReadBtn.disabled = true;
+	changeBackground(backgroundContainer, data[partindex].story[step]);
+
+	navbarIcon.addEventListener("click", () => {
+		navbarIconClick(); 
+		inGameMenuOperations('STORY', innerMenu_window, gameSettings, slotNumber, partindex, step);
+	});
+	navbarBG.addEventListener("click", closeInGameMenu);
+
+	setTimeout(() => {
+		let currentStep = data[partindex].story[step];
+
+		if (isFromLoad) {
+			if (!currentStep.bgMusic) {
+				currentStep.bgMusic = {name: '', command: ''};
+			}
+			
+			for (let index = step; index > 0; index--) {
+				if (data[partindex].story[index].bgMusic?.command === 'STOP' || data[partindex].story[index].bgMusic?.command === 'FADE_OUT') {
+					break;
+				}
+				
+				if (data[partindex].story[index].bgMusic?.command === 'START') {
+					//currentStep.bgMusic.name = gameSettings.savingSlots[slotNumber].lastPlayedMusic;
+					currentStep.bgMusic.name = data[partindex].story[index].bgMusic.name;
+					currentStep.bgMusic.command = 'START';
+					break;
+				}
+			}
+		}
+
+		playSound(gameSettings, currentStep, gameSettings.settings.audio);
+
+		isFromLoad = false;
+	}, 200);
+
+	setTimeout(() => {
+		charContainerFilling(data[partindex].story[step]);
+
+		if (storyContainer) {
+			storyContainer.focus();
+			storyContainer.isTyping = isTyping;
+	
+			storyContainer.addEventListener("click", clickNavigation);
+			qs('#storyContainer').addEventListener("keydown", arrowNavigation);
+
+			saveBtn.disabled = false;
+			quickSaveBtn.disabled = isNewGame === true ? true : false;
+			quickReadBtn.disabled = false;
+	
+			typingText(gameSettings, data[partindex].story[step], data[partindex].story[step].text, characterText, storyContainer);
+			root.classList.remove('fadeIn');
+		}
+	}, 2000);
+
+	function clickNavigation() {
+		firstLoad = false;
+
+		if (storyContainer.isTyping) {
+			storyContainer.isTyping = false;
+
+			characterText.textContent = setStoryComponentFromMultiple(data[partindex].story[step].text, data[partindex].story[step], gameSettings);
+
+			return;
+		} 
+
+		if (step === data[partindex].lengthNum || (data[partindex].story[step].stepSkip && step + stepForward(data[partindex].story[step], gameSettings) > data[partindex].lengthNum)){
+			let paginationNumber = 1;
+
+			if (data[partindex].story[step].extraSceneNext) {
+				paginationNumber += incrementPaginationNumberByExtraScene(data[partindex].story[step].extraSceneNext, gameSettings);
+			}
+
+			playSound(gameSettings, data[partindex].story[step], gameSettings.settings.audio, true);
+			
+			root.classList.remove('fadeIn'); //Ez majd NE a root-on legyen használva, hanem csak a story részén!!!
+			root.classList.add('fadeOut');
+
+			localStorage.setItem('sceneChanged', 'true');
+
+			setTimeout(() => {
+				root.innerHTML = "";
+
+				if (data[partindex].story[step].timeSkipNext) {
+					localStorage.setItem('sceneChanged', 'false');
+					showTimeSkipPage(root, data[partindex].story[step].timeSkipNext, data, gameSettings)
+				} else {
+					if (data[partindex].story[step].mobileSceneNext) {
+						mobilePage(mobileParts, +data[partindex].story[step].mobileSceneNext, gameSettings);
+					} else {
+						storyPage(data, partindex + paginationNumber, gameSettings);
+					}
+				}
+			}, 2000);
+
+			return;
+		} 
+
+		if (data[partindex].story[step].choiceNext) {
+			storyContainer.removeEventListener("click", clickNavigation);
+			storyContainer.removeEventListener("keydown", arrowNavigation);
+
+			if (!qs('#choiceContainer')) {
+				choicePopup(data[partindex].sceneId, step, textContainer, characterContainer, storyContainer, clickNavigation, arrowNavigation, gameSettings)
+				.then(() => {
+					step += stepForward(data[partindex].story[step], gameSettings);
+					storyContainer.isTyping = true;
+			
+					storyContainer.className = '';
+					characterText.textContent = '';
+					charContainerFilling(data[partindex].story[step]);
+					characterName.innerText = setStoryComponentFromMultiple(data[partindex].story[step].name, data[partindex].story[step], gameSettings);
+					typingText(gameSettings, data[partindex].story[step], data[partindex].story[step].text, characterText, storyContainer);
+				});
+			}
+
+			return;
+		} 
+
+		step += stepForward(data[partindex].story[step], gameSettings);
+
+		if (data[partindex].story[step].specialSceneNow) {
+			loadingSpecialScene(data[partindex].story[step]);
+
+			return;
+		}
+
+		storyContainer.isTyping = true;
+
+		storyContainer.className = '';
+		characterText.textContent = '';
+
+		changeBackground(backgroundContainer, data[partindex].story[step]);
+		charContainerFilling(data[partindex].story[step]);
+		characterName.innerText = setStoryComponentFromMultiple(data[partindex].story[step].name, data[partindex].story[step], gameSettings);
+		typingText(gameSettings, data[partindex].story[step], data[partindex].story[step].text, characterText, storyContainer);
+
+		if (!data[partindex].story[step].bgMusic || data[partindex].story[step].bgMusic.command !== 'STOP' && data[partindex].story[step].bgMusic.command !== 'FADE_OUT') {
+			playSound(gameSettings, data[partindex].story[step], gameSettings.settings.audio);
+		}
+	};
+
+	function arrowNavigation(event) {
+		firstLoad = false;
+
+		if (event.key === 'ArrowLeft' && step > 1) {
+
+			if (data[partindex].story[step - 1].choiceNext) {
+				console.log("nem lehet visszalépni");
+				return;
+			}
+			
+			if (data[partindex].story[step].specialSceneNow) {
+				loadingSpecialScene(data[partindex].story[step]);
+				
+				return;
+			}
+
+			step -= stepBackward(data[partindex].story[step], gameSettings);
+
+			storyContainer.isTyping = false;
+			changeBackground(backgroundContainer, data[partindex].story[step], true);
+			charContainerBackFilling(data[partindex].story[step]);
+			characterName.innerText = setStoryComponentFromMultiple(data[partindex].story[step].name, data[partindex].story[step], gameSettings);
+			characterText.textContent = setStoryComponentFromMultiple(data[partindex].story[step].text, data[partindex].story[step], gameSettings);
+		
+			playSound(gameSettings, data[partindex].story[step], gameSettings.settings.audio);
+		}
+
+		if (event.key === 'ArrowRight') {
+			if (storyContainer.isTyping) {
+				storyContainer.isTyping = false;
+				characterText.textContent = setStoryComponentFromMultiple(data[partindex].story[step].text, data[partindex].story[step], gameSettings);
+
+				return;
+			}
+
+			if (step === data[partindex].lengthNum || (data[partindex].story[step].stepSkip && step + stepForward(data[partindex].story[step], gameSettings) > data[partindex].lengthNum)){
+				let paginationNumber = 1;
+
+				if (data[partindex].story[step].extraSceneNext) {
+					paginationNumber += incrementPaginationNumberByExtraScene(data[partindex].story[step].extraSceneNext, gameSettings);
+				}
+
+				playSound(gameSettings, data[partindex].story[step], gameSettings.settings.audio, true);
+
+				root.classList.remove('fadeIn');
+				root.classList.add('fadeOut');
+				storyContainer.removeEventListener("keydown", arrowNavigation);
+
+				localStorage.setItem('sceneChanged', 'true');
+
+				setTimeout(() => {
+					root.innerHTML = "";
+	
+					if (data[partindex].story[step].timeSkipNext) {
+						localStorage.setItem('sceneChanged', 'false');
+						showTimeSkipPage(root, data[partindex].story[step].timeSkipNext, data, partindex + paginationNumber, gameSettings)
+					} else {
+						if (data[partindex].story[step].mobileSceneNext) {
+							mobilePage(mobileParts, +data[partindex].story[step].mobileSceneNext, gameSettings);
+						} else {
+							storyPage(data, partindex + paginationNumber, gameSettings);
+						}
+					}
+				}, 2000);
+	
+
+				return;
+			} 
+			
+			if (data[partindex].story[step].choiceNext) {
+				storyContainer.removeEventListener("keydown", arrowNavigation);
+				storyContainer.removeEventListener("click", clickNavigation);
+
+				if (!qs('#choiceContainer')) {
+					choicePopup(data[partindex].sceneId, step, textContainer, characterContainer, storyContainer, clickNavigation, arrowNavigation, gameSettings)
+					.then(() => {
+						step += stepForward(data[partindex].story[step], gameSettings);
+						storyContainer.isTyping = true;
+				
+						storyContainer.className = '';
+						characterText.textContent = '';
+						charContainerFilling(data[partindex].story[step]);
+						characterName.innerText = setStoryComponentFromMultiple(data[partindex].story[step].name, data[partindex].story[step], gameSettings);
+						typingText(gameSettings, data[partindex].story[step], data[partindex].story[step].text, characterText, storyContainer);
+					});
+				}
+
+				return;
+			} 
+
+			step += stepForward(data[partindex].story[step], gameSettings);
+
+			if (data[partindex].story[step].specialSceneNow) {
+				loadingSpecialScene(data[partindex].story[step]);
+	
+				return;
+			}
+	
+			storyContainer.className = '';
+			characterText.textContent = '';
+			changeBackground(backgroundContainer, data[partindex].story[step]);
+			charContainerFilling(data[partindex].story[step]);
+			characterName.innerText = setStoryComponentFromMultiple(data[partindex].story[step].name, data[partindex].story[step], gameSettings);
+			characterText.textContent = setStoryComponentFromMultiple(data[partindex].story[step].text, data[partindex].story[step], gameSettings);	
+		
+			if (!data[partindex].story[step].bgMusic || data[partindex].story[step].bgMusic.command !== 'STOP' && data[partindex].story[step].bgMusic.command !== 'FADE_OUT') {
+				playSound(gameSettings, data[partindex].story[step], gameSettings.settings.audio);
+			}
+		}
+	};
+
+	function charContainerFilling(stepObject, isStepBack = false) {
+		for (let index = 0; index < stepObject.charContainer.length; index++) {
+			let charContainer;
+
+			if (stepObject.charContainer[index]) {
+				charContainer = qs(`#${stepObject.charContainer[index]}`);
+			}
+
+			if (!stepObject.class[index] && charContainer && firstLoad && !isQuickReading) {
+				if (stepObject.charContainer[index] === 'char-left') {
+					stepObject.class[index] = 'fadeLeft';
+				}
+				if (stepObject.charContainer[index] === 'char-middle') {
+					stepObject.class[index] = 'fadeUp';
+				}
+				if (stepObject.charContainer[index] === 'char-right') {
+					stepObject.class[index] = 'fadeRight';
+				}
+			}
+
+			if (stepObject.class[index] && charContainer) {
+				if (isStepBack) {
+					charContainer.className = `chars notVisible`
+				} else {
+					charContainer.className = `chars`;
+				}
+				
+				setTimeout(() => {
+					charContainer.className = `chars ${setStoryComponentFromMultiple(stepObject.class[index], stepObject, gameSettings) || ''}`;
+					if (charContainer.className.indexOf('Out') > -1) {
+						setTimeout(() => {
+							charContainer.classList.add('d-none');
+						}, 200);
+					} else {
+						charContainer.classList.remove('d-none');
+					}
+				}, 0);
+				
+				if (
+					charContainer 
+					&& charContainer.querySelector('img').src.indexOf('.png') > -1 
+					&& charContainer.querySelector('img').src.indexOf(stepObject.image[index]) === -1 
+					&& charContainer.className.indexOf(stepObject.class[index]) > -1
+				) {
+					charContainer.className = 'chars';
+					
+					setTimeout(() => {
+						charContainer.className = `chars ${setStoryComponentFromMultiple(stepObject.class[index], stepObject, gameSettings)  || ''}`;
+					}, 0);
+			   }
+			} else {
+				let stepBackClassAdded = false;
+
+				if (charContainer?.querySelector('img').src.indexOf(stepObject.image[index]) === -1 && isStepBack ) {
+					setTimeout(() => {
+						index === 0 ? charContainer.className = 'chars fadeLeft' : 
+							index === 1 ? charContainer.className = 'chars fadeUp' : 
+							charContainer.className = 'chars fadeRight';
+						
+						stepBackClassAdded = true;
+					}, 0);
+				}
+				
+				if (charContainer && !stepBackClassAdded) {
+					charContainer.className = 'chars';
+				}
+			}
+
+ 			if (stepObject.image[index] && charContainer) {
+				const img = charContainer.querySelector('img');
+				
+				setTimeout(() => {
+					let imgName = setStoryComponentFromMultiple(stepObject.image[index], data[partindex].story[step], gameSettings);
+					img.src = `./img/characters/${imgName}.png`;
+					img.classList.remove('notVisible');
+				}, 50);
+			}
+		}
+	};
+
+	function charContainerBackFilling(stepObject) {
+		const idArray = ['#char-left', '#char-middle', '#char-right'];
+
+		for (let index = 0; index < idArray.length; index++) {
+			const element = qs(idArray[index]);
+			
+			let imgName = setStoryComponentFromMultiple(stepObject.image[index], stepObject, gameSettings);
+			if (element.querySelector('img').src.indexOf(imgName) === -1) {
+				element.querySelector('img').src = '';
+				element.querySelector('img').classList.add('notVisible');
+			}
+		}
+
+		setTimeout(() => {
+			charContainerFilling(stepObject, true);
+		}, 0);
+	};
+
+	function loadingSpecialScene(stepObject) {
+		storyContainer.removeEventListener("click", clickNavigation);
+		storyContainer.removeEventListener("keydown", arrowNavigation);
+
+		storyContainer.insertAdjacentHTML("beforeend", `
+			<div id="specialSceneCover" class="fadeIn" tabindex="0"><div>
+		`)
+
+		const specialSceneCover = qs('#specialSceneCover');
+		specialSceneCover.style.backgroundImage = `url("./img/${stepObject.background}.png")`;
+
+		const storyButtonContainer = qs('#storyButtonContainer');
+		storyButtonContainer.classList.add('fadeOut', 'noClick');
+		
+		setTimeout(() => {
+			storyContainer.className = '';
+			characterText.textContent = '';
+			charContainerFilling(stepObject);
+			characterName.innerText = ''; 
+			
+			function makeSpecialSceneRemovable(event) {
+				if ((event.type === 'keydown' && event.key === 'ArrowLeft')) {
+					step -= stepBackward(stepObject, gameSettings);
+					stepObject = data[partindex].story[step];
+
+					charContainerBackFilling(stepObject);
+					characterName.innerText = setStoryComponentFromMultiple(stepObject.name, stepObject, gameSettings);
+					characterText.textContent = stepObject.text;
+
+					changeBackground(backgroundContainer, data[partindex].story[step], true);
+					specialSceneCover.remove();
+
+					storyButtonContainer.classList.add('fadeIn');
+					storyButtonContainer.classList.remove('fadeOut', 'noClick');
+					
+					playSound(gameSettings, data[partindex].story[step], gameSettings.settings.audio);
+
+					setTimeout(() => {
+						storyContainer.focus();
+						storyContainer.addEventListener("keydown", arrowNavigation);
+						storyContainer.addEventListener("click", clickNavigation);
+					}, 0);
+					
+					return;
+				}
+
+				changeBackground(backgroundContainer, data[partindex].story[step]);
+				specialSceneCover.classList.remove('fadeIn');
+				specialSceneCover.classList.add('fadeOut');
+				storyContainer.isTyping = true;
+
+				storyButtonContainer.classList.add('fadeIn');
+				storyButtonContainer.classList.remove('fadeOut', 'noClick');
+
+				setTimeout(() => {
+					if (event.type === 'click' || (event.type === 'keydown' && event.key === 'ArrowRight')) {
+						characterName.innerText = setStoryComponentFromMultiple(stepObject.name, stepObject, gameSettings);
+						typingText(gameSettings, stepObject, stepObject.text, characterText, storyContainer);
+					}
+					
+					specialSceneCover.remove();
+					storyContainer.focus();
+					storyContainer.addEventListener("keydown", arrowNavigation);
+					storyContainer.addEventListener("click", clickNavigation);
+				}, 2000);
+			};
+
+			playSound(gameSettings, data[partindex].story[step], gameSettings.settings.audio);
+			
+			specialSceneCover.focus();
+			specialSceneCover.addEventListener('click', makeSpecialSceneRemovable);
+			specialSceneCover.addEventListener('keydown', makeSpecialSceneRemovable);
+		}, 2000);
+
+		const galleryIndexNumber = gameSettings.gallery.findIndex((item) => item.id === stepObject.specialSceneId);
+		gameSettings.gallery[galleryIndexNumber].isActivated = true;
+	}
+
+	function changeBackground(bg_container, stepObject, ignoreAnimation = false) {
+		if (ignoreAnimation) {
+			bg_container.style.backgroundImage = `url("./img/${stepObject.background}.png")`;
+			return;
+		}
+
+		if (stepObject?.backGroundClass) {
+			bg_container.insertAdjacentHTML('afterend', `
+				<div id="secondary_backgroundContainer" class="${stepObject?.backGroundClass}"></div>
+			`);
+
+			const secondary_backgroundContainer = qs("#secondary_backgroundContainer");
+			secondary_backgroundContainer.style.backgroundImage = `url("./img/${stepObject.background}.png")`;
+
+			setTimeout(() => {
+				bg_container.style.backgroundImage = `url("./img/${stepObject.background}.png")`;
+				qs("#secondary_backgroundContainer").remove();
+			}, 2000);
+			
+			return;
+		}
+
+		bg_container.style.backgroundImage = `url("./img/${stepObject.background}.png")`;
+	};
+
+	let isQuickReading = false
+	quickReadBtn.addEventListener('click', () => {
+		firstLoad = false;
+
+		if (data[partindex].story[step + 1]?.specialSceneNow 
+			|| step === data[partindex].lengthNum 
+			|| data[partindex].story[step].choiceNext) {
+			console.log('nope');
+			storyContainer.focus();
+
+			return;
+		}
+
+		isQuickReading = !isQuickReading;
+		
+		if (isQuickReading) {
+			storyContainer.removeEventListener("click", clickNavigation);
+			storyContainer.removeEventListener("keydown", arrowNavigation);
+
+			saveBtn.disabled = true;
+			quickSaveBtn.disabled = true;
+
+			let intervalId;
+			const processStep = () => {
+				step += stepForward(data[partindex].story[step], gameSettings);
+			  
+				storyContainer.isTyping = false;
+				changeBackground(backgroundContainer, data[partindex].story[step], true);
+				charContainerBackFilling(data[partindex].story[step]);
+				characterName.innerText = setStoryComponentFromMultiple(data[partindex].story[step].name, data[partindex].story[step], gameSettings);
+				characterText.textContent = setStoryComponentFromMultiple(data[partindex].story[step].text, data[partindex].story[step], gameSettings);
+			  
+				playSound(gameSettings, data[partindex].story[step], gameSettings.settings.audio);
+
+				if (
+					!(isQuickReading 
+					&& !data[partindex].story[step + 1]?.specialSceneNow 
+					&& step < data[partindex].lengthNum 
+					&& !data[partindex].story[step].choiceNext)
+					//+ a menü behívása
+					//+ mobilra váltás?
+					//+ időugrás képernyő?
+				) {
+				  	clearInterval(intervalId);
+				  	storyContainer.focus();
+					storyContainer.addEventListener("keydown", arrowNavigation);
+					storyContainer.addEventListener("click", clickNavigation);
+
+					isQuickReading = false;
+					saveBtn.disabled = false;
+					quickSaveBtn.disabled = false;
+
+					setTimeout(() => {
+						storyContainer.click();
+					}, 500);
+				}
+			}
+			intervalId = setInterval(processStep, 300);
+
+		} else {
+			setTimeout(() => {
+				saveBtn.disabled = false;
+				quickSaveBtn.disabled = false;
+
+				storyContainer.focus();
+				storyContainer.addEventListener("keydown", arrowNavigation);
+				storyContainer.addEventListener("click", clickNavigation);
+			}, 500);
+		}
+	});
+
+	saveBtn.addEventListener('click', () => saveGame('STORY', storyContainer, gameSettings, partindex, step, false, null));
+	quickSaveBtn.addEventListener('click', () => saveGame('STORY', storyContainer, gameSettings, partindex, step, true, null));
+};

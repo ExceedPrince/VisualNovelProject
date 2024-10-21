@@ -1,0 +1,33 @@
+{
+  "name": "js",
+  "productName": "Mukodj mar",
+  "author": "En vagyok az",
+  "version": "0.7.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "electron-build": "electron-builder",
+    "release": "electron-builder --publish=always",
+    "build": "npm run electron-build"
+  },
+  "build": {
+    "appId": "com.pfbx_app_data_copy",
+    "mac": {
+      "target": "dmg"
+    },
+    "win": {
+      "target": "nsis"
+    }
+  },
+  "keywords": [],
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^29.2.0",
+    "electron-builder": "^24.13.3"
+  },
+  "dependencies": {
+    "blueimp-load-image": "^5.16.0"
+  }
+}

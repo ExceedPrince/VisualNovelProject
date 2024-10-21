@@ -1,0 +1,9 @@
+# Full screen:
+    1. Switching to full and non-full screen in electron could be problematic, and have to check it continuously
+    2. a. Until 1024px W and 768px H the #root can be dynamic
+       b. 768px > x < 1023px the #root should keep the 1920x1080 ratio
+       c. Under 767px the game shouldn't run (so the electron smallest opening width must be bigger [preferably 1024x768])
+
+1. Story-nak tudnia kell kezelni, ha egy döntés egyszerre több lánynál is érvényes
+
+  

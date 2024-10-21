@@ -1,0 +1,1 @@
+export const generateRandomBatteryLevel = () => Math.floor(Math.random() * (100 - 12)) + 12;
