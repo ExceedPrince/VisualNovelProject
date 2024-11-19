@@ -396,4 +396,55 @@ export const parts = [
 		},
 	},
 	{ sceneId: "0008" }, //mobileScene: 0008
+	{ sceneId: "0009" }, //mobileScene: 0009
+	{
+		sceneId: "0010",
+		lengthNum: 3,
+		story: {
+			"1": {
+				bgMusic: {
+					name: 'Being_in_the_mood',
+					command: 'START'
+				},
+				background: "backgrounds/BG_balcony_bar_sunny",
+				charContainer: [null, "char-middle", null],
+				image: [null, "Saki_normal", null],
+				class: [null, "fadeUp", null],
+			  	name: "Saki",
+			  	text: "This is the final scene before the ending. Go into a special scene first...",
+				choiceNext: false,
+			},
+			"2": {
+				bgMusic: {
+					name: 'Intended_erotic_situation',
+					command: 'START'
+				},
+				specialSceneNow: true,
+				specialSceneId: null,
+				background: "backgrounds/BG_shop_sunny",
+				charContainer: [null, "char-middle", null],
+				image: [null, null, null],
+				class: [null, "fadeUpOut", null],
+			  	name: "Saki",
+				text: "Now, let get out from this...",
+				choiceNext: false,
+			},
+			"3": {
+				bgMusic: {
+					name: 'Intended_erotic_situation',
+					command: 'FADE_OUT'
+				},
+				specialSceneNow: true,
+				specialSceneId: null, //fake-elve van
+				background: "backgrounds/BG_balcony_bar_sunny",
+				charContainer: [null, "char-middle", null],
+				image: [null, "Saki_normal", null],
+				class: [null, "fadeUp", null],
+			  	name: "Saki",
+			  	text: "Ok, let's continue with the endings",
+				choiceNext: false,
+				endingNext: true
+			},
+		},
+	},
 ];

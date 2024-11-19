@@ -506,8 +506,10 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 			specialSceneCover.addEventListener('keydown', makeSpecialSceneRemovable);
 		}, 2000);
 
-		const galleryIndexNumber = gameSettings.gallery.findIndex((item) => item.id === stepObject.specialSceneId);
-		gameSettings.gallery[galleryIndexNumber].isActivated = true;
+		if (stepObject.specialSceneId) {
+			const galleryIndexNumber = gameSettings.gallery.findIndex((item) => item.id === stepObject.specialSceneId);
+			gameSettings.gallery[galleryIndexNumber].isActivated = true;
+		}
 	}
 
 	function changeBackground(bg_container, stepObject, ignoreAnimation = false) {
