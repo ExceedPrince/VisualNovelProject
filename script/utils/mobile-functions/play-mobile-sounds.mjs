@@ -49,7 +49,7 @@ export function playMobileSounds(isSoundEffect, isBGMusic, name, gameSettings, c
 		}
 		if (selectedCommand === 'FADE_OUT') {
 			let startingVolume = audioSettings.bgMusic/100;
-			const fadeDuration = 2000;
+			const fadeDuration = 1500;
 			const fadeSteps = 50;
 			const fadeStepDuration = fadeDuration / fadeSteps;
 			

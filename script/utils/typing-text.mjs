@@ -3,6 +3,7 @@ import { setStoryComponentFromMultiple } from './set-story-component-from-multip
 export const typingText = (gameSettings, stepObject, text, element, container) => {
 	let index = 0;
 	element.textContent = '';
+	element.className = setStoryComponentFromMultiple(stepObject.textClass, stepObject, gameSettings);
 
 	function type() {
 		let finalText = setStoryComponentFromMultiple(text, stepObject, gameSettings);

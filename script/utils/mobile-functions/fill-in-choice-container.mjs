@@ -8,6 +8,9 @@ export const fillInChoiceContainer = async (choiceId, chatId, textingObj, curren
     const mobileButtonContainer = qs('#mobileButtonContainer');
     const inGame_navbar_icon = qs('#inGame_navbar_icon');
 
+    mobile_choiceContainer.innerHTML = '';
+    mobile_choiceContainer.classList.remove('fadeOut');
+    
     mobile_choiceContainer.insertAdjacentHTML('beforeend', `
         <div id="choice_innerContainer">
             <div id="choice_innerContainer_topHalf">

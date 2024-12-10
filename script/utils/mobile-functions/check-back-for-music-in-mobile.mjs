@@ -1,7 +1,6 @@
 import { playMobileSounds } from "./play-mobile-sounds.mjs";
 
 export const checkBackForMusicInMobile = (textingStatus, personName, currentSceneConversation, gameSettings) => {
-    console.log(textingStatus)
     let result = '';
 
     for (let index = textingStatus[personName].id || 0; index >= 0; index--) {

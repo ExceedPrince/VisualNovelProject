@@ -17,16 +17,16 @@ export const newGame = (root, gameSettings) => {
 
             if (freeSlots.length === 0) {
                 localStorage.setItem('slotNumber', '6');
-                storyPage(parts, 0, gameSettings, true);
+                storyPage(parts, 18, gameSettings, true);
             } else {
                 localStorage.setItem('slotNumber', freeSlots[0].id);
-                storyPage(parts, 0, gameSettings, true);
+                storyPage(parts, 18, gameSettings, true);
             }
         }, 2000);
     }, 2000);
 
     let startingVolume = gameSettings.settings.audio.bgMusic/100;
-    const fadeDuration = 2000;
+    const fadeDuration = 1500;
     const fadeSteps = 50;
     const fadeStepDuration = fadeDuration / fadeSteps;
     

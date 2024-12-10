@@ -38,8 +38,9 @@ export const playSound = (gameSettings, stepObject, audioSettings, isEndOfScene 
 			bgMusicAudio.currentTime = 0;
 		}
 		if (bgMusicCommand === 'FADE_OUT' && (isEndOfScene || stepObject.timeSkipNext || stepObject.bgMusic.insideOfScene)) {
+
 			let startingVolume = audioSettings.bgMusic/100;
-			const fadeDuration = 2000;
+			const fadeDuration = 1500;
 			const fadeSteps = 50;
 			const fadeStepDuration = fadeDuration / fadeSteps;
 			

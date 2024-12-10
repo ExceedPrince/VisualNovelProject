@@ -67,7 +67,7 @@ export const showLoadGameWindow = (loadGame_window, state, gameSettings, timeSta
                 }, 2000);
     
                 let startingVolume = gameSettings.settings.audio.bgMusic/100;
-                const fadeDuration = 2000;
+                const fadeDuration = 1500;
                 const fadeSteps = 50;
                 const fadeStepDuration = fadeDuration / fadeSteps;
                 

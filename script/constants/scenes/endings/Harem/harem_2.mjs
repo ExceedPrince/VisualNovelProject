@@ -1,0 +1,48 @@
+export const harem_2 = [
+    {
+        sceneId: "",
+        lengthNum: 4,
+        story: {
+            "1": {
+                background: "backgrounds/testBG_2",
+                charContainer: [null, 'char-middle', null],
+                image: [null, 'Hailey/Hailey_casual_seductive', null],
+                class: [null, 'fadeUp', null],
+                name: "Hailey",
+                text: "Let's go into harem special scene",
+                choiceNext: false,
+            },
+            "2": {
+                specialSceneNow: true,
+				specialSceneId: null,
+				background: "characters/Harem/Harem_scene_1",
+                charContainer: [null, 'char-middle', null],
+                image: [null, null, null],
+                class: [null, 'fadeUpOut', null],
+                name: "Brianna",
+                text: "We are all here...",
+                choiceNext: false,
+            },
+            "3": {
+                background: "characters/Harem/Harem_scene_1",
+                charContainer: [null, null, null],
+                image: [null, null, null],
+                class: [null, null, null],
+                name: "Daena",
+                text: "For you.",
+                choiceNext: false,
+            },
+            "4": {
+                specialSceneNow: true,
+				specialSceneId: null,
+                background: "characters/Harem/Harem_scene_4",
+                charContainer: [null, null, null],
+                image: [null, null, null],
+                class: [null, null, null],
+                name: "Reina",
+                text: "But especially me.",
+                choiceNext: false,
+            },
+        },
+    },
+];

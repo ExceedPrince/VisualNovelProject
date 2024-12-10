@@ -24,7 +24,9 @@ export const continueConversation = async (boxId, textingObj, chatId, gameSettin
     const textarea = qs(`#${personName}_messageTextarea`);
     const messageSendBtn = qs(`#${personName}_messageSendBtn`);
 
-    const chatRow = `<div class="chatRow ${textingObj.messages[chatId].isFromHer ? 'left' : 'right'}"></div>`;
+    const isFromHer = decideComponentFromMultipleInMobile(textingObj.messages[chatId], textingObj.messages[chatId].isFromHer, gameSettings)
+
+    const chatRow = `<div class="chatRow ${isFromHer ? 'left' : 'right'}"></div>`;
     messageBoxRoot.insertAdjacentHTML('beforeend', chatRow);
 
     const chatRowElements = messageBoxRoot.querySelectorAll('.chatRow');
@@ -35,7 +37,9 @@ export const continueConversation = async (boxId, textingObj, chatId, gameSettin
     }
 
     if (textingObj.messages[chatId].waitingTime !== null) {
-        await wait(textingObj.messages[chatId].waitingTime * 1000);
+        const waitingTime = decideComponentFromMultipleInMobile(textingObj.messages[chatId], textingObj.messages[chatId].waitingTime, gameSettings);
+
+        if(waitingTime !== null) await wait(waitingTime * 1000);
     }
 
     isSheOnline = JSON.parse(localStorage.getItem('textingStatus'))[personName].isOnline;
@@ -44,17 +48,20 @@ export const continueConversation = async (boxId, textingObj, chatId, gameSettin
     }
 
     if (textingObj.messages[chatId].typingTime !== null) {
-        chatRowElement.innerHTML = `
-            <div class="typing-indicator">
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
-            </div>
-        `;
-
-        messageBoxRoot.scrollTo({ left: 0, top: messageBoxRoot.scrollHeight, behavior: "smooth" });
+        const typingTime = decideComponentFromMultipleInMobile(textingObj.messages[chatId], textingObj.messages[chatId].typingTime, gameSettings);
         
-        await wait(textingObj.messages[chatId].typingTime * 1000);
+        if(typingTime !== null) {
+            chatRowElement.innerHTML = `
+                <div class="typing-indicator">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+            `;
+    
+            messageBoxRoot.scrollTo({ left: 0, top: messageBoxRoot.scrollHeight, behavior: "smooth" });
+            await wait(typingTime * 1000);
+        }
     }
 
     isSheOnline = JSON.parse(localStorage.getItem('textingStatus'))[personName].isOnline;
@@ -64,7 +71,7 @@ export const continueConversation = async (boxId, textingObj, chatId, gameSettin
     }
 
     if (textingObj.messages[chatId].bgMusic && chatState.beingOpen === personName) {
-        playMobileSounds(false, true, textingObj.messages[chatId].bgMusic.name, gameSettings, textingObj.messages[chatId]);
+        playMobileSounds(false, true, decideComponentFromMultipleInMobile(textingObj.messages[chatId], textingObj.messages[chatId].bgMusic.name, gameSettings), gameSettings, textingObj.messages[chatId]);
     }
     
     const sentPicture = decideComponentFromMultipleInMobile(textingObj.messages[chatId], textingObj.messages[chatId].sentPicture, gameSettings) ?? null;
@@ -105,14 +112,14 @@ export const continueConversation = async (boxId, textingObj, chatId, gameSettin
         
     } else {
 
-        if (textingObj.messages[chatId].text && textingObj.messages[chatId].isFromHer) {
+        if (textingObj.messages[chatId].text && isFromHer) {
             putTextMessageToHTML(chatRowElement, textingObj, chatId, gameSettings);
         }
     
         let playerAnswered = false;
         let playerChosed = {answer: null};
     
-        if (textingObj.messages[chatId].text && !textingObj.messages[chatId].isFromHer) {
+        if (textingObj.messages[chatId].text && !isFromHer) {
             const currentChatId = chatId;
 
             if (textingObj.messages[chatId].choiceNow && !textingObj.isMandatory) {
@@ -192,7 +199,7 @@ export const continueConversation = async (boxId, textingObj, chatId, gameSettin
             messageSendBtn.addEventListener('click', btnClickEvent);
         }
     
-        if (!textingObj.messages[chatId].isFromHer && !textingObj.isMandatory) {
+        if (!isFromHer && !textingObj.isMandatory) {
             let conditionMet = false;
             
             while (!conditionMet && !timeState.shouldStopTimeInterval) {
@@ -209,7 +216,7 @@ export const continueConversation = async (boxId, textingObj, chatId, gameSettin
 
         let shouldForceClick = false;
 
-        if (!textingObj.messages[chatId].isFromHer && textingObj.isMandatory) {
+        if (!isFromHer && textingObj.isMandatory) {
             let conditionMet = false;
             let passedSeconds = 0;
 
@@ -338,7 +345,7 @@ export const continueConversation = async (boxId, textingObj, chatId, gameSettin
         flag.innerText = textingStatus[personName].unread;
         flag.classList.add('unread');
     } else {
-        if (textingObj.messages[chatId].isFromHer) {
+        if (isFromHer) {
             playMobileSounds(true, false, 'seen-new-message', gameSettings);
         } else {
             playMobileSounds(true, false, 'sent-message', gameSettings);

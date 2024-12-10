@@ -4,7 +4,8 @@
        b. 768px > x < 1023px the #root should keep the 1920x1080 ratio
        c. Under 767px the game shouldn't run (so the electron smallest opening width must be bigger [preferably 1024x768])
 
-1. Story-nak tudnia kell kezelni, ha egy döntés egyszerre több lánynál is érvényes
-2. kilépés a special scene-ből
 
-  
+1. a quick reading lehet h nem figyeli a textClass-t, és épp ezért megőrzi az előtte lévő utolsó állapotot és ráhúzza mindenre
+2. quick reading-ben a scene közbeni fadeout rámegy az induló zenére és azt is le fogja némítani
+3. story-ban és mobilban beállítani a base fonttípust
+4. story-ban beállítani a név és a beszélgetés design elementjét

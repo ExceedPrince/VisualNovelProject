@@ -13,6 +13,18 @@ function putTextMessageToHTML(chatRowElement, textingObj, gameSettings) {
 
 export const loadSoFarConversations = (textingPartners, textingStatus, gameSettings, chatState, timeState, mobilePartindex) => {
     Object.entries(textingPartners).forEach(([name, obj]) => {
+        const [currentHour, currentMinute] = textingStatus.currentTime.split(":");
+        const [startHour, startMinute] = obj.sheStartsAt.split(":");
+        const [endHour, endMinute] = obj.sheEndsAt.split(":");
+    
+        let convertedCurrentTime = +currentHour * 60 + +currentMinute;
+        const convertedStartTime = +startHour * 60 + +startMinute;
+        const convertedEndTime = +endHour * 60 + +endMinute;
+
+        if (!(convertedCurrentTime > convertedStartTime) || (convertedStartTime > convertedEndTime && convertedCurrentTime < convertedEndTime)) {
+            return;
+        }
+
         const messageBox = qs(`#${name}_messageBox`);
         const messageBoxRoot = messageBox.querySelector('.messageBox_root');
         let chatId = textingStatus[name]?.id;
@@ -62,11 +74,14 @@ export const loadSoFarConversations = (textingPartners, textingStatus, gameSetti
                 if (textingObj[index].text && textingObj[index].isFromHer) {
                     putTextMessageToHTML(chatRowElement, textingObj[index], gameSettings);
                 }
-                    
+
                 if (!textingObj[index].isFromHer && !obj.isMandatory) {
                     putTextMessageToHTML(chatRowElement, textingObj[index], gameSettings);
                 }
-                
+
+                if (!textingObj[index].isFromHer && obj.isMandatory) {
+                    putTextMessageToHTML(chatRowElement, textingObj[index], gameSettings);
+                }
             }
         }
 
@@ -75,7 +90,13 @@ export const loadSoFarConversations = (textingPartners, textingStatus, gameSetti
                 messageBox.classList.add('open');
                 messageBox.querySelector('.messageBox_backBtn').classList.add('disabled');
                 qs(`#${name}_popup`)?.classList.remove('visible');
-    
+
+                if (textingStatus[name]?.isOnline) {
+                    const partnerMessageBox = messageBox.querySelector('.messageBox_onlineStatus');
+                    partnerMessageBox.classList.remove('offline');
+                    partnerMessageBox.classList.add('online');
+                }
+            
                 const listElement = Array.from(qsa('.messageList-element')).find((el) => 
                     el.getAttribute("data-conversation").split(' ')[0] === name);
     

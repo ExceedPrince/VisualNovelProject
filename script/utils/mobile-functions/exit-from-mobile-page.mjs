@@ -65,7 +65,7 @@ export const exitFromMobilePage = (gameSettings, mobilePartindex, nextStoryScene
         const audioSettings = gameSettings.settings.audio;
         const bgMusicAudio = qs('#bg_music_audio');
         let startingVolume = audioSettings.bgMusic/100;
-        const fadeDuration = 2000;
+        const fadeDuration = 1500;
         const fadeSteps = 50;
         const fadeStepDuration = fadeDuration / fadeSteps;
         

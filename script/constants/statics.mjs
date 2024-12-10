@@ -11,3 +11,24 @@ export const QUIT_OPEN = 'QUIT_OPEN';
 
 export const STORY = 'STORY';
 export const MOBILE = 'MOBILE';
+
+export const LINDSAY_LOWER = 'lindsay';
+export const REINA_LOWER = 'reina';
+export const DAENA_LOWER = 'daena';
+export const HAILEY_LOWER = 'hailey';
+export const BRIANNA_LOWER = 'brianna';
+export const END_OF_GAME = 'endOfGame';
+export const NEUTRAL_LOWER = 'neutral';
+export const HAREM_LOWER = 'harem';
+
+export const SAD_TRUE_ENDING = 'Sad True Ending';
+export const LINDSAYS_BAD_ENDING = 'Lindsay\'s Bad Ending';
+export const DAENAS_GOOD_ENDING = 'Daena\'s Good Ending';
+export const HAILEYS_GOOD_ENDING = 'Hailey\'s Good Ending';
+export const BRIANNAS_GOOD_ENDING = 'Brianna\'s Good Ending';
+export const REINAS_GOOD_ENDING = 'Reina\'s Good Ending';
+export const HAREM_DREAM_ENDING = 'Harem Dream Ending';
+
+export const SCENES_UNTIL_BAD_ENDINGS = 11;
+export const SCENES_UNTIL_ENDINGS = 12;
+

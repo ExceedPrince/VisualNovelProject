@@ -16,6 +16,8 @@ import { typingText } from '../utils/typing-text.mjs';
 import { showTimeSkipPage } from '../utils/show-time-skip-page.mjs';
 import { mobilePage } from './mobile-page.mjs';
 import { mobileParts } from '../constants/mobile-parts.mjs';
+import { selectEnding } from '../utils/ending-functions/select-ending.mjs';
+import { startOutroVideo } from '../utils/ending-functions/start-outro-video.mjs';
 
 export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFromLoad = false) => {
 	if (partindex >= data.length) {
@@ -82,7 +84,7 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 	saveBtn.disabled = true;
 	quickSaveBtn.disabled = true;
 	quickReadBtn.disabled = true;
-	changeBackground(backgroundContainer, data[partindex].story[step]);
+	changeBackground(backgroundContainer, data[partindex].story[step], gameSettings);
 
 	navbarIcon.addEventListener("click", () => {
 		navbarIconClick(); 
@@ -145,7 +147,40 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 			characterText.textContent = setStoryComponentFromMultiple(data[partindex].story[step].text, data[partindex].story[step], gameSettings);
 
 			return;
-		} 
+		}
+
+		if (data[partindex].story[step].outroNext) {
+			playSound(gameSettings, data[partindex].story[step], gameSettings.settings.audio, true);
+
+			root.classList.remove('fadeIn'); //Ez majd NE a root-on legyen használva, hanem csak a story részén!!!
+			root.classList.add('fadeOut');
+
+			localStorage.setItem('sceneChanged', 'true');
+
+			setTimeout(() => {
+				root.innerHTML = "";
+				startOutroVideo(root, data[partindex].story[step].outroNext, gameSettings);
+			}, 2000);
+
+			return;
+		}
+
+
+		if (data[partindex].story[step].endingNext) {
+			playSound(gameSettings, data[partindex].story[step], gameSettings.settings.audio, true);
+			
+			root.classList.remove('fadeIn'); //Ez majd NE a root-on legyen használva, hanem csak a story részén!!!
+			root.classList.add('fadeOut');
+
+			localStorage.setItem('sceneChanged', 'true');
+
+			setTimeout(() => {
+				root.innerHTML = "";
+				selectEnding(data[partindex].story[step].endingNext, data, gameSettings);
+			}, 2000);
+			
+			return;
+		}
 
 		if (step === data[partindex].lengthNum || (data[partindex].story[step].stepSkip && step + stepForward(data[partindex].story[step], gameSettings) > data[partindex].lengthNum)){
 			let paginationNumber = 1;
@@ -164,15 +199,16 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 			setTimeout(() => {
 				root.innerHTML = "";
 
+				
 				if (data[partindex].story[step].timeSkipNext) {
 					localStorage.setItem('sceneChanged', 'false');
 					showTimeSkipPage(root, data[partindex].story[step].timeSkipNext, data, gameSettings)
 				} else {
 					if (data[partindex].story[step].mobileSceneNext) {
 						mobilePage(mobileParts, +data[partindex].story[step].mobileSceneNext, gameSettings);
-					} else {
-						storyPage(data, partindex + paginationNumber, gameSettings);
 					}
+
+					storyPage(data, partindex + paginationNumber, gameSettings);
 				}
 			}, 2000);
 
@@ -192,6 +228,7 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 					storyContainer.className = '';
 					characterText.textContent = '';
 					charContainerFilling(data[partindex].story[step]);
+					changeBackground(backgroundContainer, data[partindex].story[step], gameSettings);
 					characterName.innerText = setStoryComponentFromMultiple(data[partindex].story[step].name, data[partindex].story[step], gameSettings);
 					typingText(gameSettings, data[partindex].story[step], data[partindex].story[step].text, characterText, storyContainer);
 				});
@@ -208,17 +245,26 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 			return;
 		}
 
+		if (!data[partindex].story[step].specialSceneNow && data[partindex].story[step].specialSceneId) {
+			const galleryIndexNumber = gameSettings.gallery.findIndex((item) => item.id === setStoryComponentFromMultiple(data[partindex].story[step].specialSceneId, data[partindex].story[step], gameSettings));
+			gameSettings.gallery[galleryIndexNumber].isActivated = true;
+		}
+
 		storyContainer.isTyping = true;
 
 		storyContainer.className = '';
 		characterText.textContent = '';
 
-		changeBackground(backgroundContainer, data[partindex].story[step]);
+		changeBackground(backgroundContainer, data[partindex].story[step], gameSettings);
 		charContainerFilling(data[partindex].story[step]);
 		characterName.innerText = setStoryComponentFromMultiple(data[partindex].story[step].name, data[partindex].story[step], gameSettings);
 		typingText(gameSettings, data[partindex].story[step], data[partindex].story[step].text, characterText, storyContainer);
 
-		if (!data[partindex].story[step].bgMusic || data[partindex].story[step].bgMusic.command !== 'STOP' && data[partindex].story[step].bgMusic.command !== 'FADE_OUT') {
+		if (!data[partindex].story[step].bgMusic || 
+			data[partindex].story[step].bgMusic.command === 'STOP' || 
+			(data[partindex].story[step].bgMusic.command !== 'STOP' && data[partindex].story[step].bgMusic.command !== 'FADE_OUT') ||
+			(data[partindex].story[step].bgMusic && data[partindex].story[step].bgMusic.insideOfScene)
+		) {
 			playSound(gameSettings, data[partindex].story[step], gameSettings.settings.audio);
 		}
 	};
@@ -234,7 +280,7 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 			}
 			
 			if (data[partindex].story[step].specialSceneNow) {
-				loadingSpecialScene(data[partindex].story[step]);
+				loadingSpecialScene(data[partindex].story[step], data[partindex].story[step].specialSceneOut ? true : false);
 				
 				return;
 			}
@@ -242,7 +288,7 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 			step -= stepBackward(data[partindex].story[step], gameSettings);
 
 			storyContainer.isTyping = false;
-			changeBackground(backgroundContainer, data[partindex].story[step], true);
+			changeBackground(backgroundContainer, data[partindex].story[step], gameSettings, true);
 			charContainerBackFilling(data[partindex].story[step]);
 			characterName.innerText = setStoryComponentFromMultiple(data[partindex].story[step].name, data[partindex].story[step], gameSettings);
 			characterText.textContent = setStoryComponentFromMultiple(data[partindex].story[step].text, data[partindex].story[step], gameSettings);
@@ -254,6 +300,12 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 			if (storyContainer.isTyping) {
 				storyContainer.isTyping = false;
 				characterText.textContent = setStoryComponentFromMultiple(data[partindex].story[step].text, data[partindex].story[step], gameSettings);
+
+				return;
+			}
+
+			if (data[partindex].story[step].endingNext) {
+				selectEnding(data[partindex].story[step].endingNext, data, gameSettings);
 
 				return;
 			}
@@ -305,6 +357,7 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 						storyContainer.className = '';
 						characterText.textContent = '';
 						charContainerFilling(data[partindex].story[step]);
+						changeBackground(backgroundContainer, data[partindex].story[step], gameSettings);
 						characterName.innerText = setStoryComponentFromMultiple(data[partindex].story[step].name, data[partindex].story[step], gameSettings);
 						typingText(gameSettings, data[partindex].story[step], data[partindex].story[step].text, characterText, storyContainer);
 					});
@@ -320,15 +373,20 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 	
 				return;
 			}
+
+			if (!data[partindex].story[step].specialSceneNow && data[partindex].story[step].specialSceneId) {
+				const galleryIndexNumber = gameSettings.gallery.findIndex((item) => item.id === setStoryComponentFromMultiple(data[partindex].story[step].specialSceneId, data[partindex].story[step], gameSettings));
+				gameSettings.gallery[galleryIndexNumber].isActivated = true;
+			}
 	
 			storyContainer.className = '';
 			characterText.textContent = '';
-			changeBackground(backgroundContainer, data[partindex].story[step]);
+			changeBackground(backgroundContainer, data[partindex].story[step], gameSettings);
 			charContainerFilling(data[partindex].story[step]);
 			characterName.innerText = setStoryComponentFromMultiple(data[partindex].story[step].name, data[partindex].story[step], gameSettings);
 			characterText.textContent = setStoryComponentFromMultiple(data[partindex].story[step].text, data[partindex].story[step], gameSettings);	
 		
-			if (!data[partindex].story[step].bgMusic || data[partindex].story[step].bgMusic.command !== 'STOP' && data[partindex].story[step].bgMusic.command !== 'FADE_OUT') {
+			if (!data[partindex].story[step].bgMusic || data[partindex].story[step].bgMusic.command === 'STOP' || (data[partindex].story[step].bgMusic.command !== 'STOP' && data[partindex].story[step].bgMusic.command !== 'FADE_OUT')) {
 				playSound(gameSettings, data[partindex].story[step], gameSettings.settings.audio);
 			}
 		}
@@ -338,18 +396,19 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 		for (let index = 0; index < stepObject.charContainer.length; index++) {
 			let charContainer;
 
-			if (stepObject.charContainer[index]) {
-				charContainer = qs(`#${stepObject.charContainer[index]}`);
+			const selectedContainer = setStoryComponentFromMultiple(stepObject.charContainer[index], data[partindex].story[step], gameSettings);
+			if (selectedContainer) {
+				charContainer = qs(`#${selectedContainer}`);
 			}
 
 			if (!stepObject.class[index] && charContainer && firstLoad && !isQuickReading) {
-				if (stepObject.charContainer[index] === 'char-left') {
+				if (selectedContainer === 'char-left') {
 					stepObject.class[index] = 'fadeLeft';
 				}
-				if (stepObject.charContainer[index] === 'char-middle') {
+				if (selectedContainer === 'char-middle') {
 					stepObject.class[index] = 'fadeUp';
 				}
-				if (stepObject.charContainer[index] === 'char-right') {
+				if (selectedContainer === 'char-right') {
 					stepObject.class[index] = 'fadeRight';
 				}
 			}
@@ -432,7 +491,8 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 		}, 0);
 	};
 
-	function loadingSpecialScene(stepObject) {
+	
+	function loadingSpecialScene(stepObject, isFromArrowLeft = false) {
 		storyContainer.removeEventListener("click", clickNavigation);
 		storyContainer.removeEventListener("keydown", arrowNavigation);
 
@@ -441,8 +501,8 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 		`)
 
 		const specialSceneCover = qs('#specialSceneCover');
-		specialSceneCover.style.backgroundImage = `url("./img/${stepObject.background}.png")`;
-
+		specialSceneCover.style.backgroundImage = `url("./img/${setStoryComponentFromMultiple(stepObject.background, stepObject, gameSettings)}.png")`;
+		
 		const storyButtonContainer = qs('#storyButtonContainer');
 		storyButtonContainer.classList.add('fadeOut', 'noClick');
 		
@@ -461,7 +521,7 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 					characterName.innerText = setStoryComponentFromMultiple(stepObject.name, stepObject, gameSettings);
 					characterText.textContent = stepObject.text;
 
-					changeBackground(backgroundContainer, data[partindex].story[step], true);
+					changeBackground(backgroundContainer, data[partindex].story[step], gameSettings, true);
 					specialSceneCover.remove();
 
 					storyButtonContainer.classList.add('fadeIn');
@@ -478,7 +538,7 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 					return;
 				}
 
-				changeBackground(backgroundContainer, data[partindex].story[step]);
+				changeBackground(backgroundContainer, data[partindex].story[step], gameSettings);
 				specialSceneCover.classList.remove('fadeIn');
 				specialSceneCover.classList.add('fadeOut');
 				storyContainer.isTyping = true;
@@ -504,17 +564,36 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 			specialSceneCover.focus();
 			specialSceneCover.addEventListener('click', makeSpecialSceneRemovable);
 			specialSceneCover.addEventListener('keydown', makeSpecialSceneRemovable);
+
+			if (stepObject.specialSceneOut && specialSceneCover && !isFromArrowLeft) {
+				specialSceneCover.click();
+			}
+
+			if (isFromArrowLeft) {
+				const keydownArrowLeft = new KeyboardEvent('keydown', {
+					key: 'ArrowLeft',
+					code: 'ArrowLeft',
+					keyCode: 37,
+					bubbles: true,
+					cancelable: true,
+				});
+			
+				setTimeout(() => {
+					specialSceneCover.dispatchEvent(keydownArrowLeft);
+				}, 500);
+			}
+			
 		}, 2000);
 
 		if (stepObject.specialSceneId) {
-			const galleryIndexNumber = gameSettings.gallery.findIndex((item) => item.id === stepObject.specialSceneId);
+			const galleryIndexNumber = gameSettings.gallery.findIndex((item) => item.id === setStoryComponentFromMultiple(stepObject.specialSceneId, stepObject, gameSettings));
 			gameSettings.gallery[galleryIndexNumber].isActivated = true;
 		}
 	}
 
-	function changeBackground(bg_container, stepObject, ignoreAnimation = false) {
+	function changeBackground(bg_container, stepObject, gameSettings, ignoreAnimation = false) {
 		if (ignoreAnimation) {
-			bg_container.style.backgroundImage = `url("./img/${stepObject.background}.png")`;
+			bg_container.style.backgroundImage = `url("./img/${setStoryComponentFromMultiple(stepObject.background, stepObject, gameSettings)}.png")`;
 			return;
 		}
 
@@ -524,17 +603,17 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 			`);
 
 			const secondary_backgroundContainer = qs("#secondary_backgroundContainer");
-			secondary_backgroundContainer.style.backgroundImage = `url("./img/${stepObject.background}.png")`;
+			secondary_backgroundContainer.style.backgroundImage = `url("./img/${setStoryComponentFromMultiple(stepObject.background, stepObject, gameSettings)}.png")`;
 
 			setTimeout(() => {
-				bg_container.style.backgroundImage = `url("./img/${stepObject.background}.png")`;
+				bg_container.style.backgroundImage = `url("./img/${setStoryComponentFromMultiple(stepObject.background, stepObject, gameSettings)}.png")`;
 				qs("#secondary_backgroundContainer").remove();
 			}, 2000);
 			
 			return;
 		}
 
-		bg_container.style.backgroundImage = `url("./img/${stepObject.background}.png")`;
+		bg_container.style.backgroundImage = `url("./img/${setStoryComponentFromMultiple(stepObject.background, stepObject, gameSettings)}.png")`;
 	};
 
 	let isQuickReading = false
@@ -561,21 +640,36 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 
 			let intervalId;
 			const processStep = () => {
+
+				if (data[partindex].story[step]?.backGroundClass) {
+					data[partindex].story[step].backGroundClass = null;
+				}
+
+				if (data[partindex].story[step]?.specialSceneId) {
+					const galleryIndexNumber = gameSettings.gallery.findIndex((item) => item.id === setStoryComponentFromMultiple(data[partindex].story[step].specialSceneId, data[partindex].story[step], gameSettings));
+					gameSettings.gallery[galleryIndexNumber].isActivated = true;
+				}
+
 				step += stepForward(data[partindex].story[step], gameSettings);
 			  
 				storyContainer.isTyping = false;
-				changeBackground(backgroundContainer, data[partindex].story[step], true);
+				changeBackground(backgroundContainer, data[partindex].story[step], gameSettings, true);
 				charContainerBackFilling(data[partindex].story[step]);
 				characterName.innerText = setStoryComponentFromMultiple(data[partindex].story[step].name, data[partindex].story[step], gameSettings);
 				characterText.textContent = setStoryComponentFromMultiple(data[partindex].story[step].text, data[partindex].story[step], gameSettings);
 			  
+				if (data[partindex].story[step].stepSkip && step + setStoryComponentFromMultiple(data[partindex].story[step].stepSkip, data[partindex].story[step], gameSettings) >= data[partindex].lengthNum) {
+					Object.defineProperty(data[partindex].story[step], "bgMusic", {value: {"command": 'FADE_OUT'}})
+				}
+
 				playSound(gameSettings, data[partindex].story[step], gameSettings.settings.audio);
 
 				if (
 					!(isQuickReading 
 					&& !data[partindex].story[step + 1]?.specialSceneNow 
 					&& step < data[partindex].lengthNum 
-					&& !data[partindex].story[step].choiceNext)
+					&& !data[partindex].story[step].choiceNext
+					&& (step + setStoryComponentFromMultiple(data[partindex].story[step].stepSkip, data[partindex].story[step], gameSettings) < data[partindex].lengthNum || !data[partindex].story[step].stepSkip))
 					//+ a menü behívása
 					//+ mobilra váltás?
 					//+ időugrás képernyő?
