@@ -17,10 +17,10 @@ export const newGame = (root, gameSettings) => {
 
             if (freeSlots.length === 0) {
                 localStorage.setItem('slotNumber', '6');
-                storyPage(parts, 18, gameSettings, true);
+                storyPage(parts, 36, gameSettings, true);
             } else {
                 localStorage.setItem('slotNumber', freeSlots[0].id);
-                storyPage(parts, 18, gameSettings, true);
+                storyPage(parts, 36, gameSettings, true);
             }
         }, 2000);
     }, 2000);

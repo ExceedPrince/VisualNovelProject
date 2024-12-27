@@ -29,6 +29,6 @@ export const BRIANNAS_GOOD_ENDING = 'Brianna\'s Good Ending';
 export const REINAS_GOOD_ENDING = 'Reina\'s Good Ending';
 export const HAREM_DREAM_ENDING = 'Harem Dream Ending';
 
-export const SCENES_UNTIL_BAD_ENDINGS = 11;
-export const SCENES_UNTIL_ENDINGS = 12;
+export const SCENES_UNTIL_BAD_ENDINGS = 31;
+export const SCENES_UNTIL_ENDINGS = 37;
 

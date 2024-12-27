@@ -71,7 +71,8 @@ export const continueConversation = async (boxId, textingObj, chatId, gameSettin
     }
 
     if (textingObj.messages[chatId].bgMusic && chatState.beingOpen === personName) {
-        playMobileSounds(false, true, decideComponentFromMultipleInMobile(textingObj.messages[chatId], textingObj.messages[chatId].bgMusic.name, gameSettings), gameSettings, textingObj.messages[chatId]);
+        //playMobileSounds(false, true, decideComponentFromMultipleInMobile(textingObj.messages[chatId], textingObj.messages[chatId].bgMusic.name, gameSettings), gameSettings, textingObj.messages[chatId]);
+        playMobileSounds(false, true, textingObj.messages[chatId].bgMusic.name, gameSettings, textingObj.messages[chatId]);
     }
     
     const sentPicture = decideComponentFromMultipleInMobile(textingObj.messages[chatId], textingObj.messages[chatId].sentPicture, gameSettings) ?? null;

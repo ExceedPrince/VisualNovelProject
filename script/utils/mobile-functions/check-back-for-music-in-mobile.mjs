@@ -1,3 +1,4 @@
+import { decideComponentFromMultipleInMobile } from "./decide-component-from-multiple-in-mobile.mjs";
 import { playMobileSounds } from "./play-mobile-sounds.mjs";
 
 export const checkBackForMusicInMobile = (textingStatus, personName, currentSceneConversation, gameSettings) => {
@@ -16,7 +17,7 @@ export const checkBackForMusicInMobile = (textingStatus, personName, currentScen
             break;
         }
 
-        playMobileSounds(false, true, currentSceneConversation.messages[index].bgMusic.name, gameSettings, currentSceneConversation.messages[index]);
+        playMobileSounds(false, true, decideComponentFromMultipleInMobile(currentSceneConversation.messages[index], currentSceneConversation.messages[index].bgMusic.name, gameSettings), gameSettings, currentSceneConversation.messages[index]);
         
         result = currentSceneConversation.messages[index].bgMusic.name;
         break;

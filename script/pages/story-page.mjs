@@ -165,8 +165,8 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 			return;
 		}
 
-
-		if (data[partindex].story[step].endingNext) {
+		// IF there is an endingNext AND also an extraSceneNext which won't go into the extraSceneNext OR there is no extraSceneNext
+		if (data[partindex].story[step].endingNext && incrementPaginationNumberByExtraScene(data[partindex].story[step].extraSceneNext, gameSettings) !== 0) {
 			playSound(gameSettings, data[partindex].story[step], gameSettings.settings.audio, true);
 			
 			root.classList.remove('fadeIn'); //Ez majd NE a root-on legyen használva, hanem csak a story részén!!!
@@ -292,7 +292,13 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 			charContainerBackFilling(data[partindex].story[step]);
 			characterName.innerText = setStoryComponentFromMultiple(data[partindex].story[step].name, data[partindex].story[step], gameSettings);
 			characterText.textContent = setStoryComponentFromMultiple(data[partindex].story[step].text, data[partindex].story[step], gameSettings);
-		
+
+			if (data[partindex].story[step].textClass) {
+				characterText.className = setStoryComponentFromMultiple(data[partindex].story[step].textClass, data[partindex].story[step], gameSettings);
+			} else {
+				characterText.className = "";
+			}
+			
 			playSound(gameSettings, data[partindex].story[step], gameSettings.settings.audio);
 		}
 
@@ -303,8 +309,9 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 
 				return;
 			}
-
-			if (data[partindex].story[step].endingNext) {
+			
+			// IF there is an endingNext AND also an extraSceneNext which won't go into the extraSceneNext OR there is no extraSceneNext
+			if (data[partindex].story[step].endingNext && incrementPaginationNumberByExtraScene(data[partindex].story[step].extraSceneNext, gameSettings) !== 0) {
 				selectEnding(data[partindex].story[step].endingNext, data, gameSettings);
 
 				return;
@@ -386,6 +393,12 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 			characterName.innerText = setStoryComponentFromMultiple(data[partindex].story[step].name, data[partindex].story[step], gameSettings);
 			characterText.textContent = setStoryComponentFromMultiple(data[partindex].story[step].text, data[partindex].story[step], gameSettings);	
 		
+			if (data[partindex].story[step].textClass) {
+				characterText.className = setStoryComponentFromMultiple(data[partindex].story[step].textClass, data[partindex].story[step], gameSettings);
+			} else {
+				characterText.className = "";
+			}
+
 			if (!data[partindex].story[step].bgMusic || data[partindex].story[step].bgMusic.command === 'STOP' || (data[partindex].story[step].bgMusic.command !== 'STOP' && data[partindex].story[step].bgMusic.command !== 'FADE_OUT')) {
 				playSound(gameSettings, data[partindex].story[step], gameSettings.settings.audio);
 			}
@@ -658,11 +671,17 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 				characterName.innerText = setStoryComponentFromMultiple(data[partindex].story[step].name, data[partindex].story[step], gameSettings);
 				characterText.textContent = setStoryComponentFromMultiple(data[partindex].story[step].text, data[partindex].story[step], gameSettings);
 			  
+				if (data[partindex].story[step].textClass) {
+					characterText.className = setStoryComponentFromMultiple(data[partindex].story[step].textClass, data[partindex].story[step], gameSettings);
+				} else {
+					characterText.className = "";
+				}
+
 				if (data[partindex].story[step].stepSkip && step + setStoryComponentFromMultiple(data[partindex].story[step].stepSkip, data[partindex].story[step], gameSettings) >= data[partindex].lengthNum) {
 					Object.defineProperty(data[partindex].story[step], "bgMusic", {value: {"command": 'FADE_OUT'}})
 				}
 
-				playSound(gameSettings, data[partindex].story[step], gameSettings.settings.audio);
+				playSound(gameSettings, data[partindex].story[step], gameSettings.settings.audio, false, true);
 
 				if (
 					!(isQuickReading 

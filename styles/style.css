@@ -467,12 +467,15 @@ body {
 
 #mainMenu_container {
   height: 100%;
-  background-image: url("../img/backgrounds/bbbb.png");
+  background-image: url("../img/backgrounds/BG_main_1.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
   color: white;
   font-family: "Foglihten";
+}
+#mainMenu_container.completed {
+  background-image: url("../img/backgrounds/BG_main_2.png");
 }
 
 #gallery_inner {

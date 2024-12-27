@@ -41,7 +41,9 @@ const showGallery = (root, gameSettings, galleryInner) => {
             `
         } else {
             return `
-                <div id="picture_${tile.id}" class="gallery_tiles">Locked</div>
+                <div id="picture_${tile.id}" class="gallery_tiles noClick">
+                    <img src="${isInElectron() ? '.' : '../../..'}/img/assets/locked_picture.png" alt="locked_picture"/>
+                </div>
             `;
         }
     }).join("");

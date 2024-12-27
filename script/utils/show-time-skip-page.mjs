@@ -36,7 +36,7 @@ export const showTimeSkipPage = (root, timeSkipNext, data, gameSettings) => {
 
             setTimeout(() => {
                 if (timeSkipNext.nextSceneType === STORY) {
-                    storyPage(parts, +timeSkipNext.nextSceneNumber, gameSettings);
+                    storyPage(timeSkipNext.isInEnding ? data : parts, +timeSkipNext.nextSceneNumber, gameSettings);
                 }
                 if (timeSkipNext.nextSceneType === MOBILE) {
                     mobilePage(mobileParts, +timeSkipNext.nextSceneNumber, gameSettings);

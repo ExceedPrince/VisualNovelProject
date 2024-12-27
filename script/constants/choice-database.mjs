@@ -275,9 +275,7 @@ export const choiceDataBase = {
 				{option: "option_0", value: "Reina"}, 
 				{option: "option_1", value: "Brianna"}
 			]
-		}
-	},
-	"0023": {
+		},
 		"62": {
 			character: 'reina',
 			location: 'importants',
@@ -336,9 +334,7 @@ export const choiceDataBase = {
 				{option: "option_1", value: "Classic bikini"},
 				{option: "option_2", value: "One-piece swimsuit"}
 			]
-		}
-	},
-	"0027": {
+		},
 		"40": {
 			character: 'reina',
 			location: 'importants',
@@ -409,7 +405,7 @@ export const choiceDataBase = {
 		}
 	},
 	"0033-r": {
-		"26": {
+		"28": {
 			character: 'reina',
 			location: 'mobileImportants',
 			question: "How should I respond to this fantasy situation?",
@@ -430,9 +426,7 @@ export const choiceDataBase = {
 				{option: "option_0", value: "Younger"}, 
 				{option: "option_1", value: "Older"}
 			]
-		}
-	},
-	"0034": {
+		},
 		"53": {
 			character: 'friends',
 			location: 'notImportants',
@@ -441,9 +435,7 @@ export const choiceDataBase = {
 				{option: "option_0", value: "It's important"}, 
 				{option: "option_1", value: "Not important"}
 			]
-		}
-	},
-	"0034": {
+		},
 		"56": {
 			character: 'friends',
 			location: 'notImportants',
@@ -452,9 +444,7 @@ export const choiceDataBase = {
 				{option: "option_0", value: "I can handle it myself"}, 
 				{option: "option_1", value: "It'd be good if she helped out"}
 			]
-		}
-	},
-	"0034": {
+		},
 		"58": {
 			character: 'friends',
 			location: 'notImportants',
@@ -463,9 +453,7 @@ export const choiceDataBase = {
 				{option: "option_0", value: "Yes"}, 
 				{option: "option_1", value: "No"}
 			]
-		}
-	},
-	"0034": {
+		},
 		"61": {
 			character: 'friends',
 			location: 'notImportants',

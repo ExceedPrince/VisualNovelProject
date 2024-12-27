@@ -20,7 +20,7 @@ export const navigateToThankYouPage = (root, name, gameSettings) => {
 
     for (let index = 1; index <= OUTRO_NUM; index++) {
         const galleryIndexNumber = modifiedGameSettings.gallery.findIndex((item) => item.id === `${name.toLowerCase()}_outro_${index}`);
-        if (galleryIndexNumber) {
+        if (galleryIndexNumber && modifiedGameSettings.gallery[galleryIndexNumber]) {
             modifiedGameSettings.gallery[galleryIndexNumber].isActivated = true;
         }
     }

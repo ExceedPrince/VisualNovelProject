@@ -1,11 +1,12 @@
 /*
 const BRIANNA_DATA = {
-    REQ_ENDING_VALUE: 1,
+    REQ_ENDING_VALUE: 7,
     CRITICAL_CHOICES: null,
-    PERSONAL_SCENE_NUM: 12,
+    PERSONAL_SCENE_NUM: 37,
 };
 */
-export const briannaCriterias = (brianna_data, slotNumber, briannaCorrectChoices, solutionKey, gameSettings) => 
-/*     reinaCorrectChoices < 2 &&
-    haileyCorrectChoices < 1 && */
+export const briannaCriterias = (brianna_data, slotNumber, briannaCorrectChoices, reinaCorrectChoices, haileyCorrectChoices, daenaCorrectChoices, solutionKey, gameSettings) => 
+    reinaCorrectChoices < 7 &&
+    haileyCorrectChoices < 7 &&
+    daenaCorrectChoices < 7 &&
     briannaCorrectChoices === brianna_data.REQ_ENDING_VALUE

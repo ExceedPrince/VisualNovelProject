@@ -1,6 +1,6 @@
 import { qs } from '../utils/commons.mjs';
 
-export const playSound = (gameSettings, stepObject, audioSettings, isEndOfScene = false) => {
+export const playSound = (gameSettings, stepObject, audioSettings, isEndOfScene = false, isQuickReading = false) => {
 	const bgMusicAudio = qs('#bg_music_audio');
 	const otherSoundsAudio = qs('#other_sound_effects_audio');
 
@@ -14,6 +14,10 @@ export const playSound = (gameSettings, stepObject, audioSettings, isEndOfScene 
 		let bgMusicName = stepObject.bgMusic.name;
 		let bgMusicCommand = stepObject.bgMusic.command;
 		let selectedChoice = null;
+
+		if (bgMusicCommand === "FADE_OUT" && stepObject.bgMusic.insideOfScene && isQuickReading) {
+			bgMusicCommand = 'STOP';
+		}
  
 		if (typeof stepObject.bgMusic.name === 'object' && stepObject.bgMusic.name !== null && stepObject.choicePath) {
 			let character, location, choiceId;
@@ -38,7 +42,6 @@ export const playSound = (gameSettings, stepObject, audioSettings, isEndOfScene 
 			bgMusicAudio.currentTime = 0;
 		}
 		if (bgMusicCommand === 'FADE_OUT' && (isEndOfScene || stepObject.timeSkipNext || stepObject.bgMusic.insideOfScene)) {
-
 			let startingVolume = audioSettings.bgMusic/100;
 			const fadeDuration = 1500;
 			const fadeSteps = 50;

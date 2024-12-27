@@ -44,7 +44,7 @@ export const mainMenuPage = (gameSettings) => {
     root.innerHTML = '';
     root.classList.remove('fadeOut',)
     root.insertAdjacentHTML('afterbegin', `
-        <div id="mainMenu_container" class="fadeIn">
+        <div id="mainMenu_container" class="fadeIn ${gameSettings.endings.reina ? 'completed' : ''}">
             <h1 id="mainTitle">Constrained Love</h1>
             <div id="mainMenu_flexContainer">
                 <div id="mainColumn_1" class="mainMenu_column">

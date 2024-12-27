@@ -1,0 +1,46 @@
+export const scene_36 = [
+    { sceneId: "0035" },
+	{
+		sceneId: "0036",
+		lengthNum: 4,
+		story: {
+			"1": {
+                background: "backgrounds/BG_Tyler_bedroom_sunny",
+				charContainer: [null, null, null],
+				image: [null, null, null],
+				class: [null, null, null],
+			  	name: "",
+			  	text: "It's Sunday. Today's gonna be packed since all four women want to meet up.",
+				choiceNext: false,
+            },
+ 			"2": {
+                background: "backgrounds/BG_Tyler_bedroom_sunny",
+				charContainer: [null, null, null],
+				image: [null, null, null],
+				class: [null, null, null],
+			  	name: "",
+			  	text: "It's kind of strange… they all planned for the same day.",
+				choiceNext: false,
+			},
+			"3": {
+                background: "backgrounds/BG_Tyler_bedroom_sunny",
+				charContainer: [null, null, null],
+				image: [null, null, null],
+				class: [null, null, null],
+			  	name: "",
+			  	text: "I have a mix of good and bad feelings about what each of them might want to talk about, but I'm hoping that by the end of today, I'll finally get to confess my love to the one I truly care about.",
+				choiceNext: false,
+			},
+            "4": {
+				background: "backgrounds/BG_Tyler_bedroom_sunny",
+				charContainer: [null, null, null],
+				image: [null, null, null],
+                class: [null, null, null],
+			  	name: "",
+			  	text: "Time to get ready—the first meetup is coming up soon.",
+				choiceNext: false,
+                endingNext: 'endOfGame',
+			},
+		},
+	},
+];
