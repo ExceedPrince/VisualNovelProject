@@ -2,6 +2,7 @@ export const daena_good_3 = [
     {
         sceneId: "",
         lengthNum: 21,
+		endingSceneType: '',
         story: {
 			"1": {
 				bgMusic: {

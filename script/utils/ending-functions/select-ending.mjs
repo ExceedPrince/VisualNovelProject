@@ -29,7 +29,8 @@ import {
     BRIANNA_LOWER,
     END_OF_GAME,
     NEUTRAL_LOWER,
-    SCENES_UNTIL_ENDINGS
+    SCENES_UNTIL_ENDINGS,
+    HAREM_LOWER
 } from "../../constants/statics.mjs";
 import { solutionKey as rawSolutions } from "../../constants/solution-key.mjs";
 
@@ -157,6 +158,8 @@ export const selectEnding = (endingType, mainStoryData, gameSettings) => {
             const modifiedHaremArray = harem_ending.map((obj, index) => {
                 obj.sceneId = String(+fillerArray.length + index).padStart(4, '0');
 
+                obj.endingSceneType = HAREM_LOWER;
+
                 if (obj.story[Object.keys(obj.story).length].timeSkipNext) {
                     obj.story[Object.keys(obj.story).length].timeSkipNext.nextSceneNumber = String(+fillerArray.length + index + 1).padStart(4, '0');
                 }
@@ -178,7 +181,7 @@ export const selectEnding = (endingType, mainStoryData, gameSettings) => {
 
         // Reina good ending
         if (reinaCriterias(REINA_DATA, slotNumber, reinaCorrectChoices, daenaCorrectChoices, briannaCorrectChoices, haileyCorrectChoices, solutionKey, gameSettings) === true) {
-            const reinaFinal = mergeGoodEndings('Reina', reina_good, daena_bad, hailey_bad, brianna_bad, true)
+            const reinaFinal = mergeGoodEndings('Reina', reina_good, daena_bad, hailey_bad, brianna_bad, true);
             storyPage(reinaFinal, REINA_DATA.PERSONAL_SCENE_NUM, gameSettings);
 
             return;
@@ -191,10 +194,10 @@ export const selectEnding = (endingType, mainStoryData, gameSettings) => {
 
         const final_keys = Object.keys(final_normal[0].story);
         const last_final_key = final_keys[final_keys.length - 1];
+        final_normal[0].endingSceneType = NEUTRAL_LOWER;
         final_normal[0].story[last_final_key].outroNext = 'Neutral';
 
         const neutralFinal = unitedGirlsEndings.concat(final_normal);
-
         storyPage(neutralFinal, NEUTRAL_DATA.PERSONAL_SCENE_NUM, gameSettings);
     }
 };

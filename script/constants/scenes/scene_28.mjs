@@ -275,6 +275,7 @@ export const scene_28 = [
                         text: "Have a lovely day!🥰❤️", 
                         waitingTime: 3,
                         typingTime: 2,
+                        canSpeedUp: [true, "14:32"]
                     },
                 ],
             },

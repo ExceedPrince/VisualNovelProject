@@ -2,7 +2,7 @@ import { qs, qsa } from '../utils/commons.mjs';
 import { createDateForSaving } from './create-data-for-saving.mjs';
 import { saveProgressWithImage } from './save-progress-with-image.mjs';
 
-export const showAllSavingSlots = (pageType, gameSettings, slotNumber, sceneNumber, stepNumber, saveContainer, saveBox, saveBoxInner, closeSavePopup, pageContainer) => {
+export const showAllSavingSlots = (pageType, gameSettings, slotNumber, sceneNumber, stepNumber, endingSceneType, saveContainer, saveBox, saveBoxInner, closeSavePopup, pageContainer) => {
 	gameSettings.savingSlots.slice(0, 6).map((slot) => {
 		saveBoxInner.insertAdjacentHTML("beforeend", `
 			<div id="saveSlot_${slot.id}" class="saveSlot">
@@ -36,7 +36,7 @@ export const showAllSavingSlots = (pageType, gameSettings, slotNumber, sceneNumb
 				overWriteSaveNoBtn.addEventListener('click', () => {
 					saveBox.innerHTML = '<span id="saveXBtn">X</span><h2>Choose a saving slot</h2><div id="saveBox-inner"></div>';
 					qs('#saveXBtn').addEventListener('click', () => closeSavePopup(saveContainer));
-					showAllSavingSlots(gameSettings, slotNumber, sceneNumber, stepNumber, saveContainer, saveBox, qs('#saveBox-inner'), closeSavePopup, pageContainer);
+					showAllSavingSlots(gameSettings, slotNumber, sceneNumber, stepNumber, endingSceneType, saveContainer, saveBox, qs('#saveBox-inner'), closeSavePopup, pageContainer);
 				});
 
 				overWriteSaveYesBtn.addEventListener('click', () => {
@@ -44,6 +44,7 @@ export const showAllSavingSlots = (pageType, gameSettings, slotNumber, sceneNumb
                     currentGameSlotObject.currentScene = sceneNumber.toString().padStart(4, '0');
                     currentGameSlotObject.currentStep = stepNumber;
 					currentGameSlotObject.currentSceneType = pageType;
+					currentGameSlotObject.endingSceneType = endingSceneType;
                     currentGameSlotObject.dateTime = createDateForSaving();
                     currentGameSlotObject.id = slotId.toString();
 
@@ -66,6 +67,7 @@ export const showAllSavingSlots = (pageType, gameSettings, slotNumber, sceneNumb
             currentGameSlotObject.dateTime = createDateForSaving();
             currentGameSlotObject.id = slotId.toString();
 			currentGameSlotObject.currentSceneType = pageType;
+			currentGameSlotObject.endingSceneType = endingSceneType;
 
 			if (textingStatus) currentGameSlotObject.textingStatus = textingStatus;
 

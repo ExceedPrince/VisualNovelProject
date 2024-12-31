@@ -222,6 +222,7 @@ export const scene_6 = [
                         text: "Kisses!💋💋", 
                         waitingTime: 2,
                         typingTime: 1.5,
+                        canSpeedUp: [true, "23:59"]
                     },
                 ]
             }

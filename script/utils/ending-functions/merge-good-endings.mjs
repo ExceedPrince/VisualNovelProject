@@ -31,6 +31,8 @@ export const mergeGoodEndings = (personName, winnerArray, highlightedArray, lose
     const modifiedOrderedArray = orderedArray.map((obj, index) => {
         obj.sceneId = String(+fillerArray.length + index).padStart(4, '0');
 
+        obj.endingSceneType = personName.toLowerCase();
+
         if (obj.story[Object.keys(obj.story).length].timeSkipNext) {
             obj.story[Object.keys(obj.story).length].timeSkipNext.nextSceneNumber = String(+fillerArray.length + index + 1).padStart(4, '0');
         }

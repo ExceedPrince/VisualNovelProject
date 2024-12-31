@@ -4,12 +4,9 @@
        b. 768px > x < 1023px the #root should keep the 1920x1080 ratio
        c. Under 767px the game shouldn't run (so the electron smallest opening width must be bigger [preferably 1024x768])
 
-# mobilban kell egy felgyorsító gomb, ha a beszelgetés hamar véget ér és sok idő van a köviig vagy a scene végéig
-
 
 Bug-ok, TODO-k:
 3. story-ban és mobilban beállítani a base fonttípust
 4. story-ban beállítani a név és a beszélgetés design elementjét
 5. némelyik karakterr zsugorabbnak látszik a másikhoz kéepst, valahogy legyen meg az önálló méretük anélkül, 
     hogy túlságos méretkülönbségek lennének, de ugyankkorába se legyenek tömörítve
-7. Ha egy extrasceneben / endingben ment valaki, akkor az betöltéskor hogy fog kinézni?

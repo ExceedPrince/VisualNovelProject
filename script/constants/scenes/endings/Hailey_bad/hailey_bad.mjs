@@ -2,6 +2,7 @@ export const hailey_bad = [
 	{
 		sceneId: "",
 		lengthNum: 42,
+		endingSceneType: '',
 		story: {
 			"1": {
 				bgMusic: {

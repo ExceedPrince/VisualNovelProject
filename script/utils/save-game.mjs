@@ -5,7 +5,7 @@ import { showAllSavingSlots } from './show-all-saving-slots.mjs';
 import { qs } from './commons.mjs';
 import { getGameData } from './get-game-data.mjs';
 
-export const saveGame = (pageType, pageContainer, gameSettings, sceneNumber, stepNumber = 1, isQuickSave = false) => {
+export const saveGame = (pageType, pageContainer, gameSettings, sceneNumber, stepNumber = 1, endingSceneType = null, isQuickSave = false) => {
 	const slotNumber = +localStorage.getItem('slotNumber') || 0;
 	
 	if (isQuickSave && slotNumber >= 6) {
@@ -51,6 +51,7 @@ export const saveGame = (pageType, pageContainer, gameSettings, sceneNumber, ste
 	let currentGameSetting = gameSettings;
 
 	currentGameSlotObject.currentSceneType = pageType;
+	currentGameSlotObject.endingSceneType = endingSceneType;
 
 	if (isQuickSave) {
 		quickSaveYesBtn.addEventListener("click", () => {
@@ -73,10 +74,10 @@ export const saveGame = (pageType, pageContainer, gameSettings, sceneNumber, ste
 	}
 
 	if (pageType === 'STORY') {
-		showAllSavingSlots(pageType, currentGameSetting, slotNumber, sceneNumber, stepNumber, saveContainer, saveBox, saveBoxInner, closeSavePopup, pageContainer);
+		showAllSavingSlots(pageType, currentGameSetting, slotNumber, sceneNumber, stepNumber, endingSceneType, saveContainer, saveBox, saveBoxInner, closeSavePopup, pageContainer);
 	}
 
 	if (pageType === 'MOBILE') {
-		showAllSavingSlots(pageType, currentGameSetting, slotNumber, sceneNumber, stepNumber, saveContainer, saveBox, saveBoxInner, closeSavePopup, pageContainer);
+		showAllSavingSlots(pageType, currentGameSetting, slotNumber, sceneNumber, stepNumber, endingSceneType, saveContainer, saveBox, saveBoxInner, closeSavePopup, pageContainer);
 	}
 };

@@ -1,6 +1,7 @@
 export const scene_30 = [
 	{
 		sceneId: "0030",
+		endingSceneType: 'lindsay_1',
 		lengthNum: 34,
 		story: {
 			"1": {

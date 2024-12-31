@@ -1,4 +1,4 @@
-import { SCENES_UNTIL_ENDINGS } from "../../constants/statics.mjs";
+import { NEUTRAL_LOWER, SCENES_UNTIL_ENDINGS } from "../../constants/statics.mjs";
 
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -28,6 +28,7 @@ export const mergeBadEndings = (daenaArray, haileyArray, briannaArray, reinaArra
     }));
 
     const flattenedEndings = resultArray.flat().map((obj, index) => {
+        obj.endingSceneType = NEUTRAL_LOWER;
         obj.sceneId = String(+fillerArray.length + index).padStart(4, '0');
         return obj;
     });

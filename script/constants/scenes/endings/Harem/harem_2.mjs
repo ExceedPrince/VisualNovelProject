@@ -2,6 +2,7 @@ export const harem_2 = [
     {
         sceneId: "",
         lengthNum: 64,
+        endingSceneType: '',
         story: {
             "1": {
                 bgMusic: {

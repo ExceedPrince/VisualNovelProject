@@ -159,6 +159,7 @@ export const scene_35 = [
                         text: "Goodnight", 
                         waitingTime: 3,
                         typingTime: 1,
+                        canSpeedUp: [true, "21:24"]
                     },
                 ],
             },
@@ -275,6 +276,7 @@ export const scene_35 = [
                         text: "Goodnight", 
                         waitingTime: 4,
                         typingTime: 1,
+                        canSpeedUp: [true, "22:14"]
                     },
                 ],
             },
@@ -391,6 +393,7 @@ export const scene_35 = [
                         text: "Goodnight", 
                         waitingTime: 2,
                         typingTime: 1,
+                        canSpeedUp: [true, "23:06"]
                     },
                 ],
             },
@@ -493,6 +496,7 @@ export const scene_35 = [
                         text: "See you tomorrow!", 
                         waitingTime: 3,
                         typingTime: 2,
+                        canSpeedUp: [true, "23:57"]
                     },
                 ],
             },

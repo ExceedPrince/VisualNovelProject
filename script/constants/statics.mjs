@@ -13,6 +13,8 @@ export const STORY = 'STORY';
 export const MOBILE = 'MOBILE';
 
 export const LINDSAY_LOWER = 'lindsay';
+export const LINDSAY_LOWER_1 = 'lindsay_1';
+export const LINDSAY_LOWER_2 = 'lindsay_2';
 export const REINA_LOWER = 'reina';
 export const DAENA_LOWER = 'daena';
 export const HAILEY_LOWER = 'hailey';

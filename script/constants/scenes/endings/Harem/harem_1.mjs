@@ -2,6 +2,7 @@ export const harem_1 = [
     {
         sceneId: "",
         lengthNum: 121,
+		endingSceneType: '',
         story: {
             "1": {
                 otherSoundEffect: "knock-on-door",

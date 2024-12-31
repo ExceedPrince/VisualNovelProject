@@ -2,6 +2,7 @@ export const brianna_good_3 = [
     {
         sceneId: "",
         lengthNum: 29,
+		endingSceneType: '',
         story: {
 			"1": {
                 background: "backgrounds/BG_night_sky",

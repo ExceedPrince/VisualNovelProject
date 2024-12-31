@@ -10,6 +10,14 @@
   font-family: "FogLihten";
   src: url("../fonts/Foglihtenno07-e9wz3.woff2") format("woff2");
 }
+@font-face {
+  font-family: "NunitoBold";
+  src: url("../fonts/Nunito-Bold.woff2") format("woff2");
+}
+@font-face {
+  font-family: "NunitoRegular";
+  src: url("../fonts/Nunito-Regular.woff2") format("woff2");
+}
 *,
 *::before,
 *::after {
@@ -474,6 +482,7 @@ body {
   color: white;
   font-family: "Foglihten";
 }
+
 #mainMenu_container.completed {
   background-image: url("../img/backgrounds/BG_main_2.png");
 }
@@ -904,6 +913,22 @@ body {
   z-index: 2;
 }
 
+#mobile_speedUpContainer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  translate: 250px -50%;
+  width: 200px;
+  height: 200px;
+  z-index: 2;
+  opacity: 0;
+  transition: 300ms opacity ease-in-out;
+}
+
+#mobile_speedUpContainer img {
+  transition: 300ms opacity ease-in-out;
+}
+
 .popup_pic_container {
   position: relative;
   display: none;
@@ -1195,6 +1220,10 @@ body {
 
 .d-none {
   display: none;
+}
+
+.half-faded {
+  opacity: 50%;
 }
 
 .fadeIn {

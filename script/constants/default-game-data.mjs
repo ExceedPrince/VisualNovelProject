@@ -111,11 +111,12 @@ export const defaultGameData = {
     savingSlots: [
         {
             id: '0',
-            currentScene: '0001',
+            currentScene: '0000',
             currentStep: 1,
             image: '',
             dateTime: null,
             currentSceneType: 'STORY',
+            endingSceneType: null,
             textingStatus: {},
             decisions: {
                 reina: {
@@ -134,8 +135,8 @@ export const defaultGameData = {
                         '0027-13': null,
                     },
                     mobileImportants: {
-                        '0009-r-23': 'option_0',
-                        '0022-r-9': 'option_0',
+                        '0009-r-23': 'option_1',
+                        '0022-r-9': 'option_1',
                         '0028-r-15': 'option_2',
                         '0033-r-28': 'option_3',
                     },
@@ -146,7 +147,7 @@ export const defaultGameData = {
                         '0014-38': 'option_1', //Hailey!!
                         '0018-36': 'option_0', //Daena!!
                         '0023-44': 'option_0', //Reina!!
-                        '0025-32': 'option_2',
+                        '0025-32': 'option_3',
                         '0032-40': 'option_0',
                     },
                     notImportants: {
@@ -192,8 +193,8 @@ export const defaultGameData = {
                 },
                 lindsay: {
                     importants: {
-                        '0012-41': 'option_0',
-                        '0029-43': 'option_0',
+                        '0012-41': 'option_1',
+                        '0029-43': 'option_1',
                     },
                     notImportants: {
                         '0012-23': null,
@@ -218,11 +219,12 @@ export const defaultGameData = {
         },
         {
             id: '1',
-            currentScene: '0001',
+            currentScene: '0000',
             currentStep: 1,
             image: '',
             dateTime: null,
             currentSceneType: 'STORY',
+            endingSceneType: null,
             textingStatus: {},
             decisions: {
                 reina: {
@@ -244,7 +246,7 @@ export const defaultGameData = {
                         '0009-r-23': 'option_0',
                         '0022-r-9': 'option_0',
                         '0028-r-15': 'option_2',
-                        '0033-r-28': null,
+                        '0033-r-28': 'option_3',
                     },
                     mobileNotImportants: {},
                 },
@@ -253,7 +255,7 @@ export const defaultGameData = {
                         '0014-38': 'option_1', //Hailey!!
                         '0018-36': 'option_0', //Daena!!
                         '0023-44': 'option_0', //Reina!!
-                        '0025-32': 'option_2',
+                        '0025-32': 'option_3',
                         '0032-40': 'option_0',
                     },
                     notImportants: {
@@ -299,8 +301,8 @@ export const defaultGameData = {
                 },
                 lindsay: {
                     importants: {
-                        '0012-41': 'option_0',
-                        '0029-43': 'option_0',
+                        '0012-41': 'option_1',
+                        '0029-43': 'option_1',
                     },
                     notImportants: {
                         '0012-23': null,
@@ -325,11 +327,12 @@ export const defaultGameData = {
         },
         {
             id: '2',
-            currentScene: '0001',
+            currentScene: '0000',
             currentStep: 1,
             image: '',
             dateTime: null,
             currentSceneType: 'STORY',
+            endingSceneType: null,
             textingStatus: {},
             decisions: {
                 reina: {
@@ -351,7 +354,7 @@ export const defaultGameData = {
                         '0009-r-23': 'option_0',
                         '0022-r-9': 'option_0',
                         '0028-r-15': 'option_2',
-                        '0033-r-28': null,
+                        '0033-r-28': 'option_3',
                     },
                     mobileNotImportants: {},
                 },
@@ -360,7 +363,7 @@ export const defaultGameData = {
                         '0014-38': 'option_1', //Hailey!!
                         '0018-36': 'option_0', //Daena!!
                         '0023-44': 'option_0', //Reina!!
-                        '0025-32': 'option_2',
+                        '0025-32': 'option_3',
                         '0032-40': 'option_0',
                     },
                     notImportants: {
@@ -406,8 +409,8 @@ export const defaultGameData = {
                 },
                 lindsay: {
                     importants: {
-                        '0012-41': 'option_0',
-                        '0029-43': 'option_0',
+                        '0012-41': 'option_1',
+                        '0029-43': 'option_1',
                     },
                     notImportants: {
                         '0012-23': null,
@@ -432,11 +435,12 @@ export const defaultGameData = {
         },
         {
             id: '3',
-            currentScene: '0001',
+            currentScene: '0000',
             currentStep: 1,
             image: '',
             dateTime: null,
             currentSceneType: 'STORY',
+            endingSceneType: null,
             textingStatus: {},
             decisions: {
                 reina: {
@@ -458,7 +462,7 @@ export const defaultGameData = {
                         '0009-r-23': 'option_0',
                         '0022-r-9': 'option_0',
                         '0028-r-15': 'option_2',
-                        '0033-r-28': null,
+                        '0033-r-28': 'option_3',
                     },
                     mobileNotImportants: {},
                 },
@@ -467,7 +471,7 @@ export const defaultGameData = {
                         '0014-38': 'option_1', //Hailey!!
                         '0018-36': 'option_0', //Daena!!
                         '0023-44': 'option_0', //Reina!!
-                        '0025-32': 'option_2',
+                        '0025-32': 'option_3',
                         '0032-40': 'option_0',
                     },
                     notImportants: {
@@ -513,8 +517,8 @@ export const defaultGameData = {
                 },
                 lindsay: {
                     importants: {
-                        '0012-41': 'option_0',
-                        '0029-43': 'option_0',
+                        '0012-41': 'option_1',
+                        '0029-43': 'option_1',
                     },
                     notImportants: {
                         '0012-23': null,
@@ -539,11 +543,12 @@ export const defaultGameData = {
         },
         {
             id: '4',
-            currentScene: '0001',
+            currentScene: '0000',
             currentStep: 1,
             image: '',
             dateTime: null,
             currentSceneType: 'STORY',
+            endingSceneType: null,
             textingStatus: {},
             decisions: {
                 reina: {
@@ -565,7 +570,7 @@ export const defaultGameData = {
                         '0009-r-23': 'option_0',
                         '0022-r-9': 'option_0',
                         '0028-r-15': 'option_2',
-                        '0033-r-28': null,
+                        '0033-r-28': 'option_3',
                     },
                     mobileNotImportants: {},
                 },
@@ -574,7 +579,7 @@ export const defaultGameData = {
                         '0014-38': 'option_1', //Hailey!!
                         '0018-36': 'option_0', //Daena!!
                         '0023-44': 'option_0', //Reina!!
-                        '0025-32': 'option_2',
+                        '0025-32': 'option_3',
                         '0032-40': 'option_0',
                     },
                     notImportants: {
@@ -620,8 +625,8 @@ export const defaultGameData = {
                 },
                 lindsay: {
                     importants: {
-                        '0012-41': 'option_0',
-                        '0029-43': 'option_0',
+                        '0012-41': 'option_1',
+                        '0029-43': 'option_1',
                     },
                     notImportants: {
                         '0012-23': null,
@@ -646,11 +651,12 @@ export const defaultGameData = {
         },
         {
             id: '5',
-            currentScene: '0001',
+            currentScene: '0000',
             currentStep: 1,
             image: '',
             dateTime: null,
             currentSceneType: 'STORY',
+            endingSceneType: null,
             textingStatus: {},
             decisions: {
                 reina: {
@@ -672,7 +678,7 @@ export const defaultGameData = {
                         '0009-r-23': 'option_0',
                         '0022-r-9': 'option_0',
                         '0028-r-15': 'option_2',
-                        '0033-r-28': null,
+                        '0033-r-28': 'option_3',
                     },
                     mobileNotImportants: {},
                 },
@@ -681,7 +687,7 @@ export const defaultGameData = {
                         '0014-38': 'option_1', //Hailey!!
                         '0018-36': 'option_0', //Daena!!
                         '0023-44': 'option_0', //Reina!!
-                        '0025-32': 'option_2',
+                        '0025-32': 'option_3',
                         '0032-40': 'option_0',
                     },
                     notImportants: {
@@ -727,8 +733,8 @@ export const defaultGameData = {
                 },
                 lindsay: {
                     importants: {
-                        '0012-41': 'option_0',
-                        '0029-43': 'option_0',
+                        '0012-41': 'option_1',
+                        '0029-43': 'option_1',
                     },
                     notImportants: {
                         '0012-23': null,
@@ -753,11 +759,12 @@ export const defaultGameData = {
         },
         {
             id: '6',
-            currentScene: '0001',
+            currentScene: '0000',
             currentStep: 1,
             image: '',
             dateTime: null,
             currentSceneType: 'STORY',
+            endingSceneType: null,
             textingStatus: {},
             decisions: {
                 reina: {
@@ -779,7 +786,7 @@ export const defaultGameData = {
                         '0009-r-23': 'option_0',
                         '0022-r-9': 'option_0',
                         '0028-r-15': 'option_2',
-                        '0033-r-28': null,
+                        '0033-r-28': 'option_3',
                     },
                     mobileNotImportants: {},
                 },
@@ -788,7 +795,7 @@ export const defaultGameData = {
                         '0014-38': 'option_1', //Hailey!!
                         '0018-36': 'option_0', //Daena!!
                         '0023-44': 'option_0', //Reina!!
-                        '0025-32': 'option_2',
+                        '0025-32': 'option_3',
                         '0032-40': 'option_0',
                     },
                     notImportants: {
@@ -834,8 +841,8 @@ export const defaultGameData = {
                 },
                 lindsay: {
                     importants: {
-                        '0012-41': 'option_0',
-                        '0029-43': 'option_0',
+                        '0012-41': 'option_1',
+                        '0029-43': 'option_1',
                     },
                     notImportants: {
                         '0012-23': null,

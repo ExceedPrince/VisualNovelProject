@@ -2,6 +2,7 @@ export const brianna_good_1 = [
     {
         sceneId: "",
         lengthNum: 38,
+		endingSceneType: '',
         story: {
 			"1": {
 				bgMusic: {

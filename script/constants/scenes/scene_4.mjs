@@ -130,6 +130,7 @@ export const scene_4 = [
                         text: "ttyl", 
                         waitingTime: 2,
                         typingTime: 1,
+                        canSpeedUp: [true, "12:16"]
                     },
                 ]
             }

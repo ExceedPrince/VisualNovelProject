@@ -7,7 +7,7 @@ import { showQuitWindow } from "./show-quit-window.mjs";
 import { BACK_TO_MENU_OPEN, SAVE_OPEN, LOAD_OPEN, SETTINGS_OPEN, QUIT_OPEN } from '../constants/statics.mjs';
 import { isInElectron } from "../utils/is-in-electron.mjs";
 
-export const inGameMenuOperations = (pageType, innerMenu_window, gameSettings, slotNumber, sceneNumber, stepNumber, timeState = null) => {
+export const inGameMenuOperations = (pageType, innerMenu_window, gameSettings, slotNumber, sceneNumber, stepNumber, endingSceneType = null, timeState = null) => {
     const navbar_backToMainMenu = qs('#navbar_backToMainMenu');
     const navbar_saveGame = qs('#navbar_saveGame');
     const navbar_loadGame = qs('#navbar_loadGame');
@@ -82,7 +82,7 @@ export const inGameMenuOperations = (pageType, innerMenu_window, gameSettings, s
     
             state.openedMenuPoint = SAVE_OPEN;
         
-            showSaveGameWindow(pageType, saveGame_window, innerMenu_window, state, gameSettings, slotNumber, sceneNumber, stepNumber);
+            showSaveGameWindow(pageType, saveGame_window, innerMenu_window, state, gameSettings, slotNumber, sceneNumber, stepNumber, endingSceneType);
         }, innerMenu_window.firstChild ? 2000 : 0);
     });
 

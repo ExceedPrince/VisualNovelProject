@@ -5,6 +5,7 @@ export const slotSample = {
     image: '',
     dateTime: null,
     currentSceneType: 'STORY',
+    endingSceneType: null,
     textingStatus: {},
     decisions: {
         reina: {

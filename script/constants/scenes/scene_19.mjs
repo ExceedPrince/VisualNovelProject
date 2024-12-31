@@ -304,7 +304,7 @@ export const scene_19 = [
                         choicePath: "brianna~mobileImportants~0019-b-28",
                         bgMusic: {
                             name: ['Mobile_night_sad', 'Mobile_night_ecchi', 'Mobile_night_sad', 'Mobile_night_sad'],
-                            command: 'START',
+                            command: ['START', 'START', 'START', 'START'],
                         },
                     },
                     {
@@ -347,7 +347,7 @@ export const scene_19 = [
                         choicePath: "brianna~mobileImportants~0019-b-28",
                     },
                     {
-                        id: 38, 
+                        id: 37, 
                         isFromHer: true,
                         text: [
                             "Goodnight🌒",
@@ -358,6 +358,7 @@ export const scene_19 = [
                         waitingTime: 3,
                         typingTime: [1, 3.5, 1, 1],
                         choicePath: "brianna~mobileImportants~0019-b-28",
+                        canSpeedUp: [true, "23:20"]
                     },
                 ],
             },
@@ -523,6 +524,7 @@ export const scene_19 = [
                         text: "Goodnight🌙", 
                         waitingTime: 2,
                         typingTime: 2,
+                        canSpeedUp: [true, "00:48"]
                     }
                 ]
             }

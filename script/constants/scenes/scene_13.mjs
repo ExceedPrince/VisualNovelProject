@@ -397,6 +397,7 @@ export const scene_13 = [
                         waitingTime: 2,
                         typingTime: [1, 5, 1, 1],
                         choicePath: "hailey~mobileImportants~0013-h-25",
+                        canSpeedUp: [true, "00:25"]
                     }
                 ],
             }

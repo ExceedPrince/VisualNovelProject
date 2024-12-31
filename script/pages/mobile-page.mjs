@@ -69,6 +69,7 @@ export const mobilePage = (mobileData, mobilePartindex, gameSettings, isFromLoad
 					</div>
 					<div id="mobile_profilePicsContainer"></div>
 				</div>
+				<div id="mobile_speedUpContainer"></div>
 			</div>
 			<div id="mobile_choiceContainer"></div>
 			<div id="mobile_popup">
@@ -97,7 +98,8 @@ export const mobilePage = (mobileData, mobilePartindex, gameSettings, isFromLoad
 
 	const timeState = {
 		shouldStopTimeInterval: false,
-		shouldEndConversations: false
+		shouldEndConversations: false,
+		canSpeedUp: false
 	};
 
 	const chatState = {
@@ -107,7 +109,7 @@ export const mobilePage = (mobileData, mobilePartindex, gameSettings, isFromLoad
 	setTimeout(() => {
 		navbarIcon.addEventListener("click", () => {
 			navbarIconClick(); 
-			inGameMenuOperations('MOBILE', innerMenu_window, gameSettings, slotNumber, mobilePartindex, step, timeState);
+			inGameMenuOperations('MOBILE', innerMenu_window, gameSettings, slotNumber, mobilePartindex, step, null, timeState);
 		});
 		navbarBG.addEventListener("click", closeInGameMenu);
 	}, 3000);
@@ -181,6 +183,6 @@ export const mobilePage = (mobileData, mobilePartindex, gameSettings, isFromLoad
 		localStorage.setItem('sceneChanged', 'false');
 	}, 1000);
 
-	saveBtn.addEventListener('click', () => saveGame('MOBILE', mobileContainer, gameSettings, mobilePartindex, step, false));
-	quickSaveBtn.addEventListener('click', () => saveGame('MOBILE', mobileContainer, gameSettings, mobilePartindex, step, true));
+	saveBtn.addEventListener('click', () => saveGame('MOBILE', mobileContainer, gameSettings, mobilePartindex, step, null, false));
+	quickSaveBtn.addEventListener('click', () => saveGame('MOBILE', mobileContainer, gameSettings, mobilePartindex, step, null, true));
 };

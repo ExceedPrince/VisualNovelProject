@@ -4,6 +4,8 @@ import { isInElectron } from "../is-in-electron.mjs";
 import { navigateToThankYouPage } from "./navigate-to-thank-you-page.mjs";
 
 export const startOutroVideo = (root, endingName, gameSettings) => {
+    localStorage.setItem('sceneChanged', 'false');
+    
     let videoName = '';
 
     if (endingName.toLowerCase() === LINDSAY_LOWER || endingName.toLowerCase() === NEUTRAL_LOWER) {

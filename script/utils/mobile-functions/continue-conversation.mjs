@@ -377,6 +377,11 @@ export const continueConversation = async (boxId, textingObj, chatId, gameSettin
         }
     }
 
+    //Checking for speedUp
+    if (textingObj.messages[chatId].canSpeedUp && timeState) {
+        timeState.canSpeedUp = textingObj.messages[chatId].canSpeedUp;
+    }
+
     chatId++;
 
     if (chatId < textingObj.messages.length && !timeState.shouldEndConversations && isSheOnline) {

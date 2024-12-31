@@ -9,6 +9,7 @@ import { mobileParts } from '../../constants/mobile-parts.mjs';
 import { convertDataTwoWays } from '../../utils/convert-data-two-ways.mjs';
 import { GAME_DATA_1, GAME_DATA_2 } from '../../constants/statics.mjs';
 import { getGameData } from '../../utils/get-game-data.mjs';
+import { loadEnding } from '../../utils/ending-functions/load-ending.mjs';
 
 export const loadGame = (mainColumn_2, gameSettings, state) => {
     if (state.openedMenuPoint === LOAD_OPEN) {
@@ -69,7 +70,13 @@ const showLoadSlots = (gameSettings, loadBoxInner) => {
                     bgMusicAudio.volume = gameSettings.settings.audio.bgMusic/100;
 
                     if (gameSettings.savingSlots[slotNumber].currentSceneType === 'STORY') {
-                        storyPage(parts, +gameSettings.savingSlots[slotNumber].currentScene, gameSettings, false, true);
+
+                        if (gameSettings.savingSlots[slotNumber].endingSceneType === null) {
+                            storyPage(parts, +gameSettings.savingSlots[slotNumber].currentScene, gameSettings, false, true);
+                        } else {
+                            const loadedStory = loadEnding(gameSettings.savingSlots[slotNumber].endingSceneType);
+                            storyPage(loadedStory, +gameSettings.savingSlots[slotNumber].currentScene, gameSettings, false, true);
+                        }
                     }
 
                     if (gameSettings.savingSlots[slotNumber].currentSceneType === 'MOBILE') {

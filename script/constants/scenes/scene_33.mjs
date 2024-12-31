@@ -707,6 +707,7 @@ export const scene_33 = [
                         text: "Kisses💋💋❤️❤️", 
                         waitingTime: 2,
                         typingTime: 1,
+                        canSpeedUp: [true, "19:20"]
                     }
                 ],
             },

@@ -33,6 +33,7 @@ export const lindsay_bad_1 = [
 	{
 		sceneId: "0031",
 		lengthNum: 84,
+		endingSceneType: 'lindsay_1',
 		story: {
 			"1": {
 				bgMusic: {

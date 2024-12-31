@@ -2,6 +2,7 @@ export const reina_good_2 = [
     {
         sceneId: "",
         lengthNum: 32,
+		endingSceneType: '',
         story: {
 			"1": {
 				bgMusic: {

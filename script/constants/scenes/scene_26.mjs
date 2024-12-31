@@ -126,6 +126,7 @@ export const scene_26 = [
                         text: "Good night😘❤️", 
                         waitingTime: 3,
                         typingTime: 1,
+                        canSpeedUp: [true, "21:02"]
                     },
                 ],
             },
@@ -354,6 +355,7 @@ export const scene_26 = [
                         text: "Bye😚",
                         waitingTime: 3,
                         typingTime: 1,
+                        canSpeedUp: [true, "22:51"]
                     },
                 ]
             },
@@ -603,6 +605,7 @@ export const scene_26 = [
                         text: "Goodnight🌙🌙",
                         waitingTime: 3,
                         typingTime: 1,
+                        canSpeedUp: [true, "00:51"]
                     },
                 ]
             }

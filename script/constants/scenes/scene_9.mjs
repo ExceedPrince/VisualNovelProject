@@ -484,6 +484,7 @@ export const scene_9 = [
                             command: 'FADE_OUT',
                             insideOfScene: true
                         },
+                        canSpeedUp: [true, "23:16"]
                     },
                 ]
             },
@@ -649,6 +650,7 @@ export const scene_9 = [
                         text: "Have a great evening! 🌒⭐🌒⭐", 
                         waitingTime: 1,
                         typingTime: 2,
+                        canSpeedUp: [true, "00:15"]
                     },
                 ],
             }

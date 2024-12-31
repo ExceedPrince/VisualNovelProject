@@ -2,6 +2,7 @@ export const final_bad = [
 	{
 		sceneId: "0032",
 		lengthNum: 8,
+		endingSceneType: '',
 		story: {
 			"1": {
 				bgMusic: {

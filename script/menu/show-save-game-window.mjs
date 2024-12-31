@@ -2,7 +2,7 @@ import { qs, qsa } from "../utils/commons.mjs";
 import { createDateForSaving } from '../utils/create-data-for-saving.mjs';
 import { saveProgressWithImage } from '../utils/save-progress-with-image.mjs';
 
-export const showSaveGameWindow = (pageType, saveGame_window, innerMenu_window, state, gameSettings, slotNumber, sceneNumber, stepNumber) => {
+export const showSaveGameWindow = (pageType, saveGame_window, innerMenu_window, state, gameSettings, slotNumber, sceneNumber, stepNumber, endingSceneType) => {
     saveGame_window.innerHTML = '<div id="saveGame_window_inner"></div>';
     const saveGame_window_inner = qs('#saveGame_window_inner');
 
@@ -43,7 +43,7 @@ export const showSaveGameWindow = (pageType, saveGame_window, innerMenu_window, 
 				const overWriteSaveNoBtn = qs('#overWriteSaveNoBtn');
 				
 				overWriteSaveNoBtn.addEventListener('click', () => {
-					showSaveGameWindow(pageType, saveGame_window, innerMenu_window, state, gameSettings, slotNumber, sceneNumber, stepNumber);
+					showSaveGameWindow(pageType, saveGame_window, innerMenu_window, state, gameSettings, slotNumber, sceneNumber, stepNumber, endingSceneType);
 				});
 
 				overWriteSaveYesBtn.addEventListener('click', () => {
@@ -53,6 +53,7 @@ export const showSaveGameWindow = (pageType, saveGame_window, innerMenu_window, 
                     currentGameSlotObject.dateTime = createDateForSaving();
                     currentGameSlotObject.id = slotId.toString();
                     currentGameSlotObject.currentSceneType = pageType;
+                    currentGameSlotObject.endingSceneType = endingSceneType;
 
                     if (textingStatus) currentGameSlotObject.textingStatus = textingStatus;
         
@@ -66,7 +67,7 @@ export const showSaveGameWindow = (pageType, saveGame_window, innerMenu_window, 
 
                     setTimeout(() => {
                         state.openedMenuPoint = null;
-                        showSaveGameWindow(pageType, saveGame_window, innerMenu_window, state, gameSettings, slotNumber, sceneNumber, stepNumber);
+                        showSaveGameWindow(pageType, saveGame_window, innerMenu_window, state, gameSettings, slotNumber, sceneNumber, stepNumber, endingSceneType);
                         innerMenu_window.innerHTML = '';
                     }, 2000);
         
@@ -81,6 +82,7 @@ export const showSaveGameWindow = (pageType, saveGame_window, innerMenu_window, 
             currentGameSlotObject.dateTime = createDateForSaving();
             currentGameSlotObject.id = slotId.toString();
             currentGameSlotObject.currentSceneType = pageType;
+            currentGameSlotObject.endingSceneType = endingSceneType;
 
             if (textingStatus) currentGameSlotObject.textingStatus = textingStatus;
 
@@ -94,7 +96,7 @@ export const showSaveGameWindow = (pageType, saveGame_window, innerMenu_window, 
 
             setTimeout(() => {
                 state.openedMenuPoint = null;
-                showSaveGameWindow(pageType, saveGame_window, innerMenu_window, state, gameSettings, slotNumber, sceneNumber, stepNumber);
+                showSaveGameWindow(pageType, saveGame_window, innerMenu_window, state, gameSettings, slotNumber, sceneNumber, stepNumber, endingSceneType);
                 innerMenu_window.innerHTML = '';
             }, 2000);
         });

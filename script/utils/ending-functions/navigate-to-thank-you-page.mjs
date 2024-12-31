@@ -39,7 +39,3 @@ export const navigateToThankYouPage = (root, name, gameSettings) => {
         }, 2000);
     }, 6000);
 };
-
-//gamesettingsben ez az ending álljon át true-ra.
-//savegame-hez hasonló mentés történjen a game data-ban
-//a true-ra állt ending kap egy class, ami mutatja, hogy ez az ending teljesítve

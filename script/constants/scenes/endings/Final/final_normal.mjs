@@ -2,6 +2,7 @@ export const final_normal = [
 	{
 		sceneId: "",
 		lengthNum: 11,
+		endingSceneType: '',
 		story: {
 			"1": {
 				otherSoundEffect: "alarm-clock",

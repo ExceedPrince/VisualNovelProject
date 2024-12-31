@@ -2,6 +2,7 @@ export const hailey_good_1 = [
     {
         sceneId: "",
         lengthNum: 64,
+		endingSceneType: '',
         story: {
 			"1": {
 				bgMusic: {

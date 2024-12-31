@@ -713,6 +713,7 @@ export const scene_16 = [
                         waitingTime: null,
                         typingTime: null,
                         choicePath: "brianna~mobileImportants~0016-b-23",
+                        canSpeedUp: [true, "23:25"]
                     }
                 ]
             }

@@ -88,7 +88,7 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 
 	navbarIcon.addEventListener("click", () => {
 		navbarIconClick(); 
-		inGameMenuOperations('STORY', innerMenu_window, gameSettings, slotNumber, partindex, step);
+		inGameMenuOperations('STORY', innerMenu_window, gameSettings, slotNumber, partindex, step, data[partindex].endingSceneType);
 	});
 	navbarBG.addEventListener("click", closeInGameMenu);
 
@@ -721,6 +721,6 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 		}
 	});
 
-	saveBtn.addEventListener('click', () => saveGame('STORY', storyContainer, gameSettings, partindex, step, false, null));
-	quickSaveBtn.addEventListener('click', () => saveGame('STORY', storyContainer, gameSettings, partindex, step, true, null));
+	saveBtn.addEventListener('click', () => saveGame('STORY', storyContainer, gameSettings, partindex, step, data[partindex].endingSceneType, false, null));
+	quickSaveBtn.addEventListener('click', () => saveGame('STORY', storyContainer, gameSettings, partindex, step, data[partindex].endingSceneType, true, null));
 };
