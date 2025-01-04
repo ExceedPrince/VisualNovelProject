@@ -46,7 +46,7 @@ const showQuit = (mainColumn_2, quitInner, state) => {
         if (isInElectron()) {
             window.electron.closeApp();
         } else {
-            console.log('force quit from the game')
+            console.log('force quit from the game');
         }
     });
 

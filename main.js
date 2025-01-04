@@ -2,9 +2,11 @@
 const { app, session, BrowserWindow, ipcMain  } = require('electron');
 const path = require('path');
 
+let mainWindow;
+
 // Function to create the browser window
 function createWindow() {
-  const mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     width: 1024,
     height: 768,
     webPreferences: {
@@ -35,4 +37,11 @@ app.on('activate', () => {
 
 ipcMain.on('close-app', () => {
   app.quit();
+});
+
+ipcMain.on('toggle-fullscreen', () => {
+  if (mainWindow) {
+    const isFullScreen = mainWindow.isFullScreen();
+    mainWindow.setFullScreen(!isFullScreen);
+  }
 });

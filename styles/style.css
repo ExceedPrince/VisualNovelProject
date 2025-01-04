@@ -28,6 +28,7 @@
 
 body {
   background-color: black;
+  cursor: url("../img/assets/cursor_default.png"), auto;
 }
 
 #root {
@@ -36,6 +37,9 @@ body {
   margin: 0;
   padding: 0;
   background-color: black;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */ /* IE10+/Edge */
+  user-select: none; /* Standard */
 }
 
 #colorCover {
@@ -49,7 +53,7 @@ body {
 
 #backgroundContainer {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -61,10 +65,70 @@ body {
   left: 0;
   opacity: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+#deviceWarning-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  color: white;
+  font-size: 24px;
+  text-align: center;
+  justify-content: center;
+  gap: 20px;
+}
+#deviceWarning-container img {
+  display: block;
+  width: 200px;
+  margin: 50px auto;
+}
+
+#preload_container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  color: white;
+  font-family: "NunitoBold";
+}
+#preload_container #preload_video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100vh;
+  -o-object-fit: cover;
+     object-fit: cover;
+  transform: translate(-50%, -50%);
+}
+#preload_container #preload_inner {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font-size: 20px;
+  gap: 5%;
+}
+#preload_container #preload_inner #preload_warning {
+  font-size: 54px;
+  color: rgb(168, 11, 11);
+}
+#preload_container #preload_inner #preload_subwarning {
+  font-size: 36px;
+  color: rgb(236, 131, 19);
+  opacity: 0;
+}
+#preload_container #preload_inner #preload_warning_message {
+  font-family: "NunitoRegular";
+  opacity: 0;
+}
+#preload_container #preload_inner #preload_action {
+  margin-top: 5%;
 }
 
 #timeSkipContainer {
@@ -73,14 +137,43 @@ body {
   width: 100%;
   text-align: center;
   color: white;
-  font-size: 64px;
+  font-family: "NunitoRegular";
+  font-size: 78px;
   translate: 0 -50%;
+}
+
+#videoContainer {
+  width: 100%;
+  height: 100%;
+}
+#videoContainer #outro_video {
+  width: 100%;
+  height: 100%;
+}
+
+#thankYou_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  gap: 10%;
+}
+#thankYou_container p {
+  font-family: "NunitoRegular";
+  font-size: 30px;
+  color: white;
+  text-align: center;
+}
+#thankYou_container p.gameTitle {
+  font-family: "FogLihten";
+  font-size: 66px;
 }
 
 #storyContainer {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   overflow: hidden;
 }
 
@@ -155,14 +248,15 @@ body {
   position: absolute;
   top: 50px;
   left: 50px;
-  width: 100%;
+  width: calc(100% - 100px);
 }
 
 #char-text.italic {
   font-style: italic;
 }
 
-#choiceContainer {
+#choiceContainer,
+#cantGoBackContainer {
   position: absolute;
   top: 30%;
   left: 50%;
@@ -177,7 +271,8 @@ body {
   opacity: 0;
 }
 
-#choiceBox {
+#choiceBox,
+#cantGoBackBox {
   border: 2px white solid;
   padding: 10px;
 }
@@ -186,7 +281,8 @@ body {
   margin-top: 10px;
 }
 
-#choiceBox-inner {
+#choiceBox-inner,
+#cantGoBackBox-inner {
   display: flex;
   flex-direction: column;
   padding: 15px;
@@ -392,7 +488,7 @@ body {
   top: 0;
   left: -300px;
   width: 300px;
-  height: 100vh;
+  height: 100%;
   background-color: aquamarine;
   opacity: 0%;
   z-index: 4;
@@ -409,10 +505,9 @@ body {
   top: 50%;
   display: flex;
   width: 100%;
-  height: 100%;
   flex-direction: column;
   gap: 50px;
-  translate: 0 -25%;
+  translate: 0 -50%;
 }
 
 #navbar_Container #navbar_inner .navbar_options {
@@ -430,7 +525,7 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0);
   pointer-events: none;
   z-index: 3;
@@ -440,37 +535,6 @@ body {
 #unclickable_navbar_BG.open {
   background-color: rgba(0, 0, 0, 0.5);
   pointer-events: all;
-}
-
-#preload_container {
-  width: 100%;
-  height: 100%;
-  color: white;
-  display: table;
-}
-
-#preload_title {
-  text-align: center;
-  vertical-align: middle; /*middle centred*/
-  display: table-cell; /*acts like a table cell*/
-}
-
-#preload_inner {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  gap: 5%;
-}
-
-#preload_subwarning {
-  opacity: 0;
-}
-
-#preload_warning_message {
-  opacity: 0;
 }
 
 #mainMenu_container {
@@ -1165,22 +1229,6 @@ body {
   cursor: pointer;
 }
 
-#videoContainer,
-#videoContainer #outro_video,
-#thankYou_container {
-  width: 100%;
-  height: 100%;
-}
-
-#thankYou_container p {
-  color: white;
-  text-align: center;
-}
-
-#thankYou_container p.gameTitle {
-  color: red;
-}
-
 .typing-indicator {
   display: flex;
   align-items: center;
@@ -1268,6 +1316,10 @@ body {
 
 .fadeIn_3sec_delay {
   animation: fadeIn_3sec_delay 2s forwards 3s;
+}
+
+.flashing_1sec_delay {
+  animation: flashing_5sec_delay 2s both 1s infinite;
 }
 
 .flashing_5sec_delay {
@@ -1431,7 +1483,7 @@ body {
 /*Fallin icons*/
 .falling-icons {
   width: 100%;
-  height: 1200px;
+  height: calc(100% + 100px);
   position: fixed;
   top: -100px;
   left: 0;
@@ -1542,4 +1594,21 @@ body {
   opacity: 0.9;
   animation-delay: 3.5s;
   animation-timing-function: ease-in;
+}
+
+@media only screen and (max-width: 1023px) {
+  body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+  }
+  #root, #colorCover {
+    position: absolute;
+    width: 1024px;
+    height: 768px;
+    transform-origin: top left;
+    overflow: hidden;
+  }
 }/*# sourceMappingURL=style.css.map */

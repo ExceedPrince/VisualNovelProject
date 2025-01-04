@@ -17,7 +17,7 @@ export const showBackToMainWindow = (backToMain_window, innerMenu_window, state,
 
     const backToMain_yesBtn = qs('#backToMain_yesBtn');
     backToMain_yesBtn.addEventListener('click', () => {
-        const root = qs('#root'); //később ez ne a root legyen, hanem vmi feljebbi storycontainer
+        const root = qs('#root');
         root.classList.add("fadeOut");
 
         if (timeState) timeState.shouldStopTimeInterval = true;

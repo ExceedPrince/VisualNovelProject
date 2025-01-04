@@ -1,6 +1,6 @@
 export const setStoryComponentFromMultiple = (component, stepObject, gameSettings) => {
 	if (typeof component === 'object' && component !== null) {
-		const slotNumber = +localStorage.getItem('slotNumber') || 0; //ez majd játékindítás/kiválsztáskor mentődjön el localStorage-be
+		const slotNumber = +localStorage.getItem('slotNumber') || 0;
 		let character, location, choiceId;
 
 		if (stepObject && stepObject.choicePath) {

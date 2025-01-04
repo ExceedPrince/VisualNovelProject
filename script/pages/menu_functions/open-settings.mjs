@@ -124,7 +124,11 @@ const showSettings = (gameSettings, settingsInner) => {
 
             switch (e.target.name) {
                 case 'isFullScreen':
-                    console.log('isFullScreen') // electronban kell tudni a végleges formáját
+                    if (isInElectron()) {
+                        window.electron.toggleFullscreen();
+                    } else {
+                        console.log('isFullScreen');
+                    }
                     break;
                 case 'silenceAll':
                     if (e.target.checked) {
@@ -178,7 +182,7 @@ const showSettings = (gameSettings, settingsInner) => {
                     brightness: 100,
                     saturation: 100,
                     colorTemperature: 50,
-                    isFullScreen: false,
+                    isFullScreen: gameSettings.settings.screen.isFullScreen,
                     isTypingOff: false
                 },
                 audio: {
@@ -209,7 +213,7 @@ const showSettings = (gameSettings, settingsInner) => {
         saturation_input.value = defaultGameData.settings.screen.saturation;
         colorTemperature_input.value = defaultGameData.settings.screen.colorTemperature;
 
-        isFullScreen_checkbox.checked = defaultGameData.settings.audio.isFullScreen;
+        //isFullScreen_checkbox.checked = defaultGameData.settings.audio.isFullScreen;
         isTypingOff_checkbox.checked = defaultGameData.settings.audio.isTypingOff_checkbox;
 
         useGameSettings(defaultGameData.settings, qs('#root'), qs('#colorCover'));

@@ -47,7 +47,6 @@ export const checkForNewStartingConversation = (timeString, currentSceneConversa
         }
     }
     
-    // habenne van a loop-ban, de a tstatusban is, annák csak id alapján szedje össze az összes elhangzott dolgot, és tegye bele a személyes beszélgetésbe
     currentSceneConversations.forEach((element) => {
         const [name, obj] = element;
 

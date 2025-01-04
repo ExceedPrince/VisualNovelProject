@@ -18,6 +18,8 @@ import { mobilePage } from './mobile-page.mjs';
 import { mobileParts } from '../constants/mobile-parts.mjs';
 import { selectEnding } from '../utils/ending-functions/select-ending.mjs';
 import { startOutroVideo } from '../utils/ending-functions/start-outro-video.mjs';
+import { isInElectron } from '../utils/is-in-electron.mjs';
+import { cantGoBackPopup } from '../utils/cant-go-back-popup.mjs';
 
 export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFromLoad = false) => {
 	if (partindex >= data.length) {
@@ -80,7 +82,8 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 	const navbarIcon = qs('#inGame_navbar_icon');
 	const navbarBG = qs('#unclickable_navbar_BG');
 	const innerMenu_window = qs('#innerMenu_window');
-
+	const otherSoundsAudio = qs('#other_sound_effects_audio');
+	
 	saveBtn.disabled = true;
 	quickSaveBtn.disabled = true;
 	quickReadBtn.disabled = true;
@@ -152,7 +155,7 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 		if (data[partindex].story[step].outroNext) {
 			playSound(gameSettings, data[partindex].story[step], gameSettings.settings.audio, true);
 
-			root.classList.remove('fadeIn'); //Ez majd NE a root-on legyen használva, hanem csak a story részén!!!
+			root.classList.remove('fadeIn');
 			root.classList.add('fadeOut');
 
 			localStorage.setItem('sceneChanged', 'true');
@@ -169,7 +172,7 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 		if (data[partindex].story[step].endingNext && incrementPaginationNumberByExtraScene(data[partindex].story[step].extraSceneNext, gameSettings) !== 0) {
 			playSound(gameSettings, data[partindex].story[step], gameSettings.settings.audio, true);
 			
-			root.classList.remove('fadeIn'); //Ez majd NE a root-on legyen használva, hanem csak a story részén!!!
+			root.classList.remove('fadeIn');
 			root.classList.add('fadeOut');
 
 			localStorage.setItem('sceneChanged', 'true');
@@ -191,7 +194,7 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 
 			playSound(gameSettings, data[partindex].story[step], gameSettings.settings.audio, true);
 			
-			root.classList.remove('fadeIn'); //Ez majd NE a root-on legyen használva, hanem csak a story részén!!!
+			root.classList.remove('fadeIn');
 			root.classList.add('fadeOut');
 
 			localStorage.setItem('sceneChanged', 'true');
@@ -275,7 +278,12 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 		if (event.key === 'ArrowLeft' && step > 1) {
 
 			if (data[partindex].story[step - 1].choiceNext) {
-				console.log("nem lehet visszalépni");
+				otherSoundsAudio.volume = gameSettings.settings.audio.soundEffects/100;
+				otherSoundsAudio.src = `${isInElectron() ? '.' : '../..'}/sounds/sound_effects/denied-2.mp3`;
+				otherSoundsAudio.play();
+
+				cantGoBackPopup(storyContainer)
+
 				return;
 			}
 			
@@ -636,7 +644,10 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 		if (data[partindex].story[step + 1]?.specialSceneNow 
 			|| step === data[partindex].lengthNum 
 			|| data[partindex].story[step].choiceNext) {
-			console.log('nope');
+			otherSoundsAudio.volume = gameSettings.settings.audio.soundEffects/100;
+			otherSoundsAudio.src = `${isInElectron() ? '.' : '../..'}/sounds/sound_effects/denied-2.mp3`;
+			otherSoundsAudio.play();
+								
 			storyContainer.focus();
 
 			return;

@@ -1,23 +1,11 @@
-@font-face {
-    font-family: 'CharmRegular';
-    src: url('../fonts/Charm-Regular.woff2') format('woff2'); 
-}
-@font-face {
-    font-family: 'CharmBold';
-    src: url('../fonts/Charm-Bold.woff2') format('woff2'); 
-}
-@font-face {
-    font-family: 'FogLihten';
-    src: url('../fonts/Foglihtenno07-e9wz3.woff2') format('woff2'); 
-}
-@font-face {
-    font-family: 'NunitoBold';
-    src: url('../fonts/Nunito-Bold.woff2') format('woff2'); 
-}
-@font-face {
-    font-family: 'NunitoRegular';
-    src: url('../fonts/Nunito-Regular.woff2') format('woff2'); 
-}
+@import './animations';
+@import './common-classes';
+@import './fonts';
+@import './ingame-menu';
+@import './main-menu';
+@import './mobile-page';
+@import './responsive';
+@import './story-page'; //ezek nem itt helyezkednek el, közben kell őket szét szórni, mert szószerint így veszi a sorrendjüket
 
 *,
 *::before,
@@ -29,6 +17,7 @@
 
 body{
 	background-color: black;
+	cursor: url('../img/assets/cursor_default.png'), auto;
 }
 #root {
 	width: 100%;
@@ -36,6 +25,10 @@ body{
 	margin: 0;
 	padding: 0;
 	background-color: black;
+	-webkit-user-select: none; /* Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+/Edge */
+	user-select: none; /* Standard */
 }
 #colorCover {
 	width: 100%;
@@ -48,7 +41,7 @@ body{
 
 #backgroundContainer {
 	width: 100%;
-	height: 100vh;
+	height: 100%;
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -60,26 +53,18 @@ body{
 	left: 0;
 	opacity: 0;
 	width: 100%;
-	height: 100vh;
+	height: 100%;
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
 }
 
-#timeSkipContainer {
-	position: absolute;
-	top: 50%;
-	width: 100%;
-	text-align: center;
-	color: white;
-	font-size: 64px;
-	translate: 0 -50%;
-}
+@import './black-pages';
 
 #storyContainer {
 	position: relative;
 	width: 100%;
-	height: 100vh;
+	height: 100%;
 	overflow: hidden;
 }
 
@@ -148,13 +133,14 @@ body{
 	position: absolute;
 	top: 50px;
 	left: 50px;
-	width: 100%;
+	width: calc(100% - 100px);
 }
 #char-text.italic {
 	font-style: italic;
 }
 
-#choiceContainer {
+#choiceContainer,
+#cantGoBackContainer {
 	position: absolute;
 	top: 30%;
 	left: 50%;
@@ -169,14 +155,16 @@ body{
 	opacity: 0;
 }
 
-#choiceBox {
+#choiceBox,
+#cantGoBackBox {
 	border: 2px white solid;
 	padding: 10px;
 }
 #choiceBox h2 {
 	margin-top: 10px;
 }
-#choiceBox-inner {
+#choiceBox-inner,
+#cantGoBackBox-inner {
 	display: flex;
 	flex-direction: column;
 	padding: 15px;
@@ -370,7 +358,7 @@ body{
 	top: 0;
 	left: -300px;
 	width: 300px;
-	height: 100vh;
+	height: 100%;
 	background-color: aquamarine;
 	opacity: 0%;
 	z-index: 4;
@@ -386,10 +374,9 @@ body{
 	top: 50%;
 	display: flex;
 	width: 100%;
-	height: 100%;
 	flex-direction: column;
 	gap: 50px;
-	translate: 0 -25%;
+	translate: 0 -50%;
 }
 
 #navbar_Container #navbar_inner .navbar_options {
@@ -406,7 +393,7 @@ body{
 	top: 0;
 	left: 0;
 	width: 100%;
-	height: 100vh;
+	height: 100%;
 	background-color: rgba(0, 0, 0, 0);
 	pointer-events: none;
 	z-index: 3;
@@ -417,36 +404,15 @@ body{
 	pointer-events: all;
 }
 
-#preload_container {
-	width: 100%;
-	height: 100%;
-	color: white;
-	display:table;
-}
 
-#preload_title{
-	text-align: center;
-    vertical-align:middle; /*middle centred*/
-    display:table-cell; /*acts like a table cell*/
-}
 
-#preload_inner {
-	width: 100%;
-	height: 100vh;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	text-align: center;
-	gap: 5%;
-}
 
-#preload_subwarning {
-	opacity: 0;
-}
 
-#preload_warning_message {
-	opacity: 0;
-}
+
+
+
+
+
 
 #mainMenu_container {
 	height: 100%;
@@ -1118,20 +1084,7 @@ body{
 	cursor: pointer;
 }
 
-#videoContainer,
-#videoContainer #outro_video,
-#thankYou_container {
-	width: 100%;
-	height: 100%;
-}
 
-#thankYou_container p {
-	color: white;
-	text-align: center;
-}
-#thankYou_container p.gameTitle {
-	color: red;
-}
 
 .typing-indicator {
     display: flex;
@@ -1213,6 +1166,9 @@ body{
 }
 .fadeIn_3sec_delay {
 	animation: fadeIn_3sec_delay 2s forwards 3s;
+}
+.flashing_1sec_delay {
+	animation: flashing_5sec_delay 2s both 1s infinite;
 }
 .flashing_5sec_delay {
 	animation: flashing_5sec_delay 2s both 5s infinite;
@@ -1304,7 +1260,7 @@ body{
 /*Fallin icons*/
 .falling-icons {
     width: 100%;
-    height: 1200px;
+    height: calc(100% + 100px);
     position: fixed;
     top: -100px;
     left: 0;
@@ -1416,4 +1372,21 @@ body{
     opacity: 0.9;
     animation-delay: 3.5s;
     animation-timing-function: ease-in;
+}
+
+@media only screen and (max-width: 1023px) {
+	body{
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+		width: 100%;
+		height: 100%;
+	}
+	#root, #colorCover {
+		position: absolute;
+		width: 1024px;
+		height: 768px;
+		transform-origin: top left;
+		overflow: hidden;
+	}
 }
