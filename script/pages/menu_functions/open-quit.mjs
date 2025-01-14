@@ -2,35 +2,35 @@ import { qs } from '../../utils/commons.mjs';
 import { isInElectron } from '../../utils/is-in-electron.mjs';
 import { QUIT_OPEN } from '../../constants/statics.mjs';
 
-export const openQuit = (mainColumn_2, state) => {
+export const openQuit = (mainColumn_1, state) => {
     if (state.openedMenuPoint === QUIT_OPEN) {
         qs('#quit_inner').classList.remove('fadeIn');
         qs('#quit_inner').classList.add('fadeOut');
 
         setTimeout(() => {
             state.openedMenuPoint = null;
-            mainColumn_2.innerHTML = '';
+            mainColumn_1.innerHTML = '';
         }, 2000);
 
         return;
     }
 
-    if (mainColumn_2.firstChild) {
-        mainColumn_2.firstChild.classList.remove('fadeIn');
-        mainColumn_2.firstChild.classList.add('fadeOut');
+    if (mainColumn_1.firstChild) {
+        mainColumn_1.firstChild.classList.remove('fadeIn');
+        mainColumn_1.firstChild.classList.add('fadeOut');
     }
 
     setTimeout(() => {
-        mainColumn_2.innerHTML = '<div id="quit_inner" class="fadeIn"></div>';
+        mainColumn_1.innerHTML = '<div id="quit_inner" class="fadeIn"></div>';
         const quitInner = qs('#quit_inner');
 
         state.openedMenuPoint = QUIT_OPEN;
     
-        showQuit(mainColumn_2, quitInner, state);
-    }, mainColumn_2.firstChild ? 2000 : 0);
+        showQuit(mainColumn_1, quitInner, state);
+    }, mainColumn_1.firstChild ? 2000 : 0);
 };
 
-const showQuit = (mainColumn_2, quitInner, state) => {
+const showQuit = (mainColumn_1, quitInner, state) => {
     quitInner.insertAdjacentHTML('beforeend', `
         <h2>Do you really want to quit from the game?</h2>
         <div>
@@ -51,11 +51,11 @@ const showQuit = (mainColumn_2, quitInner, state) => {
     });
 
     deleteNoBtn.addEventListener('click', () => {
-        mainColumn_2.firstChild.classList.remove('fadeIn');
-        mainColumn_2.firstChild.classList.add('fadeOut');
+        mainColumn_1.firstChild.classList.remove('fadeIn');
+        mainColumn_1.firstChild.classList.add('fadeOut');
 
         setTimeout(() => {
-            mainColumn_2.innerHTML = '';
+            mainColumn_1.innerHTML = '';
             state.openedMenuPoint = null;
         }, 2000);
     });

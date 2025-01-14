@@ -2,7 +2,7 @@ import { qs, qsa } from '../../utils/commons.mjs';
 import { GALLERY_OPEN } from '../../constants/statics.mjs';
 import { isInElectron } from '../../utils/is-in-electron.mjs';
 
-export const openGallery = (root, mainColumn_2, gameSettings, state) => {
+export const openGallery = (root, mainColumn_1, gameSettings, state) => {
 
     if (state.openedMenuPoint === GALLERY_OPEN) {
         qs('#gallery_inner').classList.remove('fadeIn');
@@ -10,25 +10,25 @@ export const openGallery = (root, mainColumn_2, gameSettings, state) => {
 
         setTimeout(() => {
             state.openedMenuPoint = null;
-            mainColumn_2.innerHTML = '';
+            mainColumn_1.innerHTML = '';
         }, 2000);
 
         return;
     }
 
-    if (mainColumn_2.firstChild) {
-        mainColumn_2.firstChild.classList.remove('fadeIn');
-        mainColumn_2.firstChild.classList.add('fadeOut');
+    if (mainColumn_1.firstChild) {
+        mainColumn_1.firstChild.classList.remove('fadeIn');
+        mainColumn_1.firstChild.classList.add('fadeOut');
     }
     
     setTimeout(() => {
-        mainColumn_2.innerHTML = '<div id="gallery_inner" class="fadeIn"></div>';
+        mainColumn_1.innerHTML = '<div id="gallery_inner" class="fadeIn"></div>';
         const galleryInner = qs('#gallery_inner');
 
         state.openedMenuPoint = GALLERY_OPEN;
     
         showGallery(root, gameSettings, galleryInner);
-    }, mainColumn_2.firstChild ? 2000 : 0);
+    }, mainColumn_1.firstChild ? 2000 : 0);
 };
 
 const showGallery = (root, gameSettings, galleryInner) => {

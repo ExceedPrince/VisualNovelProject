@@ -32,7 +32,9 @@ export const startOutroVideo = (root, endingName, gameSettings) => {
 
     setTimeout(() => {
         videoContainer.insertAdjacentHTML('beforeend', `
-            <div id='videoStopBtn'>X</div>
+            <div id='videoStopBtn'>
+                <img src="${isInElectron() ? '.' : '../../..'}/img/svg/video-skip.svg" alt="video-skip">
+            </div>
         `);
 
         const button = qs('#videoStopBtn')

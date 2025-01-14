@@ -8,7 +8,7 @@ let compatibleState = {isCompatible: window.innerWidth >= 768};
 const deviceWarningPage = `
 	<div id="deviceWarning-container">
 		<h1>Warning</h1>
-		<p>This game is designed for devices with a resolution of 768px or higher and is optimized for PC.</p>
+		<p>This game is designed for devices with a resolution of 768px or higher and is optimized for PC, or with a screen ratio greater than 4:3.</p>
 		<br>
 		<p>Please switch to a compatible device and refresh to continue playing.</p>
 		<img class="flashing_1sec_delay" src="./img/svg/full-screen.svg" alt="full-screen">
@@ -18,10 +18,11 @@ const deviceWarningPage = `
 function adjustScale() {
 	const root = document.getElementById('root');
 	const colorCover = document.getElementById('colorCover');
+	const screenWidth = window.innerWidth;
+	const screenHeight = window.innerHeight;
+	const screenRatio = screenWidth / screenHeight;
 
 	if (window.innerWidth < 1024) {
-		const screenWidth = window.innerWidth;
-		const screenHeight = window.innerHeight;
 	
 		// Calculate the scale to maintain a 4:3 ratio
 		const scale = Math.min(screenWidth / 1024, screenHeight / 768);
@@ -36,12 +37,33 @@ function adjustScale() {
 		root.style.top = `${marginTop}px`;
 	
 		colorCover.style.transform = `scale(${scale})`;
+		colorCover.style.left = `${marginLeft}px`;
+		colorCover.style.top = `${marginTop}px`;
     } else {
-		root.style.transform = `scale(1)`;
-		colorCover.style.transform = `scale(1)`;
+		root.style.transform = 'scale(1)';
+		colorCover.style.transform = 'scale(1)';
+		colorCover.style.left = '0px';
+		colorCover.style.top = '0px';
 	}
 
-	if (window.innerWidth < 768) {
+	if (qs('#mainMenu_container')) {
+		const marker = document.querySelector('#marker');
+
+		if (marker.classList.contains('inCenter')) {
+			console.log('incenteres')
+			const hamburger = document.querySelector('.hamburger');
+			marker.style.left = hamburger.offsetLeft + 'px';
+			marker.style.width = hamburger.offsetWidth + 'px';
+		}
+
+		if (qs('.mainMenu_options.option-chosen')) {
+			console.log('chosen-es')
+			marker.style.left = qs('.mainMenu_options.option-chosen').offsetLeft + 'px';
+			marker.style.width = qs('.mainMenu_options.option-chosen').offsetWidth + 'px';
+		}
+	}
+
+	if (window.innerWidth < 768 || screenRatio < 4 / 3) {
 		compatibleState.isCompatible = false;
 		root.innerHTML = deviceWarningPage;
 	}

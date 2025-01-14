@@ -1,7 +1,8 @@
 import { 
 	createInGameMenu, 
 	navbarIconClick, 
-	closeInGameMenu 
+	closeInGameMenu,
+	refreshFallingIcons
 } from '../menu/create-in-game-menu.mjs';
 import { inGameMenuOperations } from '../menu/in-game-menu-operations.mjs';
 import { qs } from '../utils/commons.mjs';
@@ -84,10 +85,20 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 	const innerMenu_window = qs('#innerMenu_window');
 	const otherSoundsAudio = qs('#other_sound_effects_audio');
 	
+	setInterval(() => {
+		refreshFallingIcons();
+	}, 120_000)
+
 	saveBtn.disabled = true;
 	quickSaveBtn.disabled = true;
 	quickReadBtn.disabled = true;
 	changeBackground(backgroundContainer, data[partindex].story[step], gameSettings);
+
+	if (characterName.innerText.length > 0) {
+		characterName.classList.remove('d-none');
+	} else {
+		characterName.classList.add('d-none');
+	}
 
 	navbarIcon.addEventListener("click", () => {
 		navbarIconClick(); 
@@ -234,6 +245,12 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 					changeBackground(backgroundContainer, data[partindex].story[step], gameSettings);
 					characterName.innerText = setStoryComponentFromMultiple(data[partindex].story[step].name, data[partindex].story[step], gameSettings);
 					typingText(gameSettings, data[partindex].story[step], data[partindex].story[step].text, characterText, storyContainer);
+				
+					if (characterName.innerText.length > 0) {
+						characterName.classList.remove('d-none');
+					} else {
+						characterName.classList.add('d-none');
+					}
 				});
 			}
 
@@ -262,6 +279,12 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 		charContainerFilling(data[partindex].story[step]);
 		characterName.innerText = setStoryComponentFromMultiple(data[partindex].story[step].name, data[partindex].story[step], gameSettings);
 		typingText(gameSettings, data[partindex].story[step], data[partindex].story[step].text, characterText, storyContainer);
+
+		if (characterName.innerText.length > 0) {
+			characterName.classList.remove('d-none');
+		} else {
+			characterName.classList.add('d-none');
+		}
 
 		if (!data[partindex].story[step].bgMusic || 
 			data[partindex].story[step].bgMusic.command === 'STOP' || 
@@ -532,6 +555,12 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 			characterText.textContent = '';
 			charContainerFilling(stepObject);
 			characterName.innerText = ''; 
+
+			if (characterName.innerText.length > 0) {
+				characterName.classList.remove('d-none');
+			} else {
+				characterName.classList.add('d-none');
+			}
 			
 			function makeSpecialSceneRemovable(event) {
 				if ((event.type === 'keydown' && event.key === 'ArrowLeft')) {
@@ -541,6 +570,12 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 					charContainerBackFilling(stepObject);
 					characterName.innerText = setStoryComponentFromMultiple(stepObject.name, stepObject, gameSettings);
 					characterText.textContent = stepObject.text;
+
+					if (characterName.innerText.length > 0) {
+						characterName.classList.remove('d-none');
+					} else {
+						characterName.classList.add('d-none');
+					}
 
 					changeBackground(backgroundContainer, data[partindex].story[step], gameSettings, true);
 					specialSceneCover.remove();
@@ -570,6 +605,13 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 				setTimeout(() => {
 					if (event.type === 'click' || (event.type === 'keydown' && event.key === 'ArrowRight')) {
 						characterName.innerText = setStoryComponentFromMultiple(stepObject.name, stepObject, gameSettings);
+
+						if (characterName.innerText.length > 0) {
+							characterName.classList.remove('d-none');
+						} else {
+							characterName.classList.add('d-none');
+						}
+
 						typingText(gameSettings, stepObject, stepObject.text, characterText, storyContainer);
 					}
 					
@@ -682,6 +724,12 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 				characterName.innerText = setStoryComponentFromMultiple(data[partindex].story[step].name, data[partindex].story[step], gameSettings);
 				characterText.textContent = setStoryComponentFromMultiple(data[partindex].story[step].text, data[partindex].story[step], gameSettings);
 			  
+				if (characterName.innerText.length > 0) {
+					characterName.classList.remove('d-none');
+				} else {
+					characterName.classList.add('d-none');
+				}
+
 				if (data[partindex].story[step].textClass) {
 					characterText.className = setStoryComponentFromMultiple(data[partindex].story[step].textClass, data[partindex].story[step], gameSettings);
 				} else {

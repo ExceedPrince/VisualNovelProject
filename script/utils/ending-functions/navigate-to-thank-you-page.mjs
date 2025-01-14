@@ -9,6 +9,7 @@ export const navigateToThankYouPage = (root, name, gameSettings) => {
         <div id='thankYou_container'>
             <p>Thank you for playing the prototype version of</p>
             <p class="gameTitle">Constrained Love</p>
+            <p>Your feedback means a lot to me, please feel free to share it. </br>You can find my contact details under the About page in the main menu.</p>
         </div>
     `);
 
@@ -37,5 +38,5 @@ export const navigateToThankYouPage = (root, name, gameSettings) => {
             root.innerHTML = '';
             mainMenuPage(modifiedGameSettings);
         }, 2000);
-    }, 6000);
+    }, 10_000);
 };

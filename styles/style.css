@@ -51,26 +51,6 @@ body {
   pointer-events: none;
 }
 
-#backgroundContainer {
-  width: 100%;
-  height: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-#secondary_backgroundContainer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  width: 100%;
-  height: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 #deviceWarning-container {
   display: flex;
   flex-direction: column;
@@ -80,6 +60,12 @@ body {
   text-align: center;
   justify-content: center;
   gap: 20px;
+}
+#deviceWarning-container h1 {
+  font-family: "NunitoBold";
+}
+#deviceWarning-container p {
+  font-family: "NunitoRegular";
 }
 #deviceWarning-container img {
   display: block;
@@ -116,7 +102,7 @@ body {
 }
 #preload_container #preload_inner #preload_warning {
   font-size: 54px;
-  color: rgb(168, 11, 11);
+  color: rgb(162, 4, 72);
 }
 #preload_container #preload_inner #preload_subwarning {
   font-size: 36px;
@@ -137,16 +123,35 @@ body {
   width: 100%;
   text-align: center;
   color: white;
-  font-family: "NunitoRegular";
+  font-family: "CharmBold";
   font-size: 78px;
   translate: 0 -50%;
 }
 
 #videoContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+#videoContainer #outro_video {
   width: 100%;
   height: 100%;
 }
-#videoContainer #outro_video {
+#videoContainer #videoStopBtn {
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
+  width: 100px;
+  height: 100px;
+  opacity: 20%;
+  transition: opacity 300ms ease-in-out;
+}
+#videoContainer #videoStopBtn:hover {
+  opacity: 60%;
+  cursor: url("../img/assets/cursor_pointer.png"), pointer;
+}
+#videoContainer #videoStopBtn img {
   width: 100%;
   height: 100%;
 }
@@ -160,7 +165,7 @@ body {
   gap: 10%;
 }
 #thankYou_container p {
-  font-family: "NunitoRegular";
+  font-family: "CharmRegular";
   font-size: 30px;
   color: white;
   text-align: center;
@@ -176,136 +181,101 @@ body {
   height: 100%;
   overflow: hidden;
 }
-
-#characterContainer {
+#storyContainer #backgroundContainer {
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#storyContainer #secondary_backgroundContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#storyContainer #characterContainer {
   position: absolute;
   bottom: 0;
   width: 100%;
   height: calc(100% - 200px);
 }
-
-.chars {
+#storyContainer #characterContainer .chars {
   position: absolute;
   opacity: 100%;
   width: 300px;
   height: 100%;
 }
-
-.chars img {
+#storyContainer #characterContainer .chars img {
   height: 100%;
 }
-
-.chars img::before {
+#storyContainer #characterContainer .chars img::before {
   display: none;
 }
-
-#char-left {
+#storyContainer #characterContainer #char-left {
   left: 0;
   bottom: 0;
 }
-
-#char-middle {
+#storyContainer #characterContainer #char-middle {
   left: 50%;
   bottom: 0;
   translate: -50% 0;
 }
-
-#char-right {
+#storyContainer #characterContainer #char-right {
   bottom: 0;
   right: 0;
 }
-
-.notVisible {
-  opacity: 0;
-}
-
-#textContainer {
+#storyContainer #textContainer {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 200px;
-  background-color: green;
+  height: 265px;
+  background-image: url("../img/assets/text-box.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: bottom;
 }
-
-#textContainer-inner {
+#storyContainer #textContainer #textContainer-inner {
   position: relative;
   width: 100%;
   top: -15px;
 }
-
-#char-name {
+#storyContainer #textContainer #textContainer-inner #char-name {
   position: absolute;
   top: 0;
-  left: 50px;
-  width: 250px;
+  left: -70px;
+  width: 539px;
+  height: 60px;
   translate: 0 -50%;
-  background-color: orange;
-  padding: 10px;
+  background-image: url("../img/assets/name-container.png");
+  background-size: 100% 100%;
+  padding: 4px 0 10px;
+  text-align: center;
+  font-size: 38px;
+  font-family: "NunitoBold";
+  color: white;
+  text-shadow: 2px 2px 0 #34002b, -2px 2px 0 #34002b, -2px -2px 0 #34002b, 2px -2px 0 #34002b;
 }
-
-#char-text {
+#storyContainer #textContainer #textContainer-inner #char-text {
   position: absolute;
-  top: 50px;
+  top: 55px;
   left: 50px;
   width: calc(100% - 100px);
+  font-size: 25px;
+  font-family: "NunitoBold";
+  color: white;
+  text-shadow: 1px 1px 0 #34002b, -1px 1px 0 #34002b, -1px -1px 0 #34002b, 1px -1px 0 #34002b;
 }
-
-#char-text.italic {
+#storyContainer #textContainer #textContainer-inner #char-text.italic {
   font-style: italic;
 }
-
-#choiceContainer,
-#cantGoBackContainer {
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  translate: -50% 0;
-  min-width: 500px;
-  max-width: 50%;
-  padding: 15px;
-  background-color: purple;
-  box-shadow: 5px 5px 5px black;
-  color: white;
-  text-align: center;
-  opacity: 0;
-}
-
-#choiceBox,
-#cantGoBackBox {
-  border: 2px white solid;
-  padding: 10px;
-}
-
-#choiceBox h2 {
-  margin-top: 10px;
-}
-
-#choiceBox-inner,
-#cantGoBackBox-inner {
-  display: flex;
-  flex-direction: column;
-  padding: 15px;
-  gap: 20px;
-}
-
-.choiceBtn {
-  outline: none;
-  border: none;
-  width: 50%;
-  margin: 0 auto;
-  padding: 10px;
-  background-color: rgb(43, 43, 43);
-  color: white;
-  transition: background-color 300ms ease-in-out;
-}
-
-.choiceBtn:hover {
-  background-color: rgb(67, 67, 67);
-  cursor: pointer;
-}
-
-#specialSceneCover {
+#storyContainer #specialSceneCover {
   position: absolute;
   top: 0;
   left: 0;
@@ -316,14 +286,131 @@ body {
   background-size: cover;
   background-position: center;
 }
-
+#storyContainer #choiceContainer, #storyContainer #cantGoBackContainer {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  translate: -50% 0;
+  min-width: 500px;
+  max-width: 70%;
+  padding: 15px 75px;
+  background-image: linear-gradient(to left, rgba(180, 12, 243, 0), rgba(180, 12, 243, 0.8), rgba(180, 12, 243, 0.8), rgba(180, 12, 243, 0.8), rgba(180, 12, 243, 0.8), rgba(180, 12, 243, 0.8), rgba(180, 12, 243, 0));
+  color: white;
+  text-align: center;
+  opacity: 0;
+}
+#storyContainer #choiceContainer #choiceBox, #storyContainer #cantGoBackContainer #choiceBox, #storyContainer #cantGoBackContainer #cantGoBackBox {
+  position: relative;
+  padding: 10px;
+  font-family: "CharmRegular";
+}
+#storyContainer #choiceContainer #choiceBox h2, #storyContainer #cantGoBackContainer #choiceBox h2, #storyContainer #cantGoBackContainer #cantGoBackBox h2 {
+  margin-top: 10px;
+  font-size: 28px;
+}
+#storyContainer #choiceContainer #choiceBox #choiceBox-inner, #storyContainer #cantGoBackContainer #choiceBox #choiceBox-inner, #storyContainer #cantGoBackContainer #cantGoBackBox #choiceBox-inner, #storyContainer #cantGoBackContainer #cantGoBackBox #cantGoBackBox-inner {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  gap: 20px;
+}
+#storyContainer #choiceContainer #choiceBox #choiceBox-inner .choiceBtn, #storyContainer #cantGoBackContainer #choiceBox #choiceBox-inner .choiceBtn, #storyContainer #cantGoBackContainer #cantGoBackBox #choiceBox-inner .choiceBtn, #storyContainer #cantGoBackContainer #cantGoBackBox #cantGoBackBox-inner .choiceBtn {
+  position: relative;
+  outline: none;
+  border: none;
+  width: 100%;
+  margin: 0 auto;
+  padding: 10px;
+  background: none;
+  background-image: linear-gradient(to left, rgba(48, 48, 48, 0), rgba(48, 48, 48, 0.8), rgba(48, 48, 48, 0.8), rgba(48, 48, 48, 0.8), rgba(48, 48, 48, 0.8), rgba(67, 67, 67, 0.8), rgba(67, 67, 67, 0));
+  color: white;
+  font-family: "CharmBold";
+  font-size: 20px;
+  transition: background-image 300ms ease-in-out;
+}
+#storyContainer #choiceContainer #choiceBox #choiceBox-inner .choiceBtn::before, #storyContainer #cantGoBackContainer #choiceBox #choiceBox-inner .choiceBtn::before, #storyContainer #cantGoBackContainer #cantGoBackBox #choiceBox-inner .choiceBtn::before, #storyContainer #cantGoBackContainer #cantGoBackBox #cantGoBackBox-inner .choiceBtn::before {
+  position: absolute;
+  top: -1px;
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-image: linear-gradient(to left, rgba(255, 255, 255, 0), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgba(255, 255, 255, 0));
+  opacity: 0;
+  transition: opacity 300ms ease-in-out;
+}
+#storyContainer #choiceContainer #choiceBox #choiceBox-inner .choiceBtn::after, #storyContainer #cantGoBackContainer #choiceBox #choiceBox-inner .choiceBtn::after, #storyContainer #cantGoBackContainer #cantGoBackBox #choiceBox-inner .choiceBtn::after, #storyContainer #cantGoBackContainer #cantGoBackBox #cantGoBackBox-inner .choiceBtn::after {
+  position: absolute;
+  bottom: -1px;
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-image: linear-gradient(to left, rgba(255, 255, 255, 0), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgba(255, 255, 255, 0));
+  opacity: 0;
+  transition: opacity 300ms ease-in-out;
+}
+#storyContainer #choiceContainer #choiceBox #choiceBox-inner .choiceBtn:hover, #storyContainer #cantGoBackContainer #choiceBox #choiceBox-inner .choiceBtn:hover, #storyContainer #cantGoBackContainer #cantGoBackBox #choiceBox-inner .choiceBtn:hover, #storyContainer #cantGoBackContainer #cantGoBackBox #cantGoBackBox-inner .choiceBtn:hover {
+  background-image: linear-gradient(to left, rgba(48, 48, 48, 0), rgb(48, 48, 48), rgb(48, 48, 48), rgb(48, 48, 48), rgb(48, 48, 48), rgb(67, 67, 67), rgba(67, 67, 67, 0));
+  cursor: url("../img/assets/cursor_pointer.png"), pointer;
+}
+#storyContainer #choiceContainer #choiceBox #choiceBox-inner .choiceBtn:hover::before, #storyContainer #cantGoBackContainer #choiceBox #choiceBox-inner .choiceBtn:hover::before, #storyContainer #cantGoBackContainer #cantGoBackBox #choiceBox-inner .choiceBtn:hover::before, #storyContainer #cantGoBackContainer #cantGoBackBox #cantGoBackBox-inner .choiceBtn:hover::before {
+  opacity: 70%;
+}
+#storyContainer #choiceContainer #choiceBox #choiceBox-inner .choiceBtn:hover::after, #storyContainer #cantGoBackContainer #choiceBox #choiceBox-inner .choiceBtn:hover::after, #storyContainer #cantGoBackContainer #cantGoBackBox #choiceBox-inner .choiceBtn:hover::after, #storyContainer #cantGoBackContainer #cantGoBackBox #cantGoBackBox-inner .choiceBtn:hover::after {
+  opacity: 70%;
+}
+#storyContainer #choiceContainer #choiceBox::before, #storyContainer #cantGoBackContainer #choiceBox::before, #storyContainer #cantGoBackContainer #cantGoBackBox::before {
+  position: absolute;
+  top: 0;
+  content: "";
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-image: linear-gradient(to left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+}
+#storyContainer #choiceContainer #choiceBox::after, #storyContainer #cantGoBackContainer #choiceBox::after, #storyContainer #cantGoBackContainer #cantGoBackBox::after {
+  position: absolute;
+  bottom: 0;
+  content: "";
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-image: linear-gradient(to left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+}
 #storyButtonContainer {
   position: relative;
-  display: flex;
+  bottom: 0;
+  display: flex !important;
   width: 100%;
   height: 40px;
+  margin-top: -50px;
   justify-content: space-evenly;
-  margin-top: -40px;
+  cursor: url("../img/assets/cursor_default.png"), auto;
+}
+#storyButtonContainer .storyButtons {
+  outline: none;
+  background: none;
+  border: none;
+  font-family: "CharmBold";
+  font-size: 22px;
+  color: white;
+  opacity: 50%;
+  text-shadow: 0px 0px 0px rgba(255, 120, 226, 0);
+  transition: opacity 300ms ease-in, text-shadow 300ms ease-in-out;
+}
+#storyButtonContainer .storyButtons:disabled {
+  opacity: 20%;
+  pointer-events: none;
+}
+#storyButtonContainer .storyButtons:hover {
+  opacity: 100%;
+  text-shadow: 0px 0px 6px rgb(255, 120, 226);
+  cursor: url("../img/assets/cursor_pointer.png"), pointer;
+}
+
+.notVisible {
+  opacity: 0;
 }
 
 #settings_checkboxes {
@@ -419,15 +506,12 @@ body {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: blueviolet;
+  background-color: rgba(181, 12, 243, 0.5);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0);
+  transition: background-color 300ms ease-in-out, box-shadow 300ms ease-in-out;
   z-index: 5;
 }
-
-#inGame_navbar_icon:hover {
-  cursor: pointer;
-}
-
-.navbarLine {
+#inGame_navbar_icon .navbarLine {
   position: absolute;
   left: 50%;
   translate: -50% 0;
@@ -437,32 +521,116 @@ body {
   transform: rotate(0), translate(0, 0);
   transition: top 300ms ease-in-out, left, 300ms ease-in-out, transform 300ms ease-in-out;
 }
-
-.navbarLine:nth-child(1) {
+#inGame_navbar_icon .navbarLine:nth-child(1) {
   top: 25%;
 }
-
-.navbarLine:nth-child(2) {
+#inGame_navbar_icon .navbarLine:nth-child(2) {
   top: 50%;
   opacity: 100%;
 }
-
-.navbarLine:nth-child(3) {
+#inGame_navbar_icon .navbarLine:nth-child(3) {
   top: 75%;
 }
-
+#inGame_navbar_icon:hover {
+  background-color: rgb(181, 12, 243);
+  box-shadow: 0 0 10px rgb(255, 255, 255);
+  cursor: url("../img/assets/cursor_pointer.png"), pointer;
+}
+#inGame_navbar_icon.open {
+  background-color: rgb(181, 12, 243);
+  box-shadow: 0 0 10px rgb(255, 255, 255);
+}
 #inGame_navbar_icon.open .navbarLine:nth-child(1) {
   top: 50%;
   transform: rotate(45deg);
 }
-
 #inGame_navbar_icon.open .navbarLine:nth-child(2) {
   opacity: 0%;
 }
-
 #inGame_navbar_icon.open .navbarLine:nth-child(3) {
   top: 50%;
   transform: rotate(-45deg);
+}
+
+#navbar_Container {
+  position: fixed;
+  top: 0;
+  left: -300px;
+  width: 300px;
+  height: 100%;
+  background-image: linear-gradient(rgb(181, 12, 243), rgb(75, 1, 179));
+  box-shadow: 3px 0 10px rgba(0, 0, 0, 0);
+  opacity: 0%;
+  z-index: 4;
+  transition: left 300ms ease-in-out, opacity 300ms ease-in-out, box-shadow 300ms ease-in-out;
+}
+#navbar_Container .inGame-falling-icons {
+  width: 300px;
+  height: calc(100% + 100px);
+  position: absolute;
+  top: -100px;
+  left: 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+#navbar_Container #navbar_inner {
+  position: relative;
+  top: 50%;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 30px;
+  translate: 0 -50%;
+}
+#navbar_Container #navbar_inner .navbar_options {
+  position: relative;
+  width: 100%;
+  padding: 3% 0;
+  text-align: center;
+  font-family: "CharmBold";
+  color: white;
+  font-size: 24px;
+  background-image: linear-gradient(to left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0));
+  transition: background-image 300ms ease-in-out;
+}
+#navbar_Container #navbar_inner .navbar_options::before {
+  position: absolute;
+  top: -1px;
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-image: linear-gradient(to left, rgba(255, 255, 255, 0), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgba(255, 255, 255, 0));
+  opacity: 0;
+  transition: opacity 300ms ease-in-out;
+}
+#navbar_Container #navbar_inner .navbar_options::after {
+  position: absolute;
+  bottom: -1px;
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-image: linear-gradient(to left, rgba(255, 255, 255, 0), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgba(255, 255, 255, 0));
+  opacity: 0;
+  transition: opacity 300ms ease-in-out;
+}
+#navbar_Container #navbar_inner .navbar_options:hover {
+  background-image: linear-gradient(to left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+  cursor: url("../img/assets/cursor_pointer.png"), pointer;
+}
+#navbar_Container #navbar_inner .navbar_options:hover::before {
+  opacity: 70%;
+}
+#navbar_Container #navbar_inner .navbar_options:hover::after {
+  opacity: 70%;
+}
+#navbar_Container.open {
+  left: 0px;
+  opacity: 100%;
+  box-shadow: 3px 0 10px rgba(0, 0, 0, 0.5);
 }
 
 #innerMenu_window {
@@ -478,46 +646,8 @@ body {
   pointer-events: none;
   transition: opacity 300ms ease-in-out;
 }
-
 #innerMenu_window.fadeIn {
   pointer-events: all;
-}
-
-#navbar_Container {
-  position: fixed;
-  top: 0;
-  left: -300px;
-  width: 300px;
-  height: 100%;
-  background-color: aquamarine;
-  opacity: 0%;
-  z-index: 4;
-  transition: left 300ms ease-in-out, opacity 300ms ease-in-out;
-}
-
-#navbar_Container.open {
-  left: 0px;
-  opacity: 100%;
-}
-
-#navbar_Container #navbar_inner {
-  position: relative;
-  top: 50%;
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  gap: 50px;
-  translate: 0 -50%;
-}
-
-#navbar_Container #navbar_inner .navbar_options {
-  width: 100%;
-  text-decoration: underline;
-  text-align: center;
-}
-
-#navbar_Container #navbar_inner .navbar_options:hover {
-  cursor: pointer;
 }
 
 #unclickable_navbar_BG {
@@ -531,7 +661,6 @@ body {
   z-index: 3;
   transition: background-color 300ms ease-in-out;
 }
-
 #unclickable_navbar_BG.open {
   background-color: rgba(0, 0, 0, 0.5);
   pointer-events: all;
@@ -542,55 +671,399 @@ body {
   background-image: url("../img/backgrounds/BG_main_1.png");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   color: white;
   font-family: "Foglihten";
 }
-
 #mainMenu_container.completed {
   background-image: url("../img/backgrounds/BG_main_2.png");
 }
-
-#gallery_inner {
-  width: 90%;
-  height: 70vh;
-  border: 1px solid black;
-  padding: 10px;
-  background-color: aquamarine;
+#mainMenu_container #mainTitle {
+  position: fixed;
+  top: 30px;
+  left: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  opacity: 0;
 }
-
-#gallery_container {
+#mainMenu_container #mainTitle img {
+  width: 200px;
+  filter: drop-shadow(2px 2px 3px rgb(79, 0, 103));
+}
+#mainMenu_container #mainTitle h1 {
+  font-family: "FogLihten";
+  font-size: 48px;
+  text-shadow: 0px 0px 1px rgb(79, 0, 103), 2px 2px 3px rgb(79, 0, 103);
+}
+#mainMenu_container #versionNumber {
+  position: fixed;
+  bottom: 10px;
+  right: 30px;
+  opacity: 33%;
+  font-family: "NunitoRegular";
+  color: white;
+  transition: opacity 300ms ease-in-out;
+}
+#mainMenu_container #mainEndingContainer {
+  position: fixed;
+  top: 50%;
+  left: 30px;
+  translate: 0 -50%;
+  z-index: -1;
+}
+#mainMenu_container #mainEndingContainer div {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+}
+#mainMenu_container #mainEndingContainer div .ending-heart {
+  width: 40px;
+  filter: drop-shadow(3px 3px 3px rgb(141, 12, 180));
+}
+#mainMenu_container #mainEndingContainer div span {
+  font-family: "CharmRegular";
+  font-size: 24px;
+  text-shadow: 3px 3px 3px rgb(141, 12, 180);
+}
+#mainMenu_container #mainColumn_1 {
+  position: fixed;
+  top: 200px;
+  left: 50%;
+  translate: -50%;
+  max-height: 550px;
+  height: 100%;
+  width: 100%;
+}
+#mainMenu_container #mainColumn_1 #gallery_inner {
+  width: 90%;
+  height: 100%;
+  padding: 30px 75px;
+  background-image: linear-gradient(to left, rgba(125, 0, 147, 0), rgba(125, 0, 147, 0.8), rgba(125, 0, 147, 0.8), rgba(125, 0, 147, 0.8), rgba(125, 0, 147, 0.8), rgba(125, 0, 147, 0.8), rgba(125, 0, 147, 0));
+  margin: 0 auto;
+}
+#mainMenu_container #mainColumn_1 #gallery_inner #gallery_container {
   width: 100%;
   height: 100%;
-  margin: auto 0;
   display: grid;
   grid-template-columns: 2fr 2fr 2fr;
   gap: 10px;
+  padding: 0 15px;
   overflow-y: scroll;
 }
-
-.gallery_tiles {
+#mainMenu_container #mainColumn_1 #gallery_inner #gallery_container .gallery_tiles {
+  position: relative;
   width: 100%;
-  min-height: 250px;
+  height: 200px;
   border: 2px solid white;
   overflow: hidden;
   opacity: 0;
+  aspect-ratio: 16/9;
 }
-
-.gallery_tiles.show {
+#mainMenu_container #mainColumn_1 #gallery_inner #gallery_container .gallery_tiles.show {
   opacity: 100%;
   background-color: rgba(0, 0, 0, 0.445);
 }
-
-.gallery_tiles img {
-  display: block;
-  max-width: 100%;
-  max-height: 100%;
-  margin: auto;
+#mainMenu_container #mainColumn_1 #gallery_inner #gallery_container .gallery_tiles img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  transform: translate(-50%, -50%);
 }
-
-.gallery_tiles img:hover {
-  cursor: pointer;
+#mainMenu_container #mainColumn_1 #gallery_inner #gallery_container .gallery_tiles img:hover {
+  cursor: url("../img/assets/cursor_pointer.png"), pointer;
+}
+#mainMenu_container #mainColumn_1 #gallery_inner::before {
+  position: absolute;
+  top: -1px;
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-image: linear-gradient(to left, rgba(255, 255, 255, 0), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgba(255, 255, 255, 0));
+  transition: opacity 300ms ease-in-out;
+}
+#mainMenu_container #mainColumn_1 #gallery_inner::after {
+  position: absolute;
+  bottom: -1px;
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-image: linear-gradient(to left, rgba(255, 255, 255, 0), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgba(255, 255, 255, 0));
+  transition: opacity 300ms ease-in-out;
+}
+#mainMenu_container #mainColumn_1 #about_inner {
+  position: relative;
+  top: 0%;
+  left: 50%;
+  translate: -50%;
+  width: 90%;
+  padding: 30px 75px;
+  background-image: linear-gradient(to left, rgba(125, 0, 147, 0), rgba(125, 0, 147, 0.8), rgba(125, 0, 147, 0.8), rgba(125, 0, 147, 0.8), rgba(125, 0, 147, 0.8), rgba(125, 0, 147, 0.8), rgba(125, 0, 147, 0));
+  color: white;
+  font-size: 18px;
+  text-shadow: 1px 1px 0 #34002b, -1px 1px 0 #34002b, -1px -1px 0 #34002b, 1px -1px 0 #34002b;
+}
+#mainMenu_container #mainColumn_1 #about_inner h2 {
+  font-size: 36px;
+  text-align: center;
+  font-family: "CharmRegular";
+  margin-bottom: 16px;
+}
+#mainMenu_container #mainColumn_1 #about_inner > p {
+  font-family: "NunitoRegular";
+}
+#mainMenu_container #mainColumn_1 #about_inner > p b {
+  font-family: "NunitoBold";
+}
+#mainMenu_container #mainColumn_1 #about_inner #about_description {
+  margin-top: 16px;
+  font-family: "NunitoRegular";
+  text-align: center;
+}
+#mainMenu_container #mainColumn_1 #about_inner #about_description p {
+  margin-bottom: 16px;
+}
+#mainMenu_container #mainColumn_1 #about_inner #about_description::before {
+  position: absolute;
+  top: -1px;
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-image: linear-gradient(to left, rgba(255, 255, 255, 0), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgba(255, 255, 255, 0));
+  transition: opacity 300ms ease-in-out;
+}
+#mainMenu_container #mainColumn_1 #about_inner #about_description::after {
+  position: absolute;
+  bottom: -1px;
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-image: linear-gradient(to left, rgba(255, 255, 255, 0), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgba(255, 255, 255, 0));
+  transition: opacity 300ms ease-in-out;
+}
+#mainMenu_container #mainColumn_1 #quit_inner {
+  position: relative;
+  top: 25%;
+  left: 50%;
+  translate: -50%;
+  width: 90%;
+  padding: 30px 75px;
+  background-image: linear-gradient(to left, rgba(125, 0, 147, 0), rgba(125, 0, 147, 0.8), rgba(125, 0, 147, 0.8), rgba(125, 0, 147, 0.8), rgba(125, 0, 147, 0.8), rgba(125, 0, 147, 0.8), rgba(125, 0, 147, 0));
+  color: white;
+  text-align: center;
+  font-family: "CharmRegular";
+  font-size: 24px;
+  text-shadow: 1px 1px 0 #34002b, -1px 1px 0 #34002b, -1px -1px 0 #34002b, 1px -1px 0 #34002b;
+}
+#mainMenu_container #mainColumn_1 #quit_inner h2 {
+  margin-bottom: 30px;
+}
+#mainMenu_container #mainColumn_1 #quit_inner div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 100px;
+}
+#mainMenu_container #mainColumn_1 #quit_inner div button {
+  outline: none;
+  border: none;
+  background: none;
+  background-image: linear-gradient(to left, rgba(245, 139, 255, 0), rgba(245, 139, 255, 0), rgba(245, 139, 255, 0), rgba(245, 139, 255, 0));
+  padding: 5px 30px;
+  color: white;
+  font-size: 24px;
+  font-family: "CharmRegular";
+  text-shadow: 1px 1px 0 #34002b, -1px 1px 0 #34002b, -1px -1px 0 #34002b, 1px -1px 0 #34002b;
+  transition: background-image 300ms ease-in-out;
+}
+#mainMenu_container #mainColumn_1 #quit_inner div button:hover {
+  background-image: linear-gradient(to left, rgba(245, 139, 255, 0), rgba(245, 139, 255, 0.8), rgba(245, 139, 255, 0.8), rgba(245, 139, 255, 0));
+  cursor: url("../img/assets/cursor_pointer.png"), pointer;
+}
+#mainMenu_container #mainColumn_1 #quit_inner::before {
+  position: absolute;
+  top: -1px;
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-image: linear-gradient(to left, rgba(255, 255, 255, 0), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgba(255, 255, 255, 0));
+  transition: opacity 300ms ease-in-out;
+}
+#mainMenu_container #mainColumn_1 #quit_inner::after {
+  position: absolute;
+  bottom: -1px;
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-image: linear-gradient(to left, rgba(255, 255, 255, 0), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgba(255, 255, 255, 0));
+  transition: opacity 300ms ease-in-out;
+}
+#mainMenu_container .mainMenu {
+  position: fixed;
+  left: 0;
+  bottom: 60px;
+  right: 0;
+  margin: auto;
+  width: 90%;
+  max-width: 1300px;
+  height: 60px;
+  opacity: 0;
+}
+#mainMenu_container .mainMenu input {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  z-index: 20;
+  border-radius: 80px;
+  opacity: 0;
+  translate: -50% -50%;
+  cursor: url("../img/assets/cursor_pointer.png"), pointer;
+}
+#mainMenu_container .mainMenu input:checked ~ .hamburger #menu_padlock #padlock-head {
+  top: 10px;
+  left: calc(50% - 5px);
+  rotate: -35deg;
+}
+#mainMenu_container .mainMenu input:checked ~ .action_items_bar {
+  transform: scaleX(1);
+}
+#mainMenu_container .mainMenu input:checked ~ .action_items_bar .action_items .first_item {
+  margin-left: 50px;
+  opacity: 1;
+  transition-delay: 0.5s;
+}
+#mainMenu_container .mainMenu input:checked ~ .action_items_bar .action_items .second_item {
+  opacity: 1;
+  transition-delay: 0.45s;
+}
+#mainMenu_container .mainMenu input:checked ~ .action_items_bar .action_items .third_item {
+  margin-right: 50px;
+  opacity: 1;
+  transition-delay: 0.4s;
+}
+#mainMenu_container .mainMenu input:checked ~ .action_items_bar .action_items .fourth_item {
+  margin-left: 50px;
+  opacity: 1;
+  transition-delay: 0.4s;
+}
+#mainMenu_container .mainMenu input:checked ~ .action_items_bar .action_items .fifth_item {
+  opacity: 1;
+  transition-delay: 0.45s;
+}
+#mainMenu_container .mainMenu input:checked ~ .action_items_bar .action_items .sixth_item {
+  margin-right: 50px;
+  opacity: 1;
+  transition-delay: 0.5s;
+}
+#mainMenu_container .mainMenu .hamburger {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: 100px;
+  height: 100px;
+  background-color: rgb(125, 0, 147);
+  border-radius: 100%;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+  cursor: url("../img/assets/cursor_pointer.png"), pointer;
+}
+#mainMenu_container .mainMenu .hamburger #menu_padlock {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+#mainMenu_container .mainMenu .hamburger #menu_padlock #padlock-head {
+  position: absolute;
+  width: 40%;
+  top: 17px;
+  left: 50%;
+  translate: -50% 0;
+  rotate: 0deg;
+  transition: top 300ms ease-in-out, left 300ms ease-in-out, rotate 300ms ease-in-out;
+}
+#mainMenu_container .mainMenu .hamburger #menu_padlock #padlock-body {
+  position: absolute;
+  width: 50%;
+  bottom: 17px;
+  left: 50%;
+  translate: -50% 0;
+  rotate: 0deg;
+}
+#mainMenu_container .mainMenu .action_items_bar {
+  position: absolute;
+  width: 100%;
+  height: 60px;
+  background-image: linear-gradient(to left, rgb(181, 12, 243), rgb(125, 0, 147), rgb(125, 0, 147), rgb(181, 12, 243));
+  border-radius: 60px;
+  box-shadow: 0px 5px 20px rgb(204, 65, 255);
+  z-index: 5;
+  transform: scaleX(0);
+  transition: all 0.3s ease-in-out;
+}
+#mainMenu_container .mainMenu .action_items_bar .action_items {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 100%;
+}
+#mainMenu_container .mainMenu .action_items_bar .action_items .mainMenu_options {
+  width: 100px;
+  text-align: center;
+  margin: auto 0;
+  font-family: "CharmRegular";
+  font-size: 24px;
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+  text-shadow: 0 0 5px rgba(255, 127, 253, 0);
+  transition: text-shadow 300ms ease-in-out;
+  cursor: url("../img/assets/cursor_pointer.png"), pointer;
+}
+#mainMenu_container .mainMenu .action_items_bar .action_items .mainMenu_options.option-chosen {
+  text-shadow: 0 0 5px rgb(255, 127, 253), 0 0 10px rgb(255, 127, 253), 0 0 20px rgb(255, 127, 253), 0 0 25px rgb(255, 127, 253);
+}
+#mainMenu_container .mainMenu .action_items_bar .action_items #marker {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  transition: 500ms;
+  z-index: -1;
+}
+#mainMenu_container .mainMenu .action_items_bar .action_items #marker::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  translate: -50% -50%;
+  width: 100px;
+  height: 60px;
+  border-radius: 8px;
+  background: linear-gradient(to left, rgba(204, 65, 255, 0), rgb(204, 65, 255), rgb(204, 65, 255), rgba(204, 65, 255, 0));
+  box-shadow: 0 0 15px rgba(204, 65, 255, 0), 0 0 30px rgba(204, 65, 255, 0), 0 0 40px rgba(204, 65, 255, 0);
+  transition: border-radius 500ms ease-in-out, height 300ms ease-in-out, translate 500ms ease-in-out, box-shadow 300ms ease-in-out;
+}
+#mainMenu_container .mainMenu .action_items_bar .action_items #marker.inCenter::before {
+  border-radius: 80px;
+  height: 100px;
+  translate: -100% -50%;
+  box-shadow: 0 0 15px rgb(204, 65, 255), 0 0 30px rgb(204, 65, 255), 0 0 40px rgb(204, 65, 255);
 }
 
 #fullScreenGalleryImg {
@@ -605,22 +1078,22 @@ body {
   background-size: contain;
   background-position: center;
 }
+#fullScreenGalleryImg:hover {
+  cursor: url("../img/assets/cursor_pointer.png"), pointer;
+}
 
-/* mobile start*/
 #mobileContainer {
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
 }
-
-#mobile_blackBG {
+#mobileContainer #mobile_blackBG {
   width: 100%;
   height: 100%;
   background-color: black;
 }
-
-#mobileFrame {
+#mobileContainer #mobile_blackBG #mobileFrame {
   position: relative;
   max-width: 500px;
   height: 100%;
@@ -629,17 +1102,16 @@ body {
   margin: 0 auto;
   overflow: hidden;
 }
-
-#mobileHeader {
+#mobileContainer #mobile_blackBG #mobileFrame #mobileHeader {
   width: 100%;
   height: 40px;
-  background-color: blue;
+  background-color: rgb(141, 12, 180);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  font-family: "NunitoRegular";
 }
-
-.mobileHeader_section {
+#mobileContainer #mobile_blackBG #mobileFrame #mobileHeader .mobileHeader_section {
   height: 100%;
   display: flex;
   flex-direction: row;
@@ -647,131 +1119,111 @@ body {
   gap: 10px;
   padding: 10px 20px;
 }
-
-.mobileHeader_section:nth-child(1) {
-  justify-content: flex-start;
-}
-
-.mobileHeader_section:nth-child(1) {
+#mobileContainer #mobile_blackBG #mobileFrame #mobileHeader .mobileHeader_section:nth-child(1) {
   justify-content: flex-end;
 }
-
-.mobileHeader_section span {
+#mobileContainer #mobile_blackBG #mobileFrame #mobileHeader .mobileHeader_section span {
   color: white;
   white-space: nowrap;
 }
-
-.mobileHeader_section span img {
+#mobileContainer #mobile_blackBG #mobileFrame #mobileHeader .mobileHeader_section span img {
   fill: white;
 }
-
-#mobileTime {
+#mobileContainer #mobile_blackBG #mobileFrame #mobileHeader .mobileHeader_section #mobileTime {
   width: 40px;
 }
-
-#mobileRoot {
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot {
   position: relative;
   width: 100%;
   height: calc(100% - 40px);
   background-color: white;
-  padding: 10px;
   overflow: hidden;
 }
-
-#mobileRootHeader {
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot #mobileRootHeader {
   display: flex;
   flex-direction: row;
   justify-content: center;
   gap: 10px;
   padding: 5px;
+  background: linear-gradient(180deg, rgb(141, 12, 180) 0%, rgb(198, 11, 204) 100%);
+  box-shadow: 0px 5px 10px black;
 }
-
-#mobileRootHeader img {
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot #mobileRootHeader img {
   width: 50px;
   height: 50px;
+  filter: drop-shadow(3px 3px 0px white);
 }
-
-#mobileRootHeader span {
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot #mobileRootHeader span {
   font-size: 36px;
   font-weight: 700;
-  color: #222222;
+  color: white;
+  font-family: "CharmBold";
 }
-
-#mobileRoot_messageList {
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot hr {
+  border-top: 2px solid rgb(234, 47, 241);
+}
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot #mobileRoot_messageList {
   width: 100%;
   min-height: 100%;
-  padding: 10px;
+  padding: 10px 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 5px;
 }
-
-.messageList-element {
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot #mobileRoot_messageList .messageList-element {
   width: 100%;
   height: 100px;
   display: flex;
   justify-content: space-between;
-  padding: 10px;
+  padding: 10px 20px;
 }
-
-.messageList-element:hover {
-  background-color: rgba(0, 136, 255, 0.092);
-  cursor: pointer;
-}
-
-.messageList-element-left,
-.messageList-element-right {
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot #mobileRoot_messageList .messageList-element .messageList-element-left {
   display: flex;
   flex-wrap: nowrap;
   gap: 20px;
-}
-
-.messageList-element-left {
   justify-content: flex-start;
 }
-
-.messageList-element-right {
-  justify-content: flex-end;
-}
-
-.messageList-element-left img {
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot #mobileRoot_messageList .messageList-element .messageList-element-left img {
   width: 80px;
   height: 80px;
   border-radius: 50%;
 }
-
-.messageList-element-left span {
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot #mobileRoot_messageList .messageList-element .messageList-element-left span {
   display: block;
   position: relative;
   margin: auto 0;
   font-size: 24px;
+  font-family: "NunitoBold";
 }
-
-.messageList-element-left span .flag {
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot #mobileRoot_messageList .messageList-element .messageList-element-left span .flag {
   display: none;
   position: absolute;
   top: -30px;
   left: -35px;
   min-width: 20px;
-  padding: 2px;
-  border-radius: 5px;
+  padding: 2px 8px;
+  border-radius: 50%;
   background-color: red;
   text-align: center;
   font-size: 18px;
   color: white;
 }
-
-.messageList-element-left span .flag.unread {
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot #mobileRoot_messageList .messageList-element .messageList-element-left span .flag.unread {
   display: block;
 }
-
-.messageList-element-right span {
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot #mobileRoot_messageList .messageList-element .messageList-element-right {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+  justify-content: flex-end;
+}
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot #mobileRoot_messageList .messageList-element .messageList-element-right span {
   display: block;
   margin: auto 0;
+  font-family: "NunitoRegular";
+  font-size: 14px;
 }
-
-.messageList-element-right .onlineStatus,
-.messageBox_onlineStatus {
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot #mobileRoot_messageList .messageList-element .messageList-element-right .onlineStatus {
   width: 10px;
   height: 10px;
   display: block;
@@ -779,44 +1231,19 @@ body {
   border-radius: 50%;
   border: 2px solid grey;
 }
-
-.messageList-element-right .onlineStatus.online {
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot #mobileRoot_messageList .messageList-element .messageList-element-right .onlineStatus.online {
   border: 2px solid green;
   background-color: green;
 }
-
-.messageList-element-right .onlineStatus.offline {
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot #mobileRoot_messageList .messageList-element .messageList-element-right .onlineStatus.offline {
   background-color: white;
   border: 2px solid grey;
 }
-
-.messageBox_onlineStatus {
-  position: absolute;
-  top: 0;
-  right: 0px;
-  width: 15px;
-  height: 15px;
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot #mobileRoot_messageList .messageList-element:hover {
+  background-color: rgba(234, 47, 241, 0.07);
+  cursor: url("../img/assets/cursor_pointer.png"), pointer;
 }
-
-.messageBox_onlineStatus.online {
-  border: 3px solid white;
-  background-color: green;
-}
-
-.messageBox_onlineStatus.offline {
-  border: 3px solid white;
-  background-color: white;
-  box-shadow: inset 0 0 0 1px gray;
-}
-
-/* #mobileRoot_messageBoxes {
-	position: absolute;
-	top: 0;
-	right: 0;
-	width: 100%;
-	height: 100%;
-} */
-.messageBox {
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox {
   position: absolute;
   top: 0;
   right: -105%;
@@ -829,12 +1256,10 @@ body {
   z-index: 2;
   transition: right 400ms ease-in-out;
 }
-
-.messageBox.open {
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox.open {
   right: 0%;
 }
-
-.messageBox_header {
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox .messageBox_header {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -844,9 +1269,7 @@ body {
   padding: 20px;
   z-index: 2;
 }
-
-.messageBox_headerLeft,
-.messageBox_headerRight {
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox .messageBox_header .messageBox_headerLeft {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -854,57 +1277,163 @@ body {
   align-items: center;
   gap: 20px;
 }
-
-.messageBox_backBtn {
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox .messageBox_header .messageBox_headerLeft .messageBox_backBtn {
   width: 60px;
   height: 60px;
-  cursor: pointer;
+  cursor: url("../img/assets/cursor_pointer.png"), pointer;
 }
-
-.messageBox_backBtn.disabled,
-.messageSendBtn.disabled,
-.popup_pic_container.disabled {
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox .messageBox_header .messageBox_headerLeft .messageBox_backBtn:active {
+  border-radius: 50px;
+  background-color: rgba(234, 47, 241, 0.07);
+}
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox .messageBox_header .messageBox_headerLeft .messageBox_backBtn.disabled {
   pointer-events: none;
 }
-
-.messageBox_backBtn img {
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox .messageBox_header .messageBox_headerLeft .messageBox_backBtn img {
   width: 100%;
   height: 100%;
+  fill: red;
 }
-
-.messageBox_picture {
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox .messageBox_header .messageBox_headerLeft .messageBox_picture {
   width: 60px;
   height: 60px;
   position: relative;
 }
-
-.messageBox_picture img {
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox .messageBox_header .messageBox_headerLeft .messageBox_picture img {
   width: 100%;
   height: 100%;
   border-radius: 50%;
 }
-
-.messageBox_header_symbol {
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox .messageBox_header .messageBox_headerLeft .messageBox_picture .messageBox_onlineStatus {
+  display: block;
+  margin: auto 0;
+  border-radius: 50%;
+  border: 2px solid grey;
+  position: absolute;
+  top: 0;
+  right: 0px;
+  width: 15px;
+  height: 15px;
+}
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox .messageBox_header .messageBox_headerLeft .messageBox_picture .messageBox_onlineStatus.online {
+  border: 3px solid white;
+  background-color: green;
+}
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox .messageBox_header .messageBox_headerLeft .messageBox_picture .messageBox_onlineStatus.offline {
+  border: 3px solid white;
+  background-color: white;
+  box-shadow: inset 0 0 0 1px gray;
+}
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox .messageBox_header .messageBox_headerLeft .messageBox_name {
+  font-size: 32px;
+  font-family: "NunitoBold";
+  margin: auto;
+}
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox .messageBox_header .messageBox_headerRight {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox .messageBox_header .messageBox_headerRight .messageBox_header_symbol {
   width: 40px;
   height: 40px;
 }
-
-.messageBox_header_symbol img {
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox .messageBox_header .messageBox_headerRight .messageBox_header_symbol img {
   width: 100%;
   height: 100%;
 }
-
-.messageBox_name {
-  font-size: 32px;
-  margin: auto;
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox .messageBox_root {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 10px;
+  padding: 20px;
+  overflow-y: scroll;
+  /* Handle */
+  /* Handle on hover */
 }
-
-#notAvailableMobileConversation {
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox .messageBox_root .chatRow {
+  display: flex;
+}
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox .messageBox_root .chatRow .typing-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 5px;
+  background-color: rgba(234, 47, 241, 0.2);
+  border-radius: 50px;
+}
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox .messageBox_root .chatRow .typing-indicator .dot {
+  width: 10px;
+  height: 10px;
+  margin: 0 5px;
+  background-color: #333;
+  border-radius: 50%;
+  opacity: 0;
+  animation: blink 1.4s infinite both;
+}
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox .messageBox_root .chatRow .typing-indicator .dot:nth-child(1) {
+  animation-delay: 0s;
+}
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox .messageBox_root .chatRow .typing-indicator .dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox .messageBox_root .chatRow .typing-indicator .dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox .messageBox_root .chatRow .chatRow_bubble {
+  max-width: 70%;
+  text-wrap: wrap;
+  padding: 15px;
+  border-radius: 30px;
+  font-family: "NunitoRegular";
+}
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox .messageBox_root .chatRow .chatRow_bubble.withPic {
+  max-width: 45%;
+  max-height: 300px;
+  padding: 0px;
+  border-radius: 30px;
+  overflow: hidden;
+}
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox .messageBox_root .chatRow .chatRow_bubble.withPic img {
+  width: 100%;
+}
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox .messageBox_root .chatRow .chatRow_bubble.withPic img:hover {
+  cursor: url("../img/assets/cursor_pointer.png"), pointer;
+}
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox .messageBox_root .chatRow.left {
+  justify-content: flex-start;
+}
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox .messageBox_root .chatRow.left .chatRow_bubble {
+  background-color: rgba(234, 47, 241, 0.2);
+  color: #333;
+}
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox .messageBox_root .chatRow.right {
+  justify-content: flex-end;
+}
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox .messageBox_root .chatRow.right .chatRow_bubble {
+  background-color: rgb(34, 118, 236);
   color: white;
-  font-size: 24px;
 }
-
-.mobile_keyboard {
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox .messageBox_root::-webkit-scrollbar {
+  width: 10px;
+}
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox .messageBox_root::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 10px grey;
+  border-radius: 10px;
+}
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox .messageBox_root::-webkit-scrollbar-thumb {
+  background: rgba(141, 12, 180, 0.5);
+  border-radius: 10px;
+}
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox .messageBox_root::-webkit-scrollbar-thumb:hover {
+  background: rgba(115, 5, 148, 0.8);
+}
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox .mobile_keyboard {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -915,14 +1444,13 @@ body {
   border-top: 1px solid black;
   padding: 20px;
   background-color: rgb(242, 242, 242);
-  gap: 20px;
+  gap: 10px;
 }
-
-.mobile_keyboard .textarea {
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox .mobile_keyboard .textarea {
   display: block;
   width: 100%;
   min-height: 40px;
-  max-height: 80px;
+  max-height: 60px;
   border: 1px solid rgb(175, 175, 175);
   background-color: white;
   outline: none;
@@ -932,40 +1460,76 @@ body {
   border-radius: 30px;
   padding: 15px;
   font-size: 16px;
+  font-family: "NunitoRegular";
   overflow-y: scroll;
   line-height: 20px;
   white-space: pre-wrap;
   word-wrap: break-word;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  z-index: 2;
 }
-
-.mobile_keyboard .textarea::-webkit-scrollbar {
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox .mobile_keyboard .textarea::-webkit-scrollbar {
   display: none;
 }
-
-.mobile_keyboard .messageSendBtn {
-  display: block;
-  height: 40px;
-  margin: auto 0;
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox .mobile_keyboard .textarea.highlighted {
+  position: relative;
+  pointer-events: all;
+  opacity: 100%;
+  transition: opacity 300ms ease-in-out;
+  cursor: url("../img/assets/cursor_pointer.png"), pointer;
 }
-
-.mobile_keyboard .messageSendBtn img {
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox .mobile_keyboard .textarea.highlighted::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background-image: conic-gradient(from var(--angle), white, rgb(141, 12, 180), white, rgb(141, 12, 180), white);
+  translate: -50% -50%;
+  z-index: -1;
+  animation: fadeIn 1s, highlighting-circle linear 3s infinite;
+}
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox .mobile_keyboard .textarea.highlighted::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(100% - 5px);
+  height: calc(100% - 5px);
+  border-radius: 30px;
+  background-color: white;
+  filter: blur(2px);
+  translate: -50% -50%;
+  z-index: -1;
+}
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox .mobile_keyboard .messageSendBtn {
+  display: block;
+  height: 50px;
+  margin: auto 0;
+  z-index: 2;
+}
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox .mobile_keyboard .messageSendBtn img {
   height: 100%;
 }
-
-.mobile_keyboard .messageSendBtn img:hover {
-  cursor: pointer;
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox .mobile_keyboard .messageSendBtn img:hover {
+  cursor: url("../img/assets/cursor_pointer.png"), pointer;
 }
-
-.mobile_keyboard .textarea.highlighted,
-.mobile_keyboard .messageSendBtn.highlighted {
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox .mobile_keyboard .messageSendBtn.highlighted {
+  position: relative;
   pointer-events: all;
-  cursor: pointer;
-  animation: highlighting both 3s infinite;
+  cursor: url("../img/assets/cursor_pointer.png"), pointer;
+  animation: highlighting both 1s infinite;
 }
-
-#mobile_profilePicsContainer {
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox .mobile_keyboard .messageSendBtn.highlighted img {
+  filter: drop-shadow(0 0 3px rgb(141, 12, 180)) drop-shadow(0 0 3px rgb(141, 12, 180));
+  animation: shadowAnimation 4s linear infinite;
+}
+#mobileContainer #mobile_blackBG #mobileFrame #mobileRoot .messageBox .mobile_keyboard .messageSendBtn.disabled {
+  pointer-events: none;
+}
+#mobileContainer #mobile_blackBG #mobileFrame #mobile_profilePicsContainer {
   position: absolute;
   top: 20%;
   right: -35px;
@@ -976,8 +1540,54 @@ body {
   justify-content: center;
   z-index: 2;
 }
-
-#mobile_speedUpContainer {
+#mobileContainer #mobile_blackBG #mobileFrame #mobile_profilePicsContainer .popup_pic_container {
+  position: relative;
+  display: none;
+  width: 80px;
+  height: 80px;
+  scale: 0;
+  opacity: 0;
+}
+#mobileContainer #mobile_blackBG #mobileFrame #mobile_profilePicsContainer .popup_pic_container img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  filter: drop-shadow(3px 3px 1px rgb(49, 49, 49));
+  scale: 1;
+  transition: scale 200ms ease-in-out;
+}
+#mobileContainer #mobile_blackBG #mobileFrame #mobile_profilePicsContainer .popup_pic_container .flag {
+  position: absolute;
+  display: none;
+  top: 0px;
+  left: 0px;
+  min-width: 20px;
+  padding: 2px 8px;
+  border-radius: 50%;
+  background-color: red;
+  font-family: "NunitoBold";
+  text-align: center;
+  font-size: 18px;
+  color: white;
+}
+#mobileContainer #mobile_blackBG #mobileFrame #mobile_profilePicsContainer .popup_pic_container.disabled {
+  pointer-events: none;
+}
+#mobileContainer #mobile_blackBG #mobileFrame #mobile_profilePicsContainer .popup_pic_container.visible {
+  display: block;
+  opacity: 100%;
+  animation: message_popup_pic 400ms forwards;
+}
+#mobileContainer #mobile_blackBG #mobileFrame #mobile_profilePicsContainer .popup_pic_container.visible .flag {
+  display: block;
+}
+#mobileContainer #mobile_blackBG #mobileFrame #mobile_profilePicsContainer .popup_pic_container:hover {
+  cursor: url("../img/assets/cursor_pointer.png"), pointer;
+}
+#mobileContainer #mobile_blackBG #mobileFrame #mobile_profilePicsContainer .popup_pic_container:hover img {
+  scale: 1.1;
+}
+#mobileContainer #mobile_blackBG #mobile_speedUpContainer {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -988,79 +1598,20 @@ body {
   opacity: 0;
   transition: 300ms opacity ease-in-out;
 }
-
-#mobile_speedUpContainer img {
+#mobileContainer #mobile_blackBG #mobile_speedUpContainer img {
   transition: 300ms opacity ease-in-out;
 }
-
-.popup_pic_container {
-  position: relative;
-  display: none;
-  width: 80px;
-  height: 80px;
-  scale: 0;
-  opacity: 0;
-}
-
-.popup_pic_container.visible {
-  display: block;
-  opacity: 100%;
-  animation: message_popup_pic 400ms forwards;
-}
-
-.popup_pic_container:hover {
-  cursor: pointer;
-}
-
-.popup_pic_container img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  filter: drop-shadow(3px 3px 1px rgb(49, 49, 49));
-  scale: 1;
-  transition: scale 200ms ease-in-out;
-}
-
-.popup_pic_container:hover img {
-  scale: 1.1;
-}
-
-.popup_pic_container .flag {
-  position: absolute;
-  display: none;
-  top: 0px;
-  left: 0px;
-  min-width: 20px;
-  padding: 2px;
-  border-radius: 5px;
-  background-color: red;
-  text-align: center;
-  font-size: 18px;
-  color: white;
-}
-
-.popup_pic_container.visible .flag {
-  display: block;
-}
-
-#mobile_choiceContainer {
+#mobileContainer #mobile_choiceContainer {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   opacity: 0;
+  font-family: "CharmRegular";
   pointer-events: none;
 }
-
-#mobile_choiceContainer.fadeIn {
-  opacity: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  pointer-events: all;
-  z-index: 2;
-}
-
-#choice_innerContainer {
+#mobileContainer #mobile_choiceContainer #choice_innerContainer {
   position: relative;
   width: 100%;
   height: 100%;
@@ -1068,53 +1619,102 @@ body {
   flex-direction: column;
   gap: 50px;
 }
-
-#choice_innerContainer_topHalf {
+#mobileContainer #mobile_choiceContainer #choice_innerContainer #choice_innerContainer_topHalf {
   display: flex;
   justify-content: center;
   margin-top: 150px;
 }
-
-#choice_innerContainer_bottomHalf {
+#mobileContainer #mobile_choiceContainer #choice_innerContainer #choice_innerContainer_topHalf #choice_questionContainer {
+  position: relative;
+  padding: 15px 75px;
+  background-image: linear-gradient(to left, rgba(180, 12, 243, 0), rgb(180, 12, 243), rgb(180, 12, 243), rgb(180, 12, 243), rgb(180, 12, 243), rgb(180, 12, 243), rgba(180, 12, 243, 0));
+  color: white;
+  text-align: center;
+  font-size: 28px;
+}
+#mobileContainer #mobile_choiceContainer #choice_innerContainer #choice_innerContainer_topHalf #choice_questionContainer::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-image: linear-gradient(to left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+}
+#mobileContainer #mobile_choiceContainer #choice_innerContainer #choice_innerContainer_topHalf #choice_questionContainer::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  content: "";
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-image: linear-gradient(to left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+}
+#mobileContainer #mobile_choiceContainer #choice_innerContainer #choice_innerContainer_bottomHalf {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-evenly;
   gap: 500px;
 }
-
-#choice_questionContainer {
-  background-color: purple;
-  padding: 10px;
-}
-
-#choice_questionInnerContainer {
-  border: 3px solid white;
-  padding: 10px;
-  color: white;
-}
-
-.choiceOptions {
+#mobileContainer #mobile_choiceContainer #choice_innerContainer #choice_innerContainer_bottomHalf .choiceOptions {
   display: flex;
   flex-direction: column;
   gap: 30px;
   width: calc((100% - 700px) / 2);
 }
-
-.mobile_option {
+#mobileContainer #mobile_choiceContainer #choice_innerContainer #choice_innerContainer_bottomHalf .choiceOptions .mobile_option {
+  position: relative;
   width: 100%;
-  background-color: purple;
+  background-image: linear-gradient(to left, rgba(180, 12, 243, 0), rgba(180, 12, 243, 0.6), rgba(180, 12, 243, 0.6), rgba(180, 12, 243, 0.6), rgba(180, 12, 243, 0.6), rgba(180, 12, 243, 0.6), rgba(180, 12, 243, 0));
   color: white;
   text-align: center;
   padding: 10px;
+  font-family: "CharmBold";
+  font-size: 20px;
+  transition: background-image 300ms ease-in-out;
 }
-
-.mobile_option:hover {
-  box-shadow: 0 0 10px white;
-  cursor: pointer;
+#mobileContainer #mobile_choiceContainer #choice_innerContainer #choice_innerContainer_bottomHalf .choiceOptions .mobile_option::before {
+  position: absolute;
+  top: -1px;
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-image: linear-gradient(to left, rgba(255, 255, 255, 0), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgba(255, 255, 255, 0));
+  opacity: 0;
+  transition: opacity 300ms ease-in-out;
 }
-
-#mobile_popup {
+#mobileContainer #mobile_choiceContainer #choice_innerContainer #choice_innerContainer_bottomHalf .choiceOptions .mobile_option::after {
+  position: absolute;
+  bottom: -1px;
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-image: linear-gradient(to left, rgba(255, 255, 255, 0), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgba(255, 255, 255, 0));
+  opacity: 0;
+  transition: opacity 300ms ease-in-out;
+}
+#mobileContainer #mobile_choiceContainer #choice_innerContainer #choice_innerContainer_bottomHalf .choiceOptions .mobile_option:hover {
+  background-image: linear-gradient(to left, rgba(180, 12, 243, 0), rgba(180, 12, 243, 0.8), rgba(180, 12, 243, 0.8), rgba(180, 12, 243, 0.8), rgba(180, 12, 243, 0.8), rgba(180, 12, 243, 0.8), rgba(180, 12, 243, 0));
+  cursor: url("../img/assets/cursor_pointer.png"), pointer;
+}
+#mobileContainer #mobile_choiceContainer #choice_innerContainer #choice_innerContainer_bottomHalf .choiceOptions .mobile_option:hover::before {
+  opacity: 70%;
+}
+#mobileContainer #mobile_choiceContainer #choice_innerContainer #choice_innerContainer_bottomHalf .choiceOptions .mobile_option:hover::after {
+  opacity: 70%;
+}
+#mobileContainer #mobile_choiceContainer.fadeIn {
+  opacity: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  pointer-events: all;
+  z-index: 2;
+}
+#mobileContainer #mobile_popup {
   position: fixed;
   top: 0;
   left: 0;
@@ -1124,19 +1724,16 @@ body {
   z-index: 3;
   pointer-events: none;
 }
-
-#mobile_popup.fadeIn {
+#mobileContainer #mobile_popup.fadeIn {
   pointer-events: all;
 }
-
-#mobilePopup_BG {
+#mobileContainer #mobile_popup #mobilePopup_BG {
   position: relative;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
 }
-
-#mobilePopup_container {
+#mobileContainer #mobile_popup #mobilePopup_BG #mobilePopup_container {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -1144,73 +1741,20 @@ body {
   background-color: purple;
   padding: 10px;
 }
-
-#mobilePopup_innerContainer {
+#mobileContainer #mobile_popup #mobilePopup_BG #mobilePopup_container #mobilePopup_innerContainer {
   border: 2px solid white;
   padding: 10px;
   text-align: center;
 }
-
-#mobilePopup_innerContainer h2 {
+#mobileContainer #mobile_popup #mobilePopup_BG #mobilePopup_container #mobilePopup_innerContainer h2 {
   color: white;
   margin-bottom: 20px;
 }
-
-.messageBox_root {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  gap: 10px;
-  padding: 20px;
-  overflow-y: scroll;
-}
-
-.chatRow {
-  display: flex;
-}
-
-.chatRow.left {
-  justify-content: flex-start;
-}
-
-.chatRow.right {
-  justify-content: flex-end;
-}
-
-.chatRow .chatRow_bubble {
-  max-width: 45%;
-  text-wrap: wrap;
-  padding: 20px;
-  border-radius: 30px;
-}
-
-.chatRow.left .chatRow_bubble {
-  background-color: rgb(223, 223, 223);
-  color: #333;
-}
-
-.chatRow.right .chatRow_bubble {
-  background-color: blue;
+#mobileContainer #mobile_popup #mobilePopup_BG #mobilePopup_container #mobilePopup_innerContainer #notAvailableMobileConversation {
   color: white;
+  font-size: 24px;
 }
-
-.chatRow .chatRow_bubble.withPic {
-  max-width: 45%;
-  max-height: 300px;
-  padding: 0px;
-  border-radius: 30px;
-  overflow: hidden;
-}
-
-.chatRow .chatRow_bubble.withPic img {
-  width: 100%;
-}
-
-.chatRow .chatRow_bubble.withPic img:hover {
-  cursor: pointer;
-}
-
-#mobile_specialScene {
+#mobileContainer #mobile_specialScene {
   position: absolute;
   top: 0;
   left: 0;
@@ -1220,48 +1764,46 @@ body {
   background-color: black;
   z-index: 3;
 }
-
-#mobile_specialScene img {
+#mobileContainer #mobile_specialScene img {
   display: block;
   max-width: 100%;
   height: 100%;
   margin: 0 auto;
-  cursor: pointer;
+  cursor: url("../img/assets/cursor_pointer.png"), pointer;
 }
 
-.typing-indicator {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+#mobileButtonContainer {
+  position: relative;
+  bottom: 0;
+  display: flex !important;
+  width: 100%;
   height: 40px;
-  padding: 5px;
-  background-color: rgb(223, 223, 223);
-  border-radius: 50px;
+  margin-top: -75px;
+  justify-content: center;
+  gap: 550px;
+  cursor: url("../img/assets/cursor_default.png"), auto;
+}
+#mobileButtonContainer .mobileButtons {
+  outline: none;
+  background: none;
+  border: none;
+  font-family: "CharmBold";
+  font-size: 22px;
+  color: white;
+  opacity: 50%;
+  text-shadow: 0px 0px 0px rgba(255, 120, 226, 0);
+  transition: opacity 300ms ease-in, text-shadow 300ms ease-in-out;
+}
+#mobileButtonContainer .mobileButtons:disabled {
+  opacity: 20%;
+  pointer-events: none;
+}
+#mobileButtonContainer .mobileButtons:hover {
+  opacity: 100%;
+  text-shadow: 0px 0px 6px rgb(255, 120, 226);
+  cursor: url("../img/assets/cursor_pointer.png"), pointer;
 }
 
-.dot {
-  width: 10px;
-  height: 10px;
-  margin: 0 5px;
-  background-color: #333;
-  border-radius: 50%;
-  opacity: 0;
-  animation: blink 1.4s infinite both;
-}
-
-.dot:nth-child(1) {
-  animation-delay: 0s;
-}
-
-.dot:nth-child(2) {
-  animation-delay: 0.2s;
-}
-
-.dot:nth-child(3) {
-  animation-delay: 0.4s;
-}
-
-/* mobile end*/
 .noClick {
   pointer-events: none;
 }
@@ -1326,6 +1868,15 @@ body {
   animation: flashing_5sec_delay 2s both 5s infinite;
 }
 
+.pulseFadeIn {
+  animation: pulse_fadeIn 1s forwards;
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
 @keyframes fadeIn {
   from {
     opacity: 0%;
@@ -1472,12 +2023,36 @@ body {
     opacity: 1;
   }
 }
-@keyframes highlighting {
-  0%, 100% {
-    filter: drop-shadow(0px 0px 2px rgba(0, 0, 255, 0)) drop-shadow(0px 0px 2px rgba(0, 0, 255, 0));
+@keyframes highlighting-circle {
+  0% {
+    --angle: 0deg;
+  }
+  100% {
+    --angle: 360deg;
+  }
+}
+@keyframes shadowAnimation {
+  0% {
+    filter: drop-shadow(0px 0 4px white);
   }
   50% {
-    filter: drop-shadow(0px 0px 2px rgb(0, 0, 255)) drop-shadow(0px 0px 2px rgb(0, 0, 255));
+    filter: drop-shadow(0px 0 4px rgb(141, 12, 180)) drop-shadow(0 0 3px rgb(141, 12, 180));
+  }
+  100% {
+    filter: drop-shadow(0px 0 4px white);
+  }
+}
+@keyframes pulse_fadeIn {
+  0% {
+    transform: scale(1);
+    opacity: 0%;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 100%;
   }
 }
 /*Fallin icons*/
@@ -1596,6 +2171,47 @@ body {
   animation-timing-function: ease-in;
 }
 
+@media only screen and (max-width: 1279px) {
+  #mainMenu_container #mainMenu_flexContainer #mainColumn_1 #gallery_inner #gallery_container .gallery_tiles {
+    height: 180px;
+  }
+  #storyContainer #textContainer {
+    height: 220px;
+  }
+  #storyContainer #textContainer #textContainer-inner {
+    position: relative;
+    width: 100%;
+    top: -15px;
+  }
+  #storyContainer #textContainer #textContainer-inner #char-name {
+    position: absolute;
+    top: 0;
+    left: -50px;
+    width: 400px;
+    height: 50px;
+    translate: 0 -50%;
+    background-image: url("../img/assets/name-container.png");
+    background-size: 100% 100%;
+    text-align: center;
+    font-size: 30px;
+    font-family: "NunitoBold";
+    color: white;
+    text-shadow: 2px 2px 0 #34002b, -2px 2px 0 #34002b, -2px -2px 0 #34002b, 2px -2px 0 #34002b;
+  }
+  #storyContainer #textContainer #textContainer-inner #char-text {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    width: calc(100% - 100px);
+    font-size: 20px;
+    font-family: "NunitoBold";
+    color: white;
+    text-shadow: 1px 1px 0 #34002b, -1px 1px 0 #34002b, -1px -1px 0 #34002b, 1px -1px 0 #34002b;
+  }
+  #storyContainer #textContainer #textContainer-inner #char-text.italic {
+    font-style: italic;
+  }
+}
 @media only screen and (max-width: 1023px) {
   body {
     margin: 0;

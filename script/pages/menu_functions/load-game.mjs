@@ -11,32 +11,32 @@ import { GAME_DATA_1, GAME_DATA_2 } from '../../constants/statics.mjs';
 import { getGameData } from '../../utils/get-game-data.mjs';
 import { loadEnding } from '../../utils/ending-functions/load-ending.mjs';
 
-export const loadGame = (mainColumn_2, gameSettings, state) => {
+export const loadGame = (mainColumn_1, gameSettings, state) => {
     if (state.openedMenuPoint === LOAD_OPEN) {
         qs('#loadBox_inner').classList.remove('fadeIn');
         qs('#loadBox_inner').classList.add('fadeOut');
 
         setTimeout(() => {
             state.openedMenuPoint = null;
-            mainColumn_2.innerHTML = '';
+            mainColumn_1.innerHTML = '';
         }, 2000);
 
         return;
     }
 
-    if (mainColumn_2.firstChild) {
-        mainColumn_2.firstChild.classList.remove('fadeIn');
-        mainColumn_2.firstChild.classList.add('fadeOut');
+    if (mainColumn_1.firstChild) {
+        mainColumn_1.firstChild.classList.remove('fadeIn');
+        mainColumn_1.firstChild.classList.add('fadeOut');
     }
     
     setTimeout(() => {
-        mainColumn_2.innerHTML = '<div id="loadBox_inner" class="fadeIn"></div>';
+        mainColumn_1.innerHTML = '<div id="loadBox_inner" class="fadeIn"></div>';
         const loadBoxInner = qs('#loadBox_inner');
 
         state.openedMenuPoint = LOAD_OPEN;
     
         showLoadSlots(gameSettings, loadBoxInner);
-    }, mainColumn_2.firstChild ? 2000 : 0);
+    }, mainColumn_1.firstChild ? 2000 : 0);
 };
 
 const showLoadSlots = (gameSettings, loadBoxInner) => {

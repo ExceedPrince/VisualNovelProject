@@ -12,6 +12,11 @@ export const createInGameMenu = () => {
 
     const sideNavbarScratch = `
         <div id="navbar_Container">
+            <div class="falling-icons inGame-falling-icons">
+                <i></i><i></i><i></i><i></i><i></i>
+                <i></i><i></i><i></i><i></i><i></i>
+                <i></i><i></i>
+            </div>
             <div id="navbar_inner">
                 <div id="navbar_backToMainMenu" class="navbar_options">Main Menu</div>
                 <div id="navbar_saveGame" class="navbar_options">Save Game</div>
@@ -25,6 +30,23 @@ export const createInGameMenu = () => {
     `;
 
     return navBarScratch + sideNavbarScratch;
+};
+
+export const refreshFallingIcons = () => {
+    const navbarContainer = qs('#navbar_Container');
+    const inGameFallingIcons = qs('.inGame-falling-icons');
+    inGameFallingIcons.classList.add('fadeOut');
+
+    setTimeout(() => {
+        inGameFallingIcons.remove();
+        navbarContainer.insertAdjacentHTML('afterbegin', `
+            <div class="falling-icons inGame-falling-icons">
+                <i></i><i></i><i></i><i></i><i></i>
+                <i></i><i></i><i></i><i></i><i></i>
+                <i></i><i></i>
+            </div>
+        `);
+    }, 2000);
 };
 
 export const navbarIconClick = () => {

@@ -8,6 +8,14 @@
 	justify-content: center;
 	gap: 20px;
 
+    h1 {
+        font-family: 'NunitoBold';
+    }
+    
+    p {
+        font-family: 'NunitoRegular';
+    }
+
     img {
         display: block;
         width: 200px;
@@ -44,7 +52,7 @@
 
         #preload_warning {
             font-size: 54px;
-            color: rgb(168, 11, 11);
+            color: rgb(162, 4, 72);
         }
 
         #preload_subwarning {
@@ -70,18 +78,40 @@
 	width: 100%;
 	text-align: center;
 	color: white;
-    font-family: 'NunitoRegular';
+    font-family: 'CharmBold';
 	font-size: 78px;
 	translate: 0 -50%;
 }
 
 #videoContainer {
+    position: relative;
     width: 100%;
 	height: 100%;
+    overflow: hidden;
 
     #outro_video {
         width: 100%;
 	    height: 100%;
+    }
+
+    #videoStopBtn {
+        position: absolute;
+        bottom: 50px;
+        right: 50px;
+        width: 100px;
+        height: 100px;
+        opacity: 20%;
+        transition: opacity 300ms ease-in-out;
+    
+        &:hover {
+            opacity: 60%;
+            cursor: url('../img/assets/cursor_pointer.png'), pointer;
+        }
+    
+        img {
+            width: 100%;
+            height: 100%;
+        }
     }
 }
 
@@ -94,7 +124,7 @@
     gap: 10%;
     
     p {
-        font-family: 'NunitoRegular';
+        font-family: 'CharmRegular';
         font-size: 30px;
         color: white;
         text-align: center;

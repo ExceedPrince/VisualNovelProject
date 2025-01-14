@@ -1,7 +1,8 @@
 import { 
 	createInGameMenu, 
 	navbarIconClick, 
-	closeInGameMenu 
+	closeInGameMenu,
+	refreshFallingIcons
 } from '../menu/create-in-game-menu.mjs';
 import { inGameMenuOperations } from '../menu/in-game-menu-operations.mjs';
 import { qs } from '../utils/commons.mjs';
@@ -46,6 +47,7 @@ export const mobilePage = (mobileData, mobilePartindex, gameSettings, isFromLoad
 						</div>
 						<div class="mobileHeader_section">
 							<span><img src="${isInElectron() ? '.' : '../..'}/img/svg/alarm.svg" alt="alarm"></span>
+							<span><img src="${isInElectron() ? '.' : '../..'}/img/svg/wifi.svg" alt="wifi"></span>
 							<span><img src="${isInElectron() ? '.' : '../..'}/img/svg/signal.svg" alt="signal"></span>
 							<span>${batteryLevel}%</span>
 							<span><img src="${isInElectron() ? '.' : '../..'}/img/svg/battery-${batterySVG}.svg" alt="battery"></span>
@@ -59,7 +61,7 @@ export const mobilePage = (mobileData, mobilePartindex, gameSettings, isFromLoad
 					</div>
 					<div id="mobileRoot">
 						<div id="mobileRootHeader">
-							<img src="${isInElectron() ? '.' : '../..'}/img/svg/social-sync.png" alt="messenger_icon">
+							<img src="${isInElectron() ? '.' : '../..'}/img/assets/social-sync.png" alt="messenger_icon">
 							<span>SocialSync</span>
 						</div>
 						<hr>
@@ -105,6 +107,10 @@ export const mobilePage = (mobileData, mobilePartindex, gameSettings, isFromLoad
 	const chatState = {
 		beingOpen: null
 	};
+
+	setInterval(() => {
+		refreshFallingIcons();
+	}, 120_000)
 
 	setTimeout(() => {
 		navbarIcon.addEventListener("click", () => {

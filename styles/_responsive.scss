@@ -1,0 +1,81 @@
+@media only screen and (max-width: 1279px) {
+    #mainMenu_container {
+        
+        #mainMenu_flexContainer {
+
+            #mainColumn_1 {
+    
+                #gallery_inner {
+        
+                    #gallery_container {
+                        
+                        .gallery_tiles {
+                            height: 180px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+	#storyContainer {
+
+		#textContainer {
+			height: 220px;
+	
+			#textContainer-inner {
+				position: relative;
+				width: 100%;
+				top: -15px;
+	
+				#char-name {
+					position: absolute;
+					top: 0;
+					left: -50px;
+					width: 400px;
+					height: 50px;
+					translate: 0 -50%;
+					background-image: url('../img/assets/name-container.png');
+					background-size: 100% 100%;;
+					text-align: center;
+					font-size: 30px;
+					font-family: 'NunitoBold';
+					color: white;
+					text-shadow: 2px 2px 0 #34002b, -2px 2px 0 #34002b, -2px -2px 0 #34002b, 2px -2px 0 #34002b;
+				}
+				
+				#char-text {
+					position: absolute;
+					top: 50px;
+					left: 50px;
+					width: calc(100% - 100px);
+					font-size: 20px;
+					font-family: 'NunitoBold';
+					color: white;
+					text-shadow: 1px 1px 0 #34002b, -1px 1px 0 #34002b, -1px -1px 0 #34002b, 1px -1px 0 #34002b;
+	
+					&.italic {
+						font-style: italic;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 1023px) {
+	body{
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+		width: 100%;
+		height: 100%;
+	}
+	#root, #colorCover {
+		position: absolute;
+		width: 1024px;
+		height: 768px;
+		transform-origin: top left;
+		overflow: hidden;
+	}
+}

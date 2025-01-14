@@ -1,4 +1,4 @@
-import { qs } from '../utils/commons.mjs';
+import { qs, qsa } from '../utils/commons.mjs';
 import { newGame } from './menu_functions/new-game.mjs';
 import { loadGame } from './menu_functions/load-game.mjs';
 import { openGallery } from './menu_functions/open-gallery.mjs';
@@ -33,6 +33,12 @@ const endingObject = {
     [HAREM_LOWER]: HAREM_DREAM_ENDING,
 };
 
+function addingEscapeBtn(e) {
+    if(e.key === "Escape" && qs('#inGame_navbar_icon')) {
+        qs('#inGame_navbar_icon').click();
+    }
+}
+
 export const mainMenuPage = (gameSettings) => {
     const bgMusicAudio = qs('#bg_music_audio');
     bgMusicAudio.src = `${isInElectron() ? '.' : '../..'}/sounds/bg_musics/MainMenu_song.mp3`;
@@ -45,21 +51,34 @@ export const mainMenuPage = (gameSettings) => {
     root.classList.remove('fadeOut',)
     root.insertAdjacentHTML('afterbegin', `
         <div id="mainMenu_container" class="fadeIn ${gameSettings.endings.reina ? 'completed' : ''}">
-            <h1 id="mainTitle">Constrained Love</h1>
-            <div id="mainMenu_flexContainer">
-                <div id="mainColumn_1" class="mainMenu_column">
-                    <div class="mainMenu_column_inner">
-                        <div id="mainMenu_newGame" class="mainMenu_options">New Game</div>
-                        <div id="mainMenu_loadGame" class="mainMenu_options">Load Game</div>
-                        <div id="mainMenu_gallery" class="mainMenu_options">Gallery</div>
-                        <div id="mainMenu_settings" class="mainMenu_options">Settings</div>
-                        <div id="mainMenu_about" class="mainMenu_options">About</div>
-                        <div id="mainMenu_quitGame" class="mainMenu_options">Quit Game</div>
+            <div id="mainTitle" class="fadeIn_1sec_delay">
+                <img src="${isInElectron() ? '.' : '../..'}/img/assets/logo.png" alt="logo"/>
+                <h1>Constrained Love</h1>
+            </div>
+            <h1 id="versionNumber">v0.9.0</h1>
+            <div id="mainColumn_1" class="mainMenu_column"></div>
+            <div id="mainEndingContainer" class="noClick"></div>
+
+            <div class="mainMenu fadeIn_1sec_delay">
+                <input type="checkbox"/>
+                <div class="hamburger">
+                    <div id="menu_padlock">
+                        <img id="padlock-head" src="${isInElectron() ? '.' : '../..'}/img/assets/padlock-head.png" alt="padlock-head"/>
+                        <img id="padlock-body" src="${isInElectron() ? '.' : '../..'}/img/assets/padlock-body.png" alt="padlock-body"/>
                     </div>
                 </div>
-                <div id="mainColumn_2" class="mainMenu_column"></div>
+                <div class="action_items_bar">
+                    <div class="action_items">
+                        <div id="mainMenu_newGame" class="mainMenu_options first_item">New Game</div>
+                        <div id="mainMenu_loadGame" class="mainMenu_options second_item">Load Game</div>
+                        <div id="mainMenu_gallery" class="mainMenu_options third_item">Gallery</div>
+                        <div id="mainMenu_settings" class="mainMenu_options fourth_item">Settings</div>
+                        <div id="mainMenu_about" class="mainMenu_options fifth_item">About</div>
+                        <div id="mainMenu_quitGame" class="mainMenu_options sixth_item">Quit Game</div>
+                        <div id="marker" class="inCenter"></div>
+                    </div>
+                </div>
             </div>
-            <div id="mainEndingContainer" class="noClick"></div>
         </div>
         <div class="falling-icons">
             <i></i><i></i><i></i><i></i><i></i>
@@ -68,7 +87,7 @@ export const mainMenuPage = (gameSettings) => {
         </div>
     `);
 
-    const mainColumn_2 = qs('#mainColumn_2');
+    const mainColumn_1 = qs('#mainColumn_1');
     const mainMenu_newGame = qs('#mainMenu_newGame');
     const mainMenu_loadGame = qs('#mainMenu_loadGame');
     const mainMenu_gallery = qs('#mainMenu_gallery');
@@ -76,15 +95,30 @@ export const mainMenuPage = (gameSettings) => {
     const mainMenu_about = qs('#mainMenu_about');
     const mainMenu_quitGame = qs('#mainMenu_quitGame');
     const main_ending_container = qs('#mainEndingContainer');
+    
+    const marker = document.querySelector('#marker');
+    const hamburger = document.querySelector('.hamburger');
+    const action_items_bar = document.querySelector('.action_items_bar');
 
     Object.entries(gameSettings.endings).forEach(([name, value], index) => {
         main_ending_container.insertAdjacentHTML('beforeend', `
-            <div id="${name}_ending_row" class="notVisible">${endingObject[name]}</div>
+            <div id="${name}_ending_row" class="notVisible">
+                <img class="ending-heart" src="${isInElectron() ? '.' : '../..'}/img/svg/tick.svg" alt="tick"/>
+                <span>${endingObject[name]}</span>
+            </div>
         `);
 
         setTimeout(() => {
             if (value) {
-                qs(`#${name}_ending_row`).classList.add('fadeIn_opacity_only');
+                qs(`#${name}_ending_row`).classList.add('pulseFadeIn');
+
+                const otherSoundsAudio = qs('#other_sound_effects_audio');
+                otherSoundsAudio.volume = gameSettings.settings.audio.soundEffects/100;
+
+                if (otherSoundsAudio.src.indexOf("chimes") === -1) {
+                    otherSoundsAudio.src = `${isInElectron() ? '.' : '../..'}/sounds/sound_effects/chimes.mp3`;
+                    otherSoundsAudio.play();
+                }
             }
         }, (index + 1) * 200);
     });
@@ -93,10 +127,65 @@ export const mainMenuPage = (gameSettings) => {
         openedMenuPoint: null
     }
 
-    mainMenu_newGame.addEventListener('click', () => newGame(root, gameSettings));
-    mainMenu_loadGame.addEventListener('click', () => loadGame(mainColumn_2, gameSettings, state));
-    mainMenu_gallery.addEventListener('click', () => openGallery(root, mainColumn_2, gameSettings, state));
-    mainMenu_settings.addEventListener('click', () => openSettings(mainColumn_2, gameSettings, state));
-    mainMenu_about.addEventListener('click', () => openAbout(mainColumn_2, state));
-    mainMenu_quitGame.addEventListener('click', () => openQuit(mainColumn_2, state));
+    mainMenu_newGame.addEventListener('click', (e) => {checkMenuClick(e); newGame(root, gameSettings)});
+    mainMenu_loadGame.addEventListener('click', (e) => {checkMenuClick(e); loadGame(mainColumn_1, gameSettings, state)});
+    mainMenu_gallery.addEventListener('click', (e) => {checkMenuClick(e); openGallery(root, mainColumn_1, gameSettings, state)});
+    mainMenu_settings.addEventListener('click', (e) => {checkMenuClick(e); openSettings(mainColumn_1, gameSettings, state)});
+    mainMenu_about.addEventListener('click', (e) => {checkMenuClick(e); openAbout(mainColumn_1, state)});
+    mainMenu_quitGame.addEventListener('click', (e) => {checkMenuClick(e); openQuit(mainColumn_1, state)});
+
+    qsa('.mainMenu_options').forEach((link) => {
+        link.addEventListener('mousemove', (e) => {
+            moveIndicator(e.target);
+            marker.classList.remove('inCenter');
+        });
+
+    });
+
+    function moveIndicator(e) {
+        marker.style.left = e.offsetLeft + 'px';
+        marker.style.width = e.offsetWidth + 'px';
+    }
+
+    function checkMenuClick (e) {
+        qsa('.mainMenu_options').forEach((option) =>{
+            if (option !== e.target) {
+                option.classList.remove('option-chosen');
+            } else {
+                e.target.classList.toggle('option-chosen');
+
+                if (e.target.classList.contains('option-chosen')) {
+                    marker.style.left = e.offsetLeft + 'px';
+                    marker.style.width = e.offsetWidth + 'px';
+                }
+            }
+
+        });
+    };
+
+    qs('input').addEventListener('mousemove', () => {
+        moveIndicator(hamburger);
+        marker.classList.add('inCenter');
+    });
+    qs('input').addEventListener('mouseleave', () => {
+        if(qs('.option-chosen')) {
+            marker.classList.remove('inCenter');
+            marker.style.left = qs('.option-chosen').offsetLeft + 'px';
+            marker.style.width = qs('.option-chosen').offsetWidth + 'px';
+            return;
+        };
+    });
+    action_items_bar.addEventListener('mouseleave', () => {
+        if(qs('.option-chosen')) {
+            marker.style.left = qs('.option-chosen').offsetLeft + 'px';
+            marker.style.width = qs('.option-chosen').offsetWidth + 'px';
+            return;
+        };
+
+        marker.style.left = hamburger.offsetLeft + 'px';
+        marker.style.width = hamburger.offsetWidth + 'px';
+        marker.classList.add('inCenter');
+    });
+    
+    window.addEventListener('keydown', addingEscapeBtn);
 };

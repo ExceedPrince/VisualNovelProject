@@ -6,7 +6,7 @@ import { GAME_DATA_1, GAME_DATA_2 } from '../../constants/statics.mjs';
 import { useGameSettings } from '../../utils/use-game-settings.mjs';
 import { isInElectron } from '../../utils/is-in-electron.mjs';
 
-export const openSettings = (mainColumn_2, gameSettings, state) => {
+export const openSettings = (mainColumn_1, gameSettings, state) => {
 
     if (state.openedMenuPoint === SETTINGS_OPEN) {
         qs('#settings_inner').classList.remove('fadeIn');
@@ -14,25 +14,25 @@ export const openSettings = (mainColumn_2, gameSettings, state) => {
 
         setTimeout(() => {
             state.openedMenuPoint = null;
-            mainColumn_2.innerHTML = '';
+            mainColumn_1.innerHTML = '';
         }, 2000);
 
         return;
     }
 
-    if (mainColumn_2.firstChild) {
-        mainColumn_2.firstChild.classList.remove('fadeIn');
-        mainColumn_2.firstChild.classList.add('fadeOut');
+    if (mainColumn_1.firstChild) {
+        mainColumn_1.firstChild.classList.remove('fadeIn');
+        mainColumn_1.firstChild.classList.add('fadeOut');
     }
     
     setTimeout(() => {
-        mainColumn_2.innerHTML = '<div id="settings_inner" class="fadeIn"></div>';
+        mainColumn_1.innerHTML = '<div id="settings_inner" class="fadeIn"></div>';
         const settingsInner = qs('#settings_inner');
 
         state.openedMenuPoint = SETTINGS_OPEN;
     
         showSettings(gameSettings, settingsInner);
-    }, mainColumn_2.firstChild ? 2000 : 0);
+    }, mainColumn_1.firstChild ? 2000 : 0);
 };
 
 const showSettings = (gameSettings, settingsInner) => {
