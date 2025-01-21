@@ -48,6 +48,11 @@ export const changeMobileTime = (currentTime, endTime, mobilePartindex, timeStat
 
                     speedUpContainer.addEventListener('click', () => {
                         if (speedUpContainer.innerHTML !== '') {
+                            const otherSoundsAudio = qs('#other_sound_effects_audio');
+                            otherSoundsAudio.volume = gameSettings.settings.audio.soundEffects/100;
+                            otherSoundsAudio.src = `${isInElectron() ? '.' : '../../..'}/sounds/sound_effects/accepted.mp3`;
+                            otherSoundsAudio.play();
+
                             intervalNum = 500;
                             startInterval();
                             isSpeededUp = true;

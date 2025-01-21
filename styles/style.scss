@@ -1,8 +1,4 @@
-@import "./animations";
-@import "./common-classes";
 @import "./fonts";
-
-//ezek nem itt helyezkednek el, közben kell őket szét szórni, mert szószerint így veszi a sorrendjüket
 
 *,
 *::before,
@@ -40,32 +36,147 @@ body {
 
 @import "./story-page";
 
-.notVisible {
-    opacity: 0;
-}
-
-#settings_checkboxes {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 5%;
-}
-
 #saveContainer {
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     translate: -50% -50%;
     min-width: 700px;
-    max-width: 50%;
-    padding: 15px;
-    background-color: purple;
-    box-shadow: 5px 5px 5px black;
-    color: white;
+    max-width: 80%;
+    width: 100%;
     text-align: center;
     opacity: 0;
     z-index: 3;
+    padding: 30px 75px;
+    background-image: linear-gradient(to left, rgba(125, 0, 147, 0), rgba(125, 0, 147, 0.8), rgba(125, 0, 147, 0.8), rgba(125, 0, 147, 0.8), rgba(125, 0, 147, 0.8), rgba(125, 0, 147, 0.8), rgba(125, 0, 147, 0));
+    color: white;
+    font-size: 24px;
+    font-family: 'CharmRegular';
+    text-shadow: 1px 1px 0 #34002b, -1px 1px 0 #34002b, -1px -1px 0 #34002b, 1px -1px 0 #34002b;
+    pointer-events: none;
+
+    &.noGrid {
+        display: block;
+        height: unset;
+    }
+
+    &.fadeIn {
+        pointer-events: all;
+    }
+    
+    &::before {
+        position: absolute;
+        top: -1px;
+        left: 0;
+        content: '';
+        display: block;
+        width: 100%;
+        height: 1px;
+        background-image: linear-gradient(to left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+        transition: opacity 300ms ease-in-out;
+    }
+
+    &::after {
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        content: '';
+        display: block;
+        width: 100%;
+        height: 1px;
+        background-image: linear-gradient(to left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+        transition: opacity 300ms ease-in-out;
+    }
+
+    #saveBox {
+        position: relative;
+
+        #saveXBtn {
+            position: absolute;
+            top: 10px;
+            right: 0;
+            display: block;
+            width: 30px;
+
+            img {
+                width: 100%;
+            }
+
+            &:hover {
+                cursor: url('../img/assets/cursor_pointer.png'), pointer;
+            }
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .overwriteQuestionBtn {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 100px;
+
+            button {
+                outline: none;
+                border: none;
+                background: none;
+                background-image: linear-gradient(to left, rgba(245, 139, 255, 0), rgba(245, 139, 255, 0), rgba(245, 139, 255, 0), rgba(245, 139, 255, 0));
+                padding: 5px 30px;
+                color: white;
+                font-size: 24px;
+                font-family: 'CharmRegular';
+                text-shadow: 1px 1px 0 #34002b, -1px 1px 0 #34002b, -1px -1px 0 #34002b, 1px -1px 0 #34002b;
+                transition: background-image 300ms ease-in-out;
+
+                &:hover {
+                    background-image: linear-gradient(to left, rgba(245, 139, 255, 0), rgba(245, 139, 255, 0.8), rgba(245, 139, 255, 0.8), rgba(245, 139, 255, 0));
+                    cursor: url('../img/assets/cursor_pointer.png'), pointer;
+                }
+            }
+        }
+
+        #saveBox-inner {
+            display: grid;
+            grid-template-columns: 2fr 2fr 2fr;
+            gap: 40px 20px;
+
+            .saveSlot {
+                
+
+                .saveSlot_inner {
+                    border: 1px solid white;
+                    position: relative;
+                    width: 100%;
+                    height: 150px;
+                    aspect-ratio: 16 / 9;
+                    filter: brightness(70%);
+                    margin-bottom: 10px;
+                    transition: filter 300ms ease-in-out;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+
+                .saveSlot_date {
+                    text-align: center;
+                    font-size: 20px;
+                }
+
+                &:hover {
+                    cursor: url('../img/assets/cursor_pointer.png'), pointer;
+
+                    .saveSlot_inner {
+                        filter: brightness(100%);
+                    }
+                }
+            }
+        }
+    }
 }
 #save_BG {
     position: fixed;
@@ -77,436 +188,14 @@ body {
     z-index: 2;
 }
 
-#saveBox-inner {
-    display: grid;
-    grid-template-columns: auto auto auto;
-    gap: 10px;
-}
-
-#saveBox {
-    position: relative;
-}
-
-#saveXBtn {
-    position: absolute;
-    top: 0;
-    right: 0;
-    cursor: pointer;
-}
-
-.saveSlot {
-    border: 2px solid rgba(255, 255, 255, 0);
-    transition: border 500ms ease-in-out;
-}
-.saveSlot:hover {
-    border: 2px solid white;
-    cursor: pointer;
-}
-
-.saveSlot_inner {
-    border: 1px solid white;
-}
-
-.loadSlot {
-    border: 2px solid rgba(255, 255, 255, 0);
-    transition: border 500ms ease-in-out;
-}
-.loadSlot:hover {
-    border: 2px solid white;
-    cursor: pointer;
-}
-
-.loadSlot_inner {
-    border: 1px solid white;
-    position: relative;
-}
-
-.deleteSlot_btn {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-}
-
 @import "./ingame-menu";
 
 @import "./main-menu";
 
 @import "./mobile-page";
 
-.noClick {
-    pointer-events: none;
-}
+@import "./common-classes";
 
-.d-none {
-    display: none;
-}
-
-.half-faded {
-    opacity: 50%;
-}
-
-.fadeIn {
-    animation: fadeIn 2s forwards;
-}
-
-.fadeOut {
-    animation: fadeOut 2s forwards;
-}
-
-.fadeLeft {
-    animation: fadeLeft 0.5s forwards;
-}
-.fadeRight {
-    animation: fadeRight 0.5s forwards;
-}
-.fadeUp {
-    animation: fadeUp 0.5s forwards;
-}
-.fadeLeftOut {
-    animation: fadeLeftOut 0.5s forwards;
-}
-.fadeRightOut {
-    animation: fadeRightOut 0.5s forwards;
-}
-.fadeUpOut {
-    animation: fadeUpOut 0.5s forwards;
-}
-
-.fadeIn_opacity_only {
-    animation: fadeIn_opacity_only 2s forwards 0s;
-}
-.fadeIn_1sec_delay {
-    animation: fadeIn_1sec_delay 2s forwards 1s;
-}
-.fadeIn_3sec_delay {
-    animation: fadeIn_3sec_delay 2s forwards 3s;
-}
-.flashing_1sec_delay {
-    animation: flashing_5sec_delay 2s both 1s infinite;
-}
-.flashing_5sec_delay {
-    animation: flashing_5sec_delay 2s both 5s infinite;
-}
-
-.pulseFadeIn {
-    animation: pulse_fadeIn 1s forwards;
-}
-
-@property --angle {
-    syntax: "<angle>";
-    initial-value: 0deg;
-    inherits: false;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0%;
-        display: none;
-    }
-    to {
-        opacity: 100%;
-        display: block;
-    }
-}
-
-@keyframes fadeOut {
-    from {
-        opacity: 100%;
-        display: block;
-    }
-    to {
-        opacity: 0%;
-        display: none;
-    }
-}
-@keyframes fadeLeft {
-    from {
-        opacity: 0%;
-        left: 50px;
-        display: none;
-    }
-    to {
-        opacity: 100%;
-        left: 0px;
-        display: block;
-    }
-}
-
-@keyframes fadeRight {
-    from {
-        opacity: 0%;
-        right: 50px;
-        display: none;
-    }
-    to {
-        opacity: 100%;
-        right: 0px;
-        display: block;
-    }
-}
-
-@keyframes fadeUp {
-    from {
-        opacity: 0%;
-        bottom: -50px;
-        display: none;
-    }
-    to {
-        opacity: 100%;
-        bottom: 0px;
-        display: block;
-    }
-}
-
-@keyframes fadeLeftOut {
-    from {
-        opacity: 100%;
-        left: 0px;
-        display: block;
-    }
-    to {
-        opacity: 0%;
-        left: 50px;
-        display: none;
-    }
-}
-
-@keyframes fadeRightOut {
-    from {
-        opacity: 100%;
-        right: 0px;
-        display: block;
-    }
-    to {
-        opacity: 0%;
-        right: 50px;
-        display: none;
-    }
-}
-
-@keyframes fadeUpOut {
-    from {
-        opacity: 100%;
-        bottom: 0px;
-        display: block;
-    }
-    to {
-        opacity: 0%;
-        bottom: -50px;
-        display: none;
-    }
-}
-
-@keyframes fadeIn_opacity_only {
-    from {
-        opacity: 0%;
-    }
-    to {
-        opacity: 100%;
-    }
-}
-@keyframes fadeIn_1sec_delay {
-    from {
-        opacity: 0%;
-    }
-    to {
-        opacity: 100%;
-    }
-}
-@keyframes fadeIn_3sec_delay {
-    from {
-        opacity: 0%;
-    }
-    to {
-        opacity: 100%;
-    }
-}
-
-@keyframes flashing_5sec_delay {
-    0% {
-        opacity: 0%;
-    }
-    50% {
-        opacity: 100%;
-    }
-    100% {
-        opacity: 0%;
-    }
-}
-
-@keyframes message_popup_pic {
-    0% {
-        scale: 0;
-    }
-    80% {
-        scale: 1.2;
-    }
-    100% {
-        scale: 1;
-    }
-}
-
-@keyframes blink {
-    0%,
-    80%,
-    100% {
-        opacity: 0;
-    }
-    40% {
-        opacity: 1;
-    }
-}
-
-@keyframes highlighting-circle {
-    0% {
-        --angle: 0deg;
-    }
-    100% {
-        --angle: 360deg;
-    }
-}
-
-@keyframes shadowAnimation {
-    0% {
-        filter: drop-shadow(0px 0 4px white);
-    }
-    50% {
-        filter: drop-shadow(0px 0 4px rgb(141, 12, 180)) drop-shadow(0 0 3px rgb(141, 12, 180));
-    }
-    100% {
-        filter: drop-shadow(0px 0 4px white);
-    }
-}
-
-@keyframes pulse_fadeIn {
-    0% {
-        transform: scale(1);
-        opacity: 0%;
-    }
-    50% {
-        transform: scale(1.1);
-    }
-    100% {
-        transform: scale(1);
-        opacity: 100%;
-    }
-}
-
-/*Fallin icons*/
-.falling-icons {
-    width: 100%;
-    height: calc(100% + 100px);
-    position: fixed;
-    top: -100px;
-    left: 0;
-    overflow: hidden;
-    pointer-events: none;
-    display: flex;
-    justify-content: space-between;
-}
-
-.falling-icons i {
-    height: 70px;
-    width: 70px;
-    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.2));
-    display: inline-block;
-    animation: fall-animation 3s linear 2s 20;
-    position: relative;
-}
-
-.falling-icons i:before {
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform: rotate(120deg);
-    border-radius: 2px;
-}
-
-.falling-icons i:before {
-    content: url("../img/svg/heart-key.svg");
-}
-
-.falling-icons i:nth-child(2n):before {
-    content: url("../img/svg/heart-lock.svg");
-}
-
-.falling-icons i:before {
-    transform: rotate(240deg);
-}
-
-@keyframes fall-animation {
-    0% {
-        transform: translate3d(0, 0, 0) rotate(0deg) scale(0.6);
-    }
-    100% {
-        opacity: 0;
-        transform: translate3d(15px, 1200px, 0px) rotate(360deg) scale(0.6);
-    }
-}
-
-.falling-icons i:nth-child(3n) {
-    transform: scale(0.5);
-    animation-duration: 8s;
-    animation-iteration-count: 30;
-    transform-origin: right -45px;
-}
-
-.falling-icons i:nth-child(3n + 1) {
-    transform: scale(1.1);
-    animation-duration: 12s;
-    animation-iteration-count: 45;
-    transform-origin: right -30px;
-}
-
-.falling-icons i:nth-child(3n + 2) {
-    transform: scale(0.8);
-    animation-duration: 16s;
-    animation-iteration-count: 60;
-    transform-origin: right -15px;
-}
-
-.falling-icons i:nth-child(7n) {
-    opacity: 0.3;
-    animation-delay: 0s;
-    animation-timing-function: ease-in;
-}
-
-.falling-icons i:nth-child(7n + 1) {
-    opacity: 0.4;
-    animation-delay: 1s;
-    animation-timing-function: ease-out;
-}
-
-.falling-icons i:nth-child(7n + 2) {
-    opacity: 0.5;
-    animation-delay: 1.5s;
-    animation-timing-function: linear;
-}
-
-.falling-icons i:nth-child(7n + 3) {
-    opacity: 0.6;
-    animation-delay: 2s;
-    animation-timing-function: ease-in;
-}
-
-.falling-icons i:nth-child(7n + 4) {
-    opacity: 0.7;
-    animation-delay: 2.5s;
-    animation-timing-function: linear;
-}
-
-.falling-icons i:nth-child(7n + 5) {
-    opacity: 0.8;
-    animation-delay: 3s;
-    animation-timing-function: ease-out;
-}
-
-.falling-icons i:nth-child(7n + 6) {
-    opacity: 0.9;
-    animation-delay: 3.5s;
-    animation-timing-function: ease-in;
-}
+@import "./animations";
 
 @import "./responsive";

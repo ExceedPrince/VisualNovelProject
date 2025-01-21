@@ -19,6 +19,7 @@
         background-color: white;
         transform: rotate(0), translate(0, 0);
         transition: top 300ms ease-in-out, left, 300ms ease-in-out, transform 300ms ease-in-out;
+        pointer-events: none;
 
         &:nth-child(1) {
             top: 25%;
@@ -155,19 +156,495 @@
 
 #innerMenu_window {
 	position: fixed;
-	top: 50%;
+	top: 40%;
 	right: 100px;
 	width: calc(100% - 500px);
 	min-height: 50px;
-	background-color: purple;
 	transform: translateY(-50%);
 	opacity: 0;
 	z-index: 4;
-	pointer-events: none;
+    padding: 30px 75px;
+    background-image: linear-gradient(to left, rgba(125, 0, 147, 0), rgba(125, 0, 147, 0.8), rgba(125, 0, 147, 0.8), rgba(125, 0, 147, 0.8), rgba(125, 0, 147, 0.8), rgba(125, 0, 147, 0.8), rgba(125, 0, 147, 0));
+    color: white;
+    font-size: 24px;
+    font-family: 'CharmRegular';
+    text-shadow: 1px 1px 0 #34002b, -1px 1px 0 #34002b, -1px -1px 0 #34002b, 1px -1px 0 #34002b;
+    pointer-events: none;
 	transition: opacity 300ms ease-in-out;
 
     &.fadeIn {
         pointer-events: all;
+    }
+
+    
+    &::before {
+        position: absolute;
+        top: -1px;
+        left: 0;
+        content: '';
+        display: block;
+        width: 100%;
+        height: 1px;
+        background-image: linear-gradient(to left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+        transition: opacity 300ms ease-in-out;
+    }
+
+    &::after {
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        content: '';
+        display: block;
+        width: 100%;
+        height: 1px;
+        background-image: linear-gradient(to left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+        transition: opacity 300ms ease-in-out;
+    }
+
+    #backToMain_window {
+
+
+        #backToMain_window_inner {
+
+            h2 {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .innerMenu_window_buttonContainer {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                gap: 100px;
+
+                button {
+                    outline: none;
+                    border: none;
+                    background: none;
+                    background-image: linear-gradient(to left, rgba(245, 139, 255, 0), rgba(245, 139, 255, 0), rgba(245, 139, 255, 0), rgba(245, 139, 255, 0));
+                    padding: 5px 30px;
+                    color: white;
+                    font-size: 24px;
+                    font-family: 'CharmRegular';
+                    text-shadow: 1px 1px 0 #34002b, -1px 1px 0 #34002b, -1px -1px 0 #34002b, 1px -1px 0 #34002b;
+                    transition: background-image 300ms ease-in-out;
+
+                    &:hover {
+                        background-image: linear-gradient(to left, rgba(245, 139, 255, 0), rgba(245, 139, 255, 0.8), rgba(245, 139, 255, 0.8), rgba(245, 139, 255, 0));
+                        cursor: url('../img/assets/cursor_pointer.png'), pointer;
+                    }
+                }
+            }
+
+        }
+    }
+
+    #saveGame_window {
+        position: relative;
+
+
+        #saveGame_window_inner {
+            display: grid;
+            grid-template-columns: 2fr 2fr 2fr;
+            gap: 40px 20px;
+
+            &.noGrid {
+                height: unset;
+                display: block;
+
+                h2 {
+                    text-align: center;
+                    margin-bottom: 20px;
+                }
+
+                div {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    gap: 100px;
+
+                    button {
+                        outline: none;
+                        border: none;
+                        background: none;
+                        background-image: linear-gradient(to left, rgba(245, 139, 255, 0), rgba(245, 139, 255, 0), rgba(245, 139, 255, 0), rgba(245, 139, 255, 0));
+                        padding: 5px 30px;
+                        color: white;
+                        font-size: 24px;
+                        font-family: 'CharmRegular';
+                        text-shadow: 1px 1px 0 #34002b, -1px 1px 0 #34002b, -1px -1px 0 #34002b, 1px -1px 0 #34002b;
+                        transition: background-image 300ms ease-in-out;
+    
+                        &:hover {
+                            background-image: linear-gradient(to left, rgba(245, 139, 255, 0), rgba(245, 139, 255, 0.8), rgba(245, 139, 255, 0.8), rgba(245, 139, 255, 0));
+                            cursor: url('../img/assets/cursor_pointer.png'), pointer;
+                        }
+                    }
+                }
+            }
+
+            .saveSlot {
+
+                .saveSlot_inner {
+                    border: 1px solid white;
+                    position: relative;
+                    width: 100%;
+                    height: 150px;
+                    aspect-ratio: 16 / 9;
+                    filter: brightness(70%);
+                    margin-bottom: 10px;
+                    transition: filter 300ms ease-in-out;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+
+                .saveSlot_date {
+                    text-align: center;
+                    font-size: 20px;
+                }
+
+                &:hover {
+                    cursor: url('../img/assets/cursor_pointer.png'), pointer;
+
+                    .saveSlot_inner {
+                        filter: brightness(100%);
+                    }
+                }
+            }
+        }
+    }
+
+    #loadGame_window {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        padding: 30px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 2fr 2fr 2fr;
+        gap: 20px;
+
+        &.noGrid {
+            height: unset;
+            display: block;
+
+            h2 {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            div {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                gap: 100px;
+
+                button {
+                    outline: none;
+                    border: none;
+                    background: none;
+                    background-image: linear-gradient(to left, rgba(245, 139, 255, 0), rgba(245, 139, 255, 0), rgba(245, 139, 255, 0), rgba(245, 139, 255, 0));
+                    padding: 5px 30px;
+                    color: white;
+                    font-size: 24px;
+                    font-family: 'CharmRegular';
+                    text-shadow: 1px 1px 0 #34002b, -1px 1px 0 #34002b, -1px -1px 0 #34002b, 1px -1px 0 #34002b;
+                    transition: background-image 300ms ease-in-out;
+
+                    &:hover {
+                        background-image: linear-gradient(to left, rgba(245, 139, 255, 0), rgba(245, 139, 255, 0.8), rgba(245, 139, 255, 0.8), rgba(245, 139, 255, 0));
+                        cursor: url('../img/assets/cursor_pointer.png'), pointer;
+                    }
+                }
+            }
+        }
+
+        .loadSlot {
+
+            .loadSlot_inner {
+                border: 1px solid white;
+                position: relative;
+                width: 100%;
+                height: 150px;
+                aspect-ratio: 16 / 9;
+                filter: brightness(70%);
+                margin-bottom: 10px;
+                transition: filter 300ms ease-in-out;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+
+            .loadSlot_date {
+                text-align: center;
+                font-size: 20px;
+            }
+
+            &:hover {
+                cursor: url('../img/assets/cursor_pointer.png'), pointer;
+
+                .loadSlot_inner {
+                    filter: brightness(100%);
+                }
+            }
+        }
+    }
+
+    #settings_window {
+        position: relative;
+        top: 0%;
+        left: 50%;
+        translate: -50%;
+        color: white;
+        font-size: 24px;
+        font-family: 'CharmRegular';
+        text-shadow: 1px 1px 0 #34002b, -1px 1px 0 #34002b, -1px -1px 0 #34002b, 1px -1px 0 #34002b;
+
+        #settings_ranges {
+            position: relative;
+            left: 50%;
+            translate: -50%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px 50px;
+            width: 70%;
+
+            p {
+                text-align: right;
+
+                span {
+                    font-family: 'CharmBold';
+                }
+            }
+
+            input[type=range] {
+                width: 70%;
+                height: 26px;
+                -webkit-appearance: none;
+                margin: 5px 0;
+                background: none;
+                filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0));
+                transition: box-shadow 300ms ease-in-out;
+
+                &:hover {
+                    filter: drop-shadow(0 0 5px rgb(255, 255, 255));
+                    cursor: url('../img/assets/cursor_pointer.png'), pointer;
+                }
+
+                &:focus {
+                    outline: none;
+
+                    &::-webkit-slider-runnable-track {
+                        background: #AC51B5;
+                    }
+
+                    &::-ms-fill-lower {
+                        background: #AC51B5;
+                    }
+
+                    &::-ms-fill-upper {
+                        background: #AC51B5;
+                    }
+                }
+
+                &::-webkit-slider-runnable-track {
+                    width: 100%;
+                    height: 13px;
+                    animate: 0.2s;
+                    box-shadow: 0px 0px 0px #000000;
+                    background: #AC51B5;
+                    border-radius: 25px;
+                    border: 2px solid rgb(243, 211, 255);
+                }
+
+                &::-webkit-slider-thumb {
+                    box-shadow: 0px 0px 0px #000000;
+                    border: 2px solid rgb(243, 211, 255);
+                    height: 20px;
+                    width: 39px;
+                    border-radius: 7px;
+                    background: rgb(125, 0, 147);
+                    -webkit-appearance: none;
+                    margin-top: -3.5px;
+                }
+
+                &::-moz-range-track {
+                    width: 100%;
+                    height: 13px;
+                    animate: 0.2s;
+                    box-shadow: 0px 0px 0px #000000;
+                    background: #AC51B5;
+                    border-radius: 25px;
+                    border: 2px solid rgb(243, 211, 255);
+                }
+
+                &::-moz-range-thumb {
+                    box-shadow: 0px 0px 0px #000000;
+                    border: 2px solid rgb(243, 211, 255);
+                    height: 20px;
+                    width: 39px;
+                    border-radius: 7px;
+                    background: rgb(125, 0, 147);
+                }
+
+                &::-ms-track {
+                    width: 100%;
+                    height: 13px;
+                    animate: 0.2s;
+                    background: transparent;
+                    border-color: transparent;
+                    color: transparent;
+                }
+
+                &::-ms-fill-lower {
+                    background: #AC51B5;
+                    border: 2px solid rgb(243, 211, 255);
+                    border-radius: 50px;
+                    box-shadow: 0px 0px 0px #000000;
+                }
+
+                &::-ms-fill-upper {
+                    background: #AC51B5;
+                    border: 2px solid rgb(243, 211, 255);
+                    border-radius: 50px;
+                    box-shadow: 0px 0px 0px #000000;
+                }
+
+                &::-ms-thumb {
+                    margin-top: 1px;
+                    box-shadow: 0px 0px 0px #000000;
+                    border: 2px solid rgb(243, 211, 255);
+                    height: 20px;
+                    width: 39px;
+                    border-radius: 7px;
+                    background: rgb(125, 0, 147);
+                }
+            }
+        }
+
+        #settings_checkboxes {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10%;
+            margin: 20px 0;
+
+            label {
+                position: relative;
+                padding-right: 40px;
+                cursor: url('../img/assets/cursor_default.png'), auto;
+
+                &::before {
+                    position: absolute;
+                    top: 50%;
+                    right: 0;
+                    translate: 0 -50%;
+                    display: block;
+                    content: "";
+                    width: 20px;
+                    height: 20px;
+                    transform: scale(1);
+                    border-radius: 5px;
+                    border: 2px solid white;
+                    background: rgba(0, 0, 0, 0);
+                    pointer-events: none;
+                }
+
+                &::after {
+                    position: absolute;
+                    top: 50%;
+                    right: 5px;
+                    translate: 0 -50%;
+                    display: block;
+                    content: "";
+                    width: 10px;
+                    height: 10px;
+                    scale: 0;
+                    border-radius: 2px;
+                    background: white;
+                    pointer-events: none;
+                    transition: scale 200ms ease-in-out;
+                }
+
+                &:has(input[type=checkbox]:checked) {
+
+                    &::after {
+                        display: block;
+                        scale: 1;
+                    }
+                }
+
+                input[type=checkbox] {
+                    width: 20px;
+                    height: 20px;
+                    translate: 100%;
+                    margin-right: -20px;
+                    opacity: 0;
+                    cursor: url('../img/assets/cursor_pointer.png'), pointer;
+                }
+            }
+        }
+
+        #settingReset_btn {
+            display: block;
+            outline: none;
+            border: none;
+            background: none;
+            background-image: linear-gradient(to left, rgba(245, 139, 255, 0), rgba(245, 139, 255, 0), rgba(245, 139, 255, 0), rgba(245, 139, 255, 0));
+            padding: 5px 30px;
+            color: white;
+            font-size: 24px;
+            font-family: 'CharmRegular';
+            text-shadow: 1px 1px 0 #34002b, -1px 1px 0 #34002b, -1px -1px 0 #34002b, 1px -1px 0 #34002b;
+            transition: background-image 300ms ease-in-out;
+            margin: 0 auto;
+
+            &:hover {
+                background-image: linear-gradient(to left, rgba(245, 139, 255, 0), rgba(245, 139, 255, 0.8), rgba(245, 139, 255, 0.8), rgba(245, 139, 255, 0));
+                cursor: url('../img/assets/cursor_pointer.png'), pointer;
+            }
+        }
+    }
+
+    #quit_window {
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        div {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 100px;
+
+            button {
+                outline: none;
+                border: none;
+                background: none;
+                background-image: linear-gradient(to left, rgba(245, 139, 255, 0), rgba(245, 139, 255, 0), rgba(245, 139, 255, 0), rgba(245, 139, 255, 0));
+                padding: 5px 30px;
+                color: white;
+                font-size: 24px;
+                font-family: 'CharmRegular';
+                text-shadow: 1px 1px 0 #34002b, -1px 1px 0 #34002b, -1px -1px 0 #34002b, 1px -1px 0 #34002b;
+                transition: background-image 300ms ease-in-out;
+
+                &:hover {
+                    background-image: linear-gradient(to left, rgba(245, 139, 255, 0), rgba(245, 139, 255, 0.8), rgba(245, 139, 255, 0.8), rgba(245, 139, 255, 0));
+                    cursor: url('../img/assets/cursor_pointer.png'), pointer;
+                }
+            }
+        }
     }
 }
 

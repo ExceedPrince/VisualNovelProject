@@ -5,7 +5,7 @@ import {
 	refreshFallingIcons
 } from '../menu/create-in-game-menu.mjs';
 import { inGameMenuOperations } from '../menu/in-game-menu-operations.mjs';
-import { qs } from '../utils/commons.mjs';
+import { qs, qsa } from '../utils/commons.mjs';
 import { choicePopup } from '../utils/choice-popup.mjs';
 import { incrementPaginationNumberByExtraScene } from '../utils/increment-pagination-number-by-extra-scene.mjs';
 import { playSound } from '../utils/play-sound.mjs';
@@ -84,6 +84,7 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 	const navbarBG = qs('#unclickable_navbar_BG');
 	const innerMenu_window = qs('#innerMenu_window');
 	const otherSoundsAudio = qs('#other_sound_effects_audio');
+	const navbarOptions = qsa('.navbar_options');
 	
 	setInterval(() => {
 		refreshFallingIcons();
@@ -99,6 +100,12 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 	} else {
 		characterName.classList.add('d-none');
 	}
+
+	navbarIcon.addEventListener("mouseover", () => {
+		otherSoundsAudio.volume = gameSettings.settings.audio.soundEffects/100;
+		otherSoundsAudio.src = `${isInElectron() ? '.' : '../..'}/sounds/sound_effects/menu-hover.mp3`;
+		otherSoundsAudio.play();
+	});
 
 	navbarIcon.addEventListener("click", () => {
 		navbarIconClick(); 
@@ -129,6 +136,14 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 		}
 
 		playSound(gameSettings, currentStep, gameSettings.settings.audio);
+
+		navbarOptions.forEach((option) => {
+			option.addEventListener('mouseover', () => {
+				otherSoundsAudio.volume = gameSettings.settings.audio.soundEffects/100;
+				otherSoundsAudio.src = `${isInElectron() ? '.' : '../..'}/sounds/sound_effects/menu-hover.mp3`;
+				otherSoundsAudio.play();
+			});
+		})
 
 		isFromLoad = false;
 	}, 200);

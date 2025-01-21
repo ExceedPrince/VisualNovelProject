@@ -1,0 +1,62 @@
+.notVisible {
+    opacity: 0;
+}
+
+.noClick {
+    pointer-events: none;
+}
+
+.d-none {
+    display: none;
+}
+
+.half-faded {
+    opacity: 50%;
+}
+
+.fadeIn {
+    animation: fadeIn 2s forwards;
+}
+
+.fadeOut {
+    animation: fadeOut 2s forwards;
+}
+
+.fadeLeft {
+    animation: fadeLeft 0.5s forwards;
+}
+.fadeRight {
+    animation: fadeRight 0.5s forwards;
+}
+.fadeUp {
+    animation: fadeUp 0.5s forwards;
+}
+.fadeLeftOut {
+    animation: fadeLeftOut 0.5s forwards;
+}
+.fadeRightOut {
+    animation: fadeRightOut 0.5s forwards;
+}
+.fadeUpOut {
+    animation: fadeUpOut 0.5s forwards;
+}
+
+.fadeIn_opacity_only {
+    animation: fadeIn_opacity_only 2s forwards 0s;
+}
+.fadeIn_1sec_delay {
+    animation: fadeIn_1sec_delay 2s forwards 1s;
+}
+.fadeIn_3sec_delay {
+    animation: fadeIn_3sec_delay 2s forwards 3s;
+}
+.flashing_1sec_delay {
+    animation: flashing_5sec_delay 2s both 1s infinite;
+}
+.flashing_5sec_delay {
+    animation: flashing_5sec_delay 2s both 5s infinite;
+}
+
+.pulseFadeIn {
+    animation: pulse_fadeIn 1s forwards;
+}

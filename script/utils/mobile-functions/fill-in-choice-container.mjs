@@ -48,6 +48,10 @@ export const fillInChoiceContainer = async (choiceId, chatId, textingObj, curren
 
     const allOptions = qsa('.mobile_option');
     Array.from(allOptions).forEach((element) => {
+        element.addEventListener('mouseover', () => {
+            playMobileSounds(true, false, 'menu-hover', gameSettings);
+        });
+        
         element.addEventListener('click', () => {
             playMobileSounds(true, false, 'accepted', gameSettings);
 

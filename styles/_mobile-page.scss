@@ -603,6 +603,10 @@
 
             img {
                 transition: 300ms opacity ease-in-out;
+
+                &:hover {
+                    cursor: url('../img/assets/cursor_pointer.png'), pointer;
+                }
             }
         }
     }
@@ -760,23 +764,89 @@
                 top: 50%;
                 left: 50%;
                 translate: -50% -50%;
-                background-color: purple;
-                padding: 10px;
+                min-width: 50%;
+                padding: 30px;
+                background-image: linear-gradient(to left, rgba(125, 0, 147, 0), rgba(125, 0, 147, 0.8), rgba(125, 0, 147, 0.8), rgba(125, 0, 147, 0.8), rgba(125, 0, 147, 0.8), rgba(125, 0, 147, 0.8), rgba(125, 0, 147, 0));
+                color: white;
+                text-shadow: 1px 1px 0 #34002b, -1px 1px 0 #34002b, -1px -1px 0 #34002b, 1px -1px 0 #34002b;
+
+                &::before {
+                    position: absolute;
+                    top: -1px;
+                    content: '';
+                    display: block;
+                    width: 90%;
+                    height: 1px;
+                    background-image: linear-gradient(to left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+                    transition: opacity 300ms ease-in-out;
+                }
+    
+                &::after {
+                    position: absolute;
+                    bottom: -1px;
+                    content: '';
+                    display: block;
+                    width: 90%;
+                    height: 1px;
+                    background-image: linear-gradient(to left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+                    transition: opacity 300ms ease-in-out;
+                }
 
                 #mobilePopup_innerContainer {
-                    border: 2px solid white;
                     padding: 10px;
                     text-align: center;
 
                     h2 {
-                        color: white;
+                        font-family: 'CharmRegular';
+                        font-size: 36px;
                         margin-bottom: 20px;
                     }
 
                     #notAvailableMobileConversation {
+                        font-size: 36px;
+                        font-family: 'CharmRegular';
+
+                        button {
+                            outline: none;
+                            border: none;
+                            background: none;
+                            background-image: linear-gradient(to left, rgba(245, 139, 255, 0), rgba(245, 139, 255, 0), rgba(245, 139, 255, 0), rgba(245, 139, 255, 0));
+                            padding: 5px 30px;
+                            font-size: 24px;
+                            font-family: 'CharmRegular';
+                            text-shadow: 1px 1px 0 #34002b, -1px 1px 0 #34002b, -1px -1px 0 #34002b, 1px -1px 0 #34002b;
+                            transition: background-image 300ms ease-in-out;
+        
+                            &:hover {
+                                background-image: linear-gradient(to left, rgba(245, 139, 255, 0), rgba(245, 139, 255, 0.8), rgba(245, 139, 255, 0.8), rgba(245, 139, 255, 0));
+                                cursor: url('../img/assets/cursor_pointer.png'), pointer;
+                            }
+                        }
+                    }
+
+                    #mobileExitBtnContainer {
                         color: white;
                         font-size: 24px;
+
+                        button {
+                            outline: none;
+                            border: none;
+                            background: none;
+                            background-image: linear-gradient(to left, rgba(245, 139, 255, 0), rgba(245, 139, 255, 0), rgba(245, 139, 255, 0), rgba(245, 139, 255, 0));
+                            padding: 5px 30px;
+                            color: white;
+                            font-size: 24px;
+                            font-family: 'CharmRegular';
+                            text-shadow: 1px 1px 0 #34002b, -1px 1px 0 #34002b, -1px -1px 0 #34002b, 1px -1px 0 #34002b;
+                            transition: background-image 300ms ease-in-out;
+        
+                            &:hover {
+                                background-image: linear-gradient(to left, rgba(245, 139, 255, 0), rgba(245, 139, 255, 0.8), rgba(245, 139, 255, 0.8), rgba(245, 139, 255, 0));
+                                cursor: url('../img/assets/cursor_pointer.png'), pointer;
+                            }
+                        }
                     }
+
                 }
             }
         }

@@ -132,12 +132,18 @@ export const mainMenuPage = (gameSettings) => {
     mainMenu_gallery.addEventListener('click', (e) => {checkMenuClick(e); openGallery(root, mainColumn_1, gameSettings, state)});
     mainMenu_settings.addEventListener('click', (e) => {checkMenuClick(e); openSettings(mainColumn_1, gameSettings, state)});
     mainMenu_about.addEventListener('click', (e) => {checkMenuClick(e); openAbout(mainColumn_1, state)});
-    mainMenu_quitGame.addEventListener('click', (e) => {checkMenuClick(e); openQuit(mainColumn_1, state)});
+    mainMenu_quitGame.addEventListener('click', (e) => {checkMenuClick(e); openQuit(mainColumn_1, state, gameSettings)});
+
+    const otherSoundsAudio = qs('#other_sound_effects_audio');
 
     qsa('.mainMenu_options').forEach((link) => {
-        link.addEventListener('mousemove', (e) => {
+        link.addEventListener('mouseover', (e) => {
             moveIndicator(e.target);
             marker.classList.remove('inCenter');
+
+            otherSoundsAudio.volume = gameSettings.settings.audio.soundEffects/100;
+            otherSoundsAudio.src = `${isInElectron() ? '.' : '../../..'}/sounds/sound_effects/menu-hover.mp3`;
+            otherSoundsAudio.play();
         });
 
     });
@@ -163,9 +169,15 @@ export const mainMenuPage = (gameSettings) => {
         });
     };
 
-    qs('input').addEventListener('mousemove', () => {
+    qs('input').addEventListener('mouseover', (e) => {
         moveIndicator(hamburger);
         marker.classList.add('inCenter');
+
+        if(e.target.checked) {
+            otherSoundsAudio.volume = gameSettings.settings.audio.soundEffects/100;
+            otherSoundsAudio.src = `${isInElectron() ? '.' : '../../..'}/sounds/sound_effects/menu-hover.mp3`;
+            otherSoundsAudio.play();
+        }
     });
     qs('input').addEventListener('mouseleave', () => {
         if(qs('.option-chosen')) {

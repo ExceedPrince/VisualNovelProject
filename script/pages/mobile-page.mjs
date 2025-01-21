@@ -5,7 +5,7 @@ import {
 	refreshFallingIcons
 } from '../menu/create-in-game-menu.mjs';
 import { inGameMenuOperations } from '../menu/in-game-menu-operations.mjs';
-import { qs } from '../utils/commons.mjs';
+import { qs, qsa } from '../utils/commons.mjs';
 import { isInElectron } from '../utils/is-in-electron.mjs';
 import { addOpenFunctionToMessageListElements } from '../utils/mobile-functions/add-open-function-to-message-list-elements.mjs';
 import { addPersonalMessageBoxesToHTML } from '../utils/mobile-functions/add-personal-message-boxes-to-html.mjs';
@@ -94,6 +94,9 @@ export const mobilePage = (mobileData, mobilePartindex, gameSettings, isFromLoad
 	const navbarIcon = qs('#inGame_navbar_icon');
 	const navbarBG = qs('#unclickable_navbar_BG');
 	const innerMenu_window = qs('#innerMenu_window');
+	const navbarOptions = qsa('.navbar_options');
+
+	const otherSoundsAudio = qs('#other_sound_effects_audio');
 
 	saveBtn.disabled = true;        
 	quickSaveBtn.disabled = true;
@@ -113,11 +116,25 @@ export const mobilePage = (mobileData, mobilePartindex, gameSettings, isFromLoad
 	}, 120_000)
 
 	setTimeout(() => {
+		navbarIcon.addEventListener("mouseover", () => {
+			otherSoundsAudio.volume = gameSettings.settings.audio.soundEffects/100;
+			otherSoundsAudio.src = `${isInElectron() ? '.' : '../..'}/sounds/sound_effects/menu-hover.mp3`;
+			otherSoundsAudio.play();
+		});
+		
 		navbarIcon.addEventListener("click", () => {
 			navbarIconClick(); 
 			inGameMenuOperations('MOBILE', innerMenu_window, gameSettings, slotNumber, mobilePartindex, step, null, timeState);
 		});
 		navbarBG.addEventListener("click", closeInGameMenu);
+
+		navbarOptions.forEach((option) => {
+			option.addEventListener('mouseover', () => {
+				otherSoundsAudio.volume = gameSettings.settings.audio.soundEffects/100;
+				otherSoundsAudio.src = `${isInElectron() ? '.' : '../..'}/sounds/sound_effects/menu-hover.mp3`;
+				otherSoundsAudio.play();
+			});
+		})
 	}, 3000);
 
 	if (isFromLoad) {

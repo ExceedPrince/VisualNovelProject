@@ -48,7 +48,7 @@ export const inGameMenuOperations = (pageType, innerMenu_window, gameSettings, s
     
             state.openedMenuPoint = BACK_TO_MENU_OPEN;
         
-            showBackToMainWindow(backToMain_window, innerMenu_window, state, timeState);
+            showBackToMainWindow(backToMain_window, innerMenu_window, state, timeState, gameSettings);
         }, innerMenu_window.firstChild ? 2000 : 0);
     });
 
@@ -184,7 +184,7 @@ export const inGameMenuOperations = (pageType, innerMenu_window, gameSettings, s
     
             state.openedMenuPoint = QUIT_OPEN;
         
-            showQuitWindow(innerMenu_window, quit_window, state);
+            showQuitWindow(innerMenu_window, quit_window, state, gameSettings);
         }, innerMenu_window.firstChild ? 2000 : 0);
     });
 };

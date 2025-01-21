@@ -404,54 +404,47 @@ export const scene_33 = [
                     {
                         id: 16, 
                         isFromHer: true,
-                        text: "You're my break too, Reina😊", 
-                        waitingTime: null,
-                        typingTime: null,
-                    },
-                    {
-                        id: 17, 
-                        isFromHer: true,
                         text: "You're so sweet!😘", 
                         waitingTime: 4,
                         typingTime: 2,
                     },
                     {
-                        id: 18, 
+                        id: 17, 
                         isFromHer: true,
                         text: "And yesterday's time in the bath was really nice😊", 
                         waitingTime: 2,
                         typingTime: 4,
                     },
                     {
-                        id: 19, 
+                        id: 18, 
                         isFromHer: true,
                         text: "It was so intimate, but also incredibly exciting🥵", 
                         waitingTime: 2,
                         typingTime: 4,
                     },
                     {
-                        id: 20, 
+                        id: 19, 
                         isFromHer: true,
                         text: "I kind of regret that things didn't go further...", 
                         waitingTime: 3,
                         typingTime: 4,
                     },
                     {
-                        id: 21, 
+                        id: 20, 
                         isFromHer: true,
                         text: "Because if I think about it, if I hadn't held back that day...", 
                         waitingTime: 3,
                         typingTime: 5,
                     },
                     {
-                        id: 22, 
+                        id: 21, 
                         isFromHer: true,
                         text: "I'm almost constantly having to change my panties because they get wet😝", 
                         waitingTime: 4,
                         typingTime: 6,
                     },
                     {
-                        id: 23, 
+                        id: 22, 
                         isFromHer: false,
                         text: [
                             "But you turned me down when I made a move",
@@ -462,7 +455,7 @@ export const scene_33 = [
                         choicePath: "reina~importants~0027-40",
                     },
                     {
-                        id: 24, 
+                        id: 23, 
                         isFromHer: true,
                         text: [
                             "Yes, at that moment, it felt right...",
@@ -473,28 +466,28 @@ export const scene_33 = [
                         choicePath: "reina~importants~0027-40",
                     },
                     {
-                        id: 25, 
+                        id: 24, 
                         isFromHer: true,
                         text: "It's just that, looking back, knowing how many chances we would have had...", 
                         waitingTime: 2,
                         typingTime: 6,
                     },
                     {
-                        id: 26, 
+                        id: 25, 
                         isFromHer: true,
                         text: "And you can't just do it anytime in a place like that...", 
                         waitingTime: 2,
                         typingTime: 5,
                     },
                     {
-                        id: 27, 
+                        id: 26, 
                         isFromHer: true,
                         text: "It gets me so worked up that if no one were home right now, I'd invite you over and devour you without hesitation😜😜", 
                         waitingTime: 3,
                         typingTime: 8,
                     },
                     {
-                        id: 28, 
+                        id: 27, 
                         isFromHer: false,
                         text: [
                             "Yeah, it really is a pity",
@@ -508,7 +501,7 @@ export const scene_33 = [
                         choicePath: "reina~mobileImportants~0033-r-28",
                     },
                     {
-                        id: 29, 
+                        id: 28, 
                         isFromHer: true,
                         text: [
                             "That's it?",
@@ -525,7 +518,7 @@ export const scene_33 = [
                         },
                     },
                     {
-                        id: 30, 
+                        id: 29, 
                         isFromHer: true,
                         text: [
                             "Nothing else to add?",
@@ -538,7 +531,7 @@ export const scene_33 = [
                         choicePath: "reina~mobileImportants~0033-r-28",
                     },
                     {
-                        id: 31, 
+                        id: 30, 
                         isFromHer: false,
                         text: [
                             "Yes, because right now, I'm helpless in this situation",
@@ -551,7 +544,7 @@ export const scene_33 = [
                         choicePath: "reina~mobileImportants~0033-r-28",
                     },
                     {
-                        id: 32, 
+                        id: 31, 
                         isFromHer: true,
                         text: [
                             "It would've been nice to hear that you wanted it too",
@@ -564,7 +557,7 @@ export const scene_33 = [
                         choicePath: "reina~mobileImportants~0033-r-28",
                     },
                     {
-                        id: 33, 
+                        id: 32, 
                         isFromHer: [false, true, true, true],
                         sentPicture: [null, null, null, "0033-r-33"],
                         text: [
@@ -582,7 +575,7 @@ export const scene_33 = [
                         },
                     },
                     {
-                        id: 34, 
+                        id: 33, 
                         isFromHer: [true, false, false, false],
                         text: [
                             "Just because I know doesn't mean it's not nice to hear—or read—what you think or feel sometimes",
@@ -595,7 +588,7 @@ export const scene_33 = [
                         choicePath: "reina~mobileImportants~0033-r-28",
                     },
                     {
-                        id: 35, 
+                        id: 34, 
                         isFromHer: [false, true, true, true],
                         text: [
                             "Ah, I get it",
@@ -608,7 +601,7 @@ export const scene_33 = [
                         choicePath: "reina~mobileImportants~0033-r-28",
                     },
                     {
-                        id: 36, 
+                        id: 35, 
                         isFromHer: true,
                         text: [
                             "Alright...",
@@ -621,7 +614,7 @@ export const scene_33 = [
                         choicePath: "reina~mobileImportants~0033-r-28",
                     },
                     {
-                        id: 37, 
+                        id: 36, 
                         isFromHer: true,
                         text: "When we finally meet again, I promise, we'll leave no stone unturned😍😍", 
                         waitingTime: 3,
@@ -632,77 +625,77 @@ export const scene_33 = [
                         },
                     },
                     {
-                        id: 38, 
+                        id: 37, 
                         isFromHer: true,
                         text: "We can unleash our wild sides then🤪", 
                         waitingTime: 3,
                         typingTime: 3.5,
                     },
                     {
-                        id: 39, 
+                        id: 38, 
                         isFromHer: true,
                         text: "So hold onto everything until then...", 
                         waitingTime: 2,
                         typingTime: 3.5,
                     },
                     {
-                        id: 40, 
+                        id: 39, 
                         isFromHer: true,
                         text: "Because I want it to be unforgettable!🥵🥵", 
                         waitingTime: 2,
                         typingTime: 3.5,
                     },
                     {
-                        id: 41, 
+                        id: 40, 
                         isFromHer: false,
                         text: "With messages like this, it's a lot harder to wait", 
                         waitingTime: null,
                         typingTime: null,
                     },
                     {
-                        id: 42, 
+                        id: 41, 
                         isFromHer: true,
                         text: "I might have said it a few times already...", 
                         waitingTime: 3,
                         typingTime: 4,
                     },
                     {
-                        id: 43, 
+                        id: 42, 
                         isFromHer: true,
                         text: "But this really will be worth the wait😉", 
                         waitingTime: 2,
                         typingTime: 4,
                     },
                     {
-                        id: 44, 
+                        id: 43, 
                         isFromHer: false,
                         text: "I don't doubt that", 
                         waitingTime: null,
                         typingTime: null,
                     },
                     {
-                        id: 45, 
+                        id: 44, 
                         isFromHer: true,
                         text: "Good😊", 
                         waitingTime: 3,
                         typingTime: 1,
                     },
                     {
-                        id: 46, 
+                        id: 45, 
                         isFromHer: true,
                         text: "Sorry, but I still have so much to do today", 
                         waitingTime: 4,
                         typingTime: 4,
                     },
                     {
-                        id: 47, 
+                        id: 46, 
                         isFromHer: true,
                         text: "I'll check in again later", 
                         waitingTime: 2,
                         typingTime: 2.5,
                     },
                     {
-                        id: 48, 
+                        id: 47, 
                         isFromHer: true,
                         text: "Kisses💋💋❤️❤️", 
                         waitingTime: 2,

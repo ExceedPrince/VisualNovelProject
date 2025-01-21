@@ -3,6 +3,7 @@ import { parts } from '../../constants/parts.mjs';
 import { mobileParts } from '../../constants/mobile-parts.mjs';
 import { storyPage } from '../../pages/story-page.mjs';
 import { showTimeSkipPage } from '../show-time-skip-page.mjs';
+import { isInElectron } from '../is-in-electron.mjs';
 
 const mobileExitDialogs = {
     timeSkipNext: [
@@ -44,6 +45,10 @@ export const exitFromMobilePage = (gameSettings, mobilePartindex, nextStoryScene
 
     const selectedExitDialog = selectMobileDialog(mobileExitDialogs, mobileParts[mobilePartindex].timeSkipNext)
 
+    if (mobilePopup_innerContainer.innerHTML !== '') {
+        mobilePopup_innerContainer.innerHTML = '';
+    }
+    
     mobilePopup_innerContainer.insertAdjacentHTML('beforeend', `
         <h2>${selectedExitDialog.title}</h2>
         <div id="mobileExitBtnContainer">
@@ -54,7 +59,14 @@ export const exitFromMobilePage = (gameSettings, mobilePartindex, nextStoryScene
     mobile_popup.classList.remove('fadeOut');
     mobile_popup.classList.add('fadeIn');
 
+    const otherSoundsAudio = qs('#other_sound_effects_audio');
     const forwardBtn = qs('#mobileExitBtnContainer button');
+
+    forwardBtn.addEventListener('mouseover', () => {
+        otherSoundsAudio.volume = gameSettings.settings.audio.soundEffects/100;
+        otherSoundsAudio.src = `${isInElectron() ? '.' : '../../..'}/sounds/sound_effects/menu-hover.mp3`;
+        otherSoundsAudio.play();
+    });
 
     forwardBtn.addEventListener('click', () => {
         root.classList.remove('fadeIn');
@@ -79,6 +91,10 @@ export const exitFromMobilePage = (gameSettings, mobilePartindex, nextStoryScene
                 bgMusicAudio.currentTime = 0;
             }
         };
+
+        otherSoundsAudio.volume = gameSettings.settings.audio.soundEffects/100;
+        otherSoundsAudio.src = `${isInElectron() ? '.' : '../../..'}/sounds/sound_effects/proceed.mp3`;
+        otherSoundsAudio.play();
             
         fadeOutAudio();
 		

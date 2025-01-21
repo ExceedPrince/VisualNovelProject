@@ -35,5 +35,5 @@ export const cantGoBackPopup = async (storyContainer) => {
 		setTimeout(() => {
 			cantGoBackContainer.remove();;
 		}, 3000);
-	}, 5000);
+	}, 7000);
 };

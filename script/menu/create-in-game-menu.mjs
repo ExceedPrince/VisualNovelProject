@@ -35,6 +35,9 @@ export const createInGameMenu = () => {
 export const refreshFallingIcons = () => {
     const navbarContainer = qs('#navbar_Container');
     const inGameFallingIcons = qs('.inGame-falling-icons');
+
+    if (!inGameFallingIcons) return;
+    
     inGameFallingIcons.classList.add('fadeOut');
 
     setTimeout(() => {

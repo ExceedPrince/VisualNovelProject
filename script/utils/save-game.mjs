@@ -4,6 +4,7 @@ import { closeSavePopup } from './close-save-popup.mjs';
 import { showAllSavingSlots } from './show-all-saving-slots.mjs';
 import { qs } from './commons.mjs';
 import { getGameData } from './get-game-data.mjs';
+import { isInElectron } from './is-in-electron.mjs';
 
 export const saveGame = (pageType, pageContainer, gameSettings, sceneNumber, stepNumber = 1, endingSceneType = null, isQuickSave = false) => {
 	const slotNumber = +localStorage.getItem('slotNumber') || 0;
@@ -14,9 +15,11 @@ export const saveGame = (pageType, pageContainer, gameSettings, sceneNumber, ste
 	}
 
 	pageContainer.insertAdjacentHTML("afterend", `
-		<div id="saveContainer">
+		<div id="saveContainer" class="noGrid">
 			<div id="saveBox">
-				<span id="saveXBtn">X</span>
+				<span id="saveXBtn">
+					<img src="${isInElectron() ? '.' : '../..'}/img/svg/x-icon.svg" alt="x-icon"/>
+				</span>
 				${isQuickSave ? `
 						<h2>Are you sure you want to overwrite this saving slot?</h2>
 						<div>

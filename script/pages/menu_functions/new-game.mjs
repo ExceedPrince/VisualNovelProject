@@ -1,12 +1,18 @@
 import { qs } from '../../utils/commons.mjs';
 import { storyPage } from '../story-page.mjs';
 import { parts } from '../../constants/parts.mjs';
+import { isInElectron } from '../../utils/is-in-electron.mjs';
 
 export const newGame = (root, gameSettings) => {
     root.classList.remove('fadeIn');
     root.classList.add('fadeOut');
 
     const bgMusicAudio = qs('#bg_music_audio');
+    const otherSoundsAudio = qs('#other_sound_effects_audio');
+
+    otherSoundsAudio.volume = gameSettings.settings.audio.soundEffects/100;
+    otherSoundsAudio.src = `${isInElectron() ? '.' : '../../..'}/sounds/sound_effects/proceed.mp3`;
+    otherSoundsAudio.play();
 
     setTimeout(() => {
         root.innerHTML = '';

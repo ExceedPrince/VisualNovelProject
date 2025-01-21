@@ -8,22 +8,22 @@ export const showSettingsWindow = (settings_window, gameSettings) => {
     if (settings_window.children.length === 0) {
         settings_window.insertAdjacentHTML('beforeend', `
             <div id="settings_ranges">
-                <p id="brightness_section">brightness: <span>${gameSettings.settings.screen.brightness}</span>%</p>
+                <p id="brightness_section">Brightness: <span>${gameSettings.settings.screen.brightness}</span>%</p>
                 <input type="range" id="brightness_input" name="brightness" data-location="screen" value="${gameSettings.settings.screen.brightness}" min="0" max="200" step="1" />
-                <p id="saturation_section">saturation: <span>${gameSettings.settings.screen.saturation}</span>%</p>
+                <p id="saturation_section">Saturation: <span>${gameSettings.settings.screen.saturation}</span>%</p>
                 <input type="range" id="saturation_input" name="saturation" data-location="screen" value="${gameSettings.settings.screen.saturation}" min="0" max="100" step="1" />
-                <p id="colorTemperature_section">colorTemperature: <span>${gameSettings.settings.screen.colorTemperature}</span>%</p>
+                <p id="colorTemperature_section">Color Temperature: <span>${gameSettings.settings.screen.colorTemperature}</span>%</p>
                 <input type="range" id="colorTemperature_input" name="colorTemperature" data-location="screen" value="${gameSettings.settings.screen.colorTemperature}" min="0" max="100" step="1" />
-                <p id="bgMusic_section">bgMusic: <span>${gameSettings.settings.audio.bgMusic}</span>%</p>
+                <p id="bgMusic_section">Background Music: <span>${gameSettings.settings.audio.bgMusic}</span>%</p>
                 <input type="range" id="bgMusic_input" name="bgMusic" data-location="audio" value="${gameSettings.settings.audio.bgMusic}" min="0" max="100" step="1" />
-                <p id="soundEffects_section">soundEffects: <span>${gameSettings.settings.audio.soundEffects}</span>%</p>
+                <p id="soundEffects_section">Sound Effects: <span>${gameSettings.settings.audio.soundEffects}</span>%</p>
                 <input type="range" id="soundEffects_input" name="soundEffects" data-location="audio" value="${gameSettings.settings.audio.soundEffects}" min="0" max="100" step="1" />
-                <p id="mouseSounds_section">mouseSounds: <span>${gameSettings.settings.audio.mouseSounds}</span>%</p>
+                <p id="mouseSounds_section">Mouse Sounds: <span>${gameSettings.settings.audio.mouseSounds}</span>%</p>
                 <input type="range" id="mouseSounds_input" name="mouseSounds" data-location="audio" value="${gameSettings.settings.audio.mouseSounds}" min="0" max="100" step="1" />
             </div>
             <div id="settings_checkboxes">
                 <label>
-                    isFullScreen:
+                    Fullscreen:
                     <input type="checkbox" id="isFullScreen_checkbox" data-location="screen" name="isFullScreen" ${gameSettings.settings.screen.isFullScreen && 'checked'}>
                 </label>
                 <label>
@@ -31,16 +31,24 @@ export const showSettingsWindow = (settings_window, gameSettings) => {
                     <input type="checkbox" id="isTypingOff_checkbox" data-location="screen" name="isTypingOff" ${gameSettings.settings.screen.isTypingOff && 'checked'}>
                 </label>
                 <label>
-                    silenceAll
+                    Silence All
                     <input type="checkbox" id="silenceAll_checkbox" data-location="audio" name="silenceAll" ${gameSettings.settings.audio.silenceAll && 'checked'}>
                 </label>
             </div>
-            <button id="settingReset_btn">reset all</button>
+            <button id="settingReset_btn">Reset All</button>
         `);
-    }
+    };
+
+    const otherSoundsAudio = qs('#other_sound_effects_audio');
 
     const allRangeInput = qsa('#settings_ranges input');
     allRangeInput.forEach((element) => {
+        element.addEventListener('mouseover', () => {
+            otherSoundsAudio.volume = gameSettings.settings.audio.soundEffects/100;
+            otherSoundsAudio.src = `${isInElectron() ? '.' : '../..'}/sounds/sound_effects/load-hover.mp3`;
+            otherSoundsAudio.play();
+        });
+
         element.addEventListener('change', (e) => {
             const location = e.target.getAttribute('data-location');
 
@@ -146,6 +154,13 @@ export const showSettingsWindow = (settings_window, gameSettings) => {
     });
 
     const settingReset_btn = qs('#settingReset_btn');
+
+    settingReset_btn.addEventListener('mouseover', () => {
+        otherSoundsAudio.volume = gameSettings.settings.audio.soundEffects/100;
+        otherSoundsAudio.src = `${isInElectron() ? '.' : '../../..'}/sounds/sound_effects/menu-hover.mp3`;
+        otherSoundsAudio.play();
+    });
+    
     settingReset_btn.addEventListener('click', () => {
         const defaultGameData = {
             settings: {

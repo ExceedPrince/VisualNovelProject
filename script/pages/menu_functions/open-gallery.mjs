@@ -68,7 +68,17 @@ const showGallery = (root, gameSettings, galleryInner) => {
         observer.observe(tile);
     });
 
+    const otherSoundsAudio = qs('#other_sound_effects_audio');
+
     qsa('.gallery_tiles img').forEach((img) => {
+        img.addEventListener('mouseover', () => {
+           // if (!root.classList.contains('fadeOut')) {
+                otherSoundsAudio.volume = gameSettings.settings.audio.soundEffects/100;
+                otherSoundsAudio.src = `${isInElectron() ? '.' : '../../..'}/sounds/sound_effects/load-hover.mp3`;
+                otherSoundsAudio.play();
+           // }
+        });
+
         img.addEventListener('click', (event) => {
             root.insertAdjacentHTML('afterend', `
                 <div id="fullScreenGalleryImg" class="fadeIn"></div>

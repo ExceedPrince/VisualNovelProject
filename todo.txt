@@ -1,4 +1,7 @@
-1. Játék cím design
-2. menü hangeffektek
-3. almenü design
-4. story-ban a gombok a kép alján hogyan disabled és hogyan nem 
+3. mobil resp.
+4. story resp.
+5. főmenü resp.
+6. ingame menü resp.
+
+story-ban a gombok a kép alján hogyan disabled és hogyan nem (0%)
+menü gallériánál a görgő (chrome kell hozzá)

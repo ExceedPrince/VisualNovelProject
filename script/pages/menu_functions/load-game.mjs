@@ -10,6 +10,7 @@ import { convertDataTwoWays } from '../../utils/convert-data-two-ways.mjs';
 import { GAME_DATA_1, GAME_DATA_2 } from '../../constants/statics.mjs';
 import { getGameData } from '../../utils/get-game-data.mjs';
 import { loadEnding } from '../../utils/ending-functions/load-ending.mjs';
+import { isInElectron } from '../../utils/is-in-electron.mjs';
 
 export const loadGame = (mainColumn_1, gameSettings, state) => {
     if (state.openedMenuPoint === LOAD_OPEN) {
@@ -44,15 +45,32 @@ const showLoadSlots = (gameSettings, loadBoxInner) => {
         loadBoxInner.insertAdjacentHTML("beforeend", `
             <div id="loadSlot_${slot.id}" class="loadSlot">
                 <div class="loadSlot_inner ${slot.image ? 'loadable' : ''}">
-                    <img src="${slot.image || ""}" data-slot-number="${slot.id}"/>
-                    ${slot.image && `<button id="delete_slotBtn_${slot.id}" class="deleteSlot_btn">kuka</button>`}
+                    <img src="${slot.image || (isInElectron() ? '.' : '../../..' + '/img/assets/empty_slot.png')}" data-slot-number="${slot.id}"/>
+                    </div>
+                    <div class="loadBottom">
+                        <p class="loadSlot_date">${slot.dateTime || '-'}</p>
+                        ${slot.image && `<button id="delete_slotBtn_${slot.id}" class="deleteSlot_btn">
+                            <img src="${isInElectron() ? '.' : '../../..'}/img/svg/trash-can.svg" alt="delete"/>
+                        </button>`}
+                    </div>
                 </div>
-                <p class="loadSlot_date">${slot.dateTime || '-'}</p>
             </div>
         `);
     });
 
     const bgMusicAudio = qs('#bg_music_audio');
+    const otherSoundsAudio = qs('#other_sound_effects_audio');
+
+    const loadSlots = qsa('.loadSlot img');
+    loadSlots.forEach((slot) => {
+        slot.addEventListener('mouseover', () => {
+            if (!root.classList.contains('fadeOut')) {
+                otherSoundsAudio.volume = gameSettings.settings.audio.soundEffects/100;
+                otherSoundsAudio.src = `${isInElectron() ? '.' : '../../..'}/sounds/sound_effects/load-hover.mp3`;
+                otherSoundsAudio.play();
+            }
+        });
+    });
 
     const loadImages = qsa('.loadSlot_inner.loadable img');
     loadImages.forEach((img) => {
@@ -62,6 +80,10 @@ const showLoadSlots = (gameSettings, loadBoxInner) => {
 
             root.classList.remove('fadeIn');
             root.classList.add('fadeOut');
+
+            otherSoundsAudio.volume = gameSettings.settings.audio.soundEffects/100;
+            otherSoundsAudio.src = `${isInElectron() ? '.' : '../../..'}/sounds/sound_effects/proceed.mp3`;
+            otherSoundsAudio.play();
 
             setTimeout(() => {
                 root.innerHTML = '';
@@ -111,17 +133,28 @@ const showLoadSlots = (gameSettings, loadBoxInner) => {
         btn.addEventListener('click', () => {
             const id = btn.id.replace('delete_slotBtn_', '');
 
+            loadBoxInner.classList.add('noGrid');
             loadBoxInner.innerHTML = '';
             loadBoxInner.insertAdjacentHTML("beforeend", `
-                <h2>Are you sure you want to delete this game slot?</h2>
-                <div>
-                    <button type="button" id="deleteYesBtn">Yes</button>
-                    <button type="button" id="deleteNoBtn">No</button>
+                <div id="loadDelete-question">
+                    <h2>Are you sure you want to delete this game slot?</h2>
+                    <div>
+                        <button type="button" id="deleteYesBtn">Yes</button>
+                        <button type="button" id="deleteNoBtn">No</button>
+                    </div>
                 </div>
             `);
 
             const deleteYesBtn = qs('#deleteYesBtn');
             const deleteNoBtn = qs('#deleteNoBtn');
+
+            [deleteYesBtn, deleteNoBtn].forEach((button) => {
+                button.addEventListener('mouseover', () => {
+                    otherSoundsAudio.volume = gameSettings.settings.audio.soundEffects/100;
+                    otherSoundsAudio.src = `${isInElectron() ? '.' : '../../..'}/sounds/sound_effects/menu-hover.mp3`;
+                    otherSoundsAudio.play();
+                })
+            })
 
             deleteYesBtn.addEventListener('click', () => {
                 const modifiedSample = {...slotSample, id: id}
@@ -133,12 +166,24 @@ const showLoadSlots = (gameSettings, loadBoxInner) => {
 
                 const newGameData = getGameData();
 
+                otherSoundsAudio.volume = gameSettings.settings.audio.soundEffects/100;
+                otherSoundsAudio.src = `${isInElectron() ? '.' : '../../..'}/sounds/sound_effects/proceed.mp3`;
+                otherSoundsAudio.play();
+
+                loadBoxInner.innerHTML = '';
+
+                loadBoxInner.classList.remove('noGrid');
                 showLoadSlots(newGameData, loadBoxInner);
             });
 
             deleteNoBtn.addEventListener('click', () => {
                 loadBoxInner.innerHTML = '';
 
+                otherSoundsAudio.volume = gameSettings.settings.audio.soundEffects/100;
+                otherSoundsAudio.src = `${isInElectron() ? '.' : '../..'}/sounds/sound_effects/cancel.mp3`;
+                otherSoundsAudio.play();
+
+                loadBoxInner.classList.remove('noGrid');
                 showLoadSlots(gameSettings, loadBoxInner);
             });
  
