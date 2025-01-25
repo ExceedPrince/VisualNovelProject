@@ -43,12 +43,12 @@ export const startOutroVideo = (root, endingName, gameSettings) => {
 
     function fadeOutAndClearVideo() {
         videoElement.pause();
-/*         root.classList.remove('fadeIn')
+        root.classList.remove('fadeIn')
         root.classList.add('fadeOut');
 
         setTimeout(() => {
             root.innerHTML = '';
             navigateToThankYouPage(root, endingName, gameSettings);
-        }, 2000); */
+        }, 2000);
     }
 };

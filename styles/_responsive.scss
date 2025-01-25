@@ -1,61 +1,81 @@
-@media only screen and (max-width: 1279px) {
-    #mainMenu_container {
-        
-        #mainMenu_flexContainer {
+@media only screen and (min-width: 1921px) {
+	#root {
+ 
+		#mainMenu_container {
 
-            #mainColumn_1 {
-    
-                #gallery_inner {
-        
-                    #gallery_container {
-                        
-                        .gallery_tiles {
-                            height: 180px;
-                        }
-                    }
-                }
-            }
-        }
-    }
+			#mainColumn_1 {
 
-	#storyContainer {
+				#loadBox_inner {
 
-		#textContainer {
-			height: 220px;
-	
-			#textContainer-inner {
-				position: relative;
-				width: 100%;
-				top: -15px;
-	
-				#char-name {
-					position: absolute;
-					top: 0;
-					left: -50px;
-					width: 400px;
-					height: 50px;
-					translate: 0 -50%;
-					background-image: url('../img/assets/name-container.png');
-					background-size: 100% 100%;;
-					text-align: center;
-					font-size: 30px;
-					font-family: 'NunitoBold';
-					color: white;
-					text-shadow: 2px 2px 0 #34002b, -2px 2px 0 #34002b, -2px -2px 0 #34002b, 2px -2px 0 #34002b;
+					.loadSlot {
+						height: 250px;
+
+						.loadSlot_inner {
+
+						}
+					}
 				}
-				
-				#char-text {
-					position: absolute;
-					top: 50px;
-					left: 50px;
-					width: calc(100% - 100px);
-					font-size: 20px;
-					font-family: 'NunitoBold';
-					color: white;
-					text-shadow: 1px 1px 0 #34002b, -1px 1px 0 #34002b, -1px -1px 0 #34002b, 1px -1px 0 #34002b;
+
+				#gallery_inner {
+
+					#gallery_container {
+
+						.gallery_tiles {
+							height: 300px;
+						}
+					}
+				}
+
+				#settings_inner {
+					top: 50%;
+					left: 50%;
+					translate: -50% -50%;
+					width: 60%;
+				}
+			}
+		} 
+
+		#innerMenu_window {
+
+			#saveGame_window {
+
+				.saveSlot {
+
+					.saveSlot_inner {
+						height: 200px;
+					}
+				}
+			}
+
+			#loadGame_window {
+
+				.loadSlot {
+
+					.loadSlot_inner {
+						height: 200px;
+					}
+				}
+			}
+
+			#settings_window {
 	
-					&.italic {
-						font-style: italic;
+				#settings_ranges {
+					width: 60%;
+				}
+			}
+		}
+
+		#saveContainer {
+
+			#saveBox {
+
+				#saveBox-inner {
+					
+					.saveSlot {
+						
+						.saveSlot_inner {
+							height: 200px;
+						}
 					}
 				}
 			}
@@ -63,14 +83,224 @@
 	}
 }
 
-@media (min-aspect-ratio: 16/9) {
+@media only screen and (min-width: 2561px) {
+	#root {
+		position: absolute;
+		top: 0;
+		left: 50%;
+		translate: -50%;
+
+		#mainMenu_container {
+
+			#mainColumn_1 {
+
+				#loadBox_inner {
+
+					.loadSlot {
+						height: 250px;
+					}
+				}
+			}
+		}  
+
+		#innerMenu_window {
+
+			#loadGame_window {
+
+				.loadSlot {
+
+					.loadSlot_inner {
+						height: 250px;
+					}
+				}
+			}
+		}
+	}
+
+	#colorCover {
+		position: absolute;
+		top: 0;
+		left: 50%;
+		translate: -50%;
+	}
+}
+
+@media (min-aspect-ratio: 16/9) and (min-width: 3840px) {
 	#root, #colorCover {
 	  position: absolute;
-	  max-width: 1920px;
+	  max-width: 3840px;
 	  left: 50%;
 	  translate: -50%;
 	}
-  }
+}
+
+@media only screen and (max-width: 1599px) {
+	#root {
+
+		#innerMenu_window {
+
+			#saveGame_window {
+
+				.saveSlot {
+
+					.saveSlot_inner {
+						height: 100px;
+					}
+				}
+			}
+
+			#loadGame_window {
+
+				.loadSlot {
+
+					.loadSlot_inner {
+						height: 100px;
+					}
+				}
+			}
+		}
+
+		#saveContainer {
+
+			#saveBox {
+
+				#saveBox-inner {
+					
+					.saveSlot {
+						
+						.saveSlot_inner {
+							height: 100px;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 1279px) {
+	#root {
+
+		#mainMenu_container {
+	
+			#mainTitle {
+	
+				img {
+					width: 120px;
+				}
+	
+				h1 {
+					font-size: 36px;
+				}
+			}
+			
+			#mainColumn_1 {
+	
+				#gallery_inner {
+		
+					#gallery_container {
+						
+						.gallery_tiles {
+							height: 180px;
+						}
+					}
+				}
+	
+				#about_inner {
+					width: 100%;
+					padding: 30px 0;
+					font-size: 16px;
+				}
+			}
+	
+			#mainEndingContainer {
+	
+				div {
+	
+					.ending-heart {
+						width: 30px;
+					}
+	
+					span {
+						font-size: 18px;
+					}
+				}
+			}
+	
+			.mainMenu {
+	
+				.action_items_bar {
+	
+					.action_items {
+	
+						.mainMenu_options {
+							width: 80px;
+							font-size: 18px;
+						}
+					}
+				}
+	
+				input {
+	
+					&:checked {
+	
+						& ~ .action_items_bar {
+	
+							.action_items {
+	
+								.first_item {
+									margin-left: 20px;
+								}
+	
+								.sixth_item {
+									margin-right: 20px;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	
+		#innerMenu_window {
+
+			&:has(#saveGame_window) {
+				width: calc(100% - 400px);
+
+				#saveGame_window {
+		
+					.saveSlot {
+		
+						.saveSlot_inner {
+							height: 90px;
+						}
+					}
+				}
+			}
+
+			&:has(#loadGame_window) {
+				width: calc(100% - 400px);
+
+				#loadGame_window {
+		
+					.loadSlot {
+		
+						.loadSlot_inner {
+							height: 90px;
+						}
+					}
+				}
+			}
+			
+			#settings_window {
+	
+				#settings_ranges {
+					width: 100%;
+				}
+			}
+		}
+	}
+}
 
 @media only screen and (max-width: 1023px) {
 	body{
@@ -103,6 +333,72 @@
 			}
 		}
 
+		#mobileContainer {
+
+			#mobile_blackBG {
+
+				#mobileFrame {
+					max-width: 400px;
+
+					#mobileHeader {
+						font-size: 14px;
+					}
+
+					#mobileRoot {
+
+						#mobileRoot_messageList {
+
+							.messageList-element {
+
+								.messageList-element-left {
+
+									span {
+										font-size: 18px;
+									}
+								}
+							}
+						}
+
+						.messageBox {
+
+							.messageBox_header {
+
+								.messageBox_headerLeft {
+
+									.messageBox_backBtn {
+										width: 40px;
+										height: 40px;
+									}
+
+									.messageBox_name {
+										font-size: 22px;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+
+			#mobile_choiceContainer {
+
+				#choice_innerContainer {
+
+					#choice_innerContainer_topHalf {
+						margin-top: 100px;
+					}
+
+					#choice_innerContainer_bottomHalf {
+						gap: 300px;
+
+						.choiceOptions {
+							width: calc((100% - 300px));
+						}
+					}
+				}
+			}
+		}
+
 		#videoContainer {
 
 			#videoStopBtn {
@@ -132,6 +428,84 @@
 		overflow: hidden;
 	}
 }
+
+@media only screen and (max-height: 899px) {
+	#root {
+		
+		#mainMenu_container {
+
+			#mainColumn_1 {
+				max-height: unset;
+				height: 55%;
+				width: calc(100% - 100px);
+
+				#loadBox_inner {
+					width: 80%;
+
+					.loadSlot {
+						height: 150px; 
+
+						.loadSlot_inner {
+							width: 100%;
+						}
+					}
+				}
+
+				#gallery_inner {
+
+					#gallery_container {
+
+						.gallery_tiles {
+							height: 200px;
+						}
+					}
+				}
+
+				#about_inner {
+					font-size: 16px;
+				}
+			}
+		} 
+
+		#storyContainer {
+
+			#characterContainer {
+
+				.chars {
+
+					img {
+						scale: 0.6;
+					}
+				}
+			}
+
+			#choiceContainer {
+				top: 10%;
+				min-width: unset;
+				max-width: 70%;
+				width: 90%;
+
+				#choiceBox {
+
+					h2 {
+						font-size: 28px;
+					}
+					#choiceBox-inner {
+
+						.choiceBtn {
+							font-size: 22px;
+						}
+					}
+				}
+			}
+
+			#cantGoBackContainer {
+				top: 25%;
+			}
+		}
+	}
+}
+
 @media only screen and (max-height: 767px) {
 	body{
 		margin: 0;
@@ -144,6 +518,387 @@
 		position: absolute;
 		scale: 1;
 		translate: unset;
+
+		#mainMenu_container {
+
+			#mainColumn_1 {
+				top: 100px;
+				max-height: unset;
+				height: 55%;
+				width: 100%;
+
+				#loadBox_inner {
+					width: 90%;
+					padding: 30px 70px;
+					align-items: center;
+
+					.loadSlot {
+						height: 100px; 
+
+						.loadSlot_inner {
+							width: 100%;
+
+						}
+
+						.loadBottom {
+
+							.loadSlot_date {
+								font-size: 16px;
+							}
+
+							.deleteSlot_btn {
+								width: 15px;
+								height: 15px;
+							}
+						}
+					}
+				}
+				
+				#gallery_inner {
+					padding: 30px 30px;
+
+					#gallery_container {
+
+						.gallery_tiles {
+							height: 150px;
+						}
+					}
+				}
+
+				#settings_inner {
+					font-size: 18px;
+					scale: 0.8;
+					transform-origin: top center;
+
+					#settings_ranges {
+						width: 70%;
+
+						input[type="range"] {
+							height: unset;
+						}
+					}
+				}
+
+				#about_inner {
+					width: 95%;
+					padding: 10px 0;
+					font-size: unset;
+
+					h2 {
+						font-size: 18px;
+					}
+
+					p {
+						font-size: 12px;
+					}
+				}
+				
+				#quit_inner {
+					font-size: 18px;
+				}
+
+			}
+			.mainMenu {
+
+				.action_items_bar {
+
+					.action_items {
+
+						.mainMenu_options {
+							font-size: 18px;
+						}
+					}
+				}
+
+				input {
+
+					&:checked {
+
+						& ~ .action_items_bar {
+
+							.action_items {
+
+								.first_item {
+									margin-left: 20px;
+								}
+
+								.sixth_item {
+									margin-right: 20px;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		#innerMenu_window {
+			right: 50px;
+  			width: calc(100% - 350px);
+
+			&:has(#saveGame_window) {
+				width: calc(100% - 300px);
+				right: 0;
+				padding: 20px;
+
+				#saveGame_window {
+					padding: 0;
+		
+					.saveSlot {
+		
+						.saveSlot_inner {
+							height: 12vh;
+						}
+
+						.saveSlot_date {
+							font-size: 16px;
+							text-wrap: nowrap;
+						}
+					}
+
+					#saveGame_window_inner {
+
+						h2 {
+							font-size: 22px;
+						}
+					}
+				}
+			}
+
+			&:has(#loadGame_window) {
+				width: calc(100% - 300px);
+				right: 0;
+				padding: 20px;
+
+				#loadGame_window {
+					padding: 0;
+		
+					.loadSlot {
+		
+						.loadSlot_inner {
+							height: 12vh;
+						}
+
+						.loadSlot_date {
+							font-size: 16px;
+							text-wrap: nowrap;
+						}
+					}
+
+					h2 {
+						font-size: 22px;
+					}
+				}
+			}
+
+			#backToMain_window {
+
+				#backToMain_window_inner {
+
+					h2 {
+						font-size: 24px;
+					}
+
+					.innerMenu_window_buttonContainer {
+						gap: 50px;
+						
+						button {
+							font-size: 18px;
+							padding: 5px 15px;
+						}
+					}
+				}
+			}
+
+			#settings_window {
+				width: calc(100% + 200px);
+				font-size: 20px;
+				scale: 0.8;
+			}
+
+			#quit_window {
+
+				h2 {
+					font-size: 24px;
+				}
+
+				div {
+					gap: 50px;
+
+					button {
+						font-size: 18px;
+						padding: 5px 15px;
+					}
+				}
+			}
+		}
+
+		#storyContainer {
+
+			#characterContainer {
+
+				.chars {
+
+					img {
+						scale: 0.45;
+						translate: -50% 30%;
+					}
+				}
+			}
+
+			#textContainer {
+				height: 220px;
+		
+				#textContainer-inner {
+					position: relative;
+					width: 100%;
+					top: -15px;
+		
+					#char-name {
+						position: absolute;
+						top: 0;
+						left: -50px;
+						width: 400px;
+						height: 50px;
+						translate: 0 -50%;
+						background-image: url('../img/assets/name-container.png');
+						background-size: 100% 100%;;
+						text-align: center;
+						font-size: 30px;
+						font-family: 'NunitoBold';
+						color: white;
+						text-shadow: 2px 2px 0 #34002b, -2px 2px 0 #34002b, -2px -2px 0 #34002b, 2px -2px 0 #34002b;
+					}
+					
+					#char-text {
+						position: absolute;
+						top: 50px;
+						left: 25px;
+						width: calc(100% - 50px);
+						font-size: 20px;
+						font-family: 'NunitoBold';
+						color: white;
+						text-shadow: 1px 1px 0 #34002b, -1px 1px 0 #34002b, -1px -1px 0 #34002b, 1px -1px 0 #34002b;
+		
+						&.italic {
+							font-style: italic;
+						}
+					}
+				}
+			}
+
+			#choiceContainer {
+				top: 15%;
+				min-width: unset;
+				max-width: unset;
+				width: 90%;
+
+				#choiceBox {
+
+					h2 {
+						font-size: 22px;
+					}
+					#choiceBox-inner {
+
+						.choiceBtn {
+							font-size: 18px;
+						}
+					}
+				}
+			}
+
+			#cantGoBackContainer {
+				
+				#cantGoBackBox {
+
+					#cantGoBackBox-inner {
+						font-size: 22px;
+					}
+				}
+			}
+		}
+
+		#mobileContainer {
+
+			#mobile_blackBG {
+
+				#mobileFrame {
+					max-width: 400px;
+
+					#mobileHeader {
+						font-size: 14px;
+					}
+
+					#mobileRoot {
+
+						#mobileRoot_messageList {
+
+							.messageList-element {
+
+								.messageList-element-left {
+
+									span {
+										font-size: 18px;
+									}
+								}
+							}
+						}
+
+						.messageBox {
+
+							.messageBox_header {
+
+								.messageBox_headerLeft {
+
+									.messageBox_backBtn {
+										width: 40px;
+										height: 40px;
+									}
+
+									.messageBox_name {
+										font-size: 22px;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+
+			#mobile_choiceContainer {
+
+				#choice_innerContainer {
+
+					#choice_innerContainer_topHalf {
+						margin-top: 100px;
+					}
+
+					#choice_innerContainer_bottomHalf {
+						gap: 300px;
+
+						.choiceOptions {
+							width: calc((100% - 300px));
+						}
+					}
+				}
+			}
+		}
+
+		#saveContainer {
+
+			#saveBox {
+
+				#saveXBtn {
+					top: 0;
+					translate: 100%;
+				}
+
+				h2 {
+					font-size: 24px;
+				}
+			}
+
+		}
 
 		#videoContainer {
 

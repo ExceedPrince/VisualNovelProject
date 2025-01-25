@@ -80,6 +80,15 @@ function adjustScale() {
 		colorCover.style.height = ''
 	}
 
+	if (screenWidth > 2560 && screenHeight > 768 && screenRatio > sixteenNineRatio) {
+		const targetHeight = screenHeight;
+		const targetWidth = targetHeight * sixteenNineRatio;
+
+		root.style.width = `${targetWidth}px`;
+
+		colorCover.style.width = `${targetWidth}px`;
+	}
+
 	if (qs('#mainMenu_container')) {
 		const marker = document.querySelector('#marker');
 

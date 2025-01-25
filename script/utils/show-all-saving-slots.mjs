@@ -8,7 +8,7 @@ export const showAllSavingSlots = (pageType, gameSettings, slotNumber, sceneNumb
 		saveBoxInner.insertAdjacentHTML("beforeend", `
 			<div id="saveSlot_${slot.id}" class="saveSlot">
 				<div class="saveSlot_inner">
-				<image src="${slot.image || (isInElectron() ? '.' : '../..' + '/img/assets/empty_slot.png')}"/>
+				<image src="${slot.image || (isInElectron() ? '.' : '../..') + '/img/assets/empty_slot.png'}"/>
 				</div>
 				<p class="saveSlot_date">${slot.dateTime || '-'}</p>
 			</div>

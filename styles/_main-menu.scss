@@ -75,15 +75,16 @@
         top: 150px;
         left: 50%;
         translate: -50%;
-        max-height: 550px;
+        max-height: 60%;
         height: 100%;
-        width: 100%;
+        width: calc(100% - 50px);
 
         #loadBox_inner {
             position: relative;
             width: 90%;
+            max-width: 1600px;
             height: 100%;
-            padding: 30px 75px;
+            padding: 30px 100px;
             background-image: linear-gradient(to left, rgba(125, 0, 147, 0), rgba(125, 0, 147, 0.8), rgba(125, 0, 147, 0.8), rgba(125, 0, 147, 0.8), rgba(125, 0, 147, 0.8), rgba(125, 0, 147, 0.8), rgba(125, 0, 147, 0));
             margin: 0 auto;
             display: grid;
@@ -238,7 +239,7 @@
                 .gallery_tiles {
                     position: relative;
                     width: 100%;
-                    height: 200px;
+                    height: 250px;
                     border: 2px solid white;
                     overflow: hidden;
                     opacity: 0;
@@ -333,7 +334,6 @@
                 display: grid;
                 grid-template-columns: 1fr 1fr;
                 gap: 10px 50px;
-                width: 50%;
 
                 p {
                     text-align: right;
@@ -344,7 +344,7 @@
                 }
 
                 input[type=range] {
-                    width: 70%;
+                    width: 50%;
                     height: 26px;
                     -webkit-appearance: none;
                     margin: 5px 0;
@@ -640,7 +640,7 @@
                 top: -1px;
                 content: '';
                 display: block;
-                width: 100%;
+                width: 90%;
                 height: 1px;
                 background-image: linear-gradient(to left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
                 transition: opacity 300ms ease-in-out;
@@ -651,7 +651,7 @@
                 bottom: -1px;
                 content: '';
                 display: block;
-                width: 100%;
+                width: 90%;
                 height: 1px;
                 background-image: linear-gradient(to left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
                 transition: opacity 300ms ease-in-out;

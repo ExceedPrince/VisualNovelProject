@@ -15,7 +15,7 @@ export const showSaveGameWindow = (pageType, saveGame_window, innerMenu_window, 
         saveGame_window_inner.insertAdjacentHTML("beforeend", `
             <div id="saveSlot_${slot.id}" class="saveSlot">
                 <div class="saveSlot_inner">
-                    <img src="${slot.image || (isInElectron() ? '.' : '../..' + '/img/assets/empty_slot.png')}" alt="Save Slot Image"/>
+                    <img src="${slot.image || (isInElectron() ? '.' : '../..') + '/img/assets/empty_slot.png'}" alt="Save Slot Image"/>
                 </div>
                 <p class="saveSlot_date">${slot.dateTime || '-'}</p>
             </div>
