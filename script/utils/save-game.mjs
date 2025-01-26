@@ -8,9 +8,13 @@ import { isInElectron } from './is-in-electron.mjs';
 
 export const saveGame = (pageType, pageContainer, gameSettings, sceneNumber, stepNumber = 1, endingSceneType = null, isQuickSave = false) => {
 	const slotNumber = +localStorage.getItem('slotNumber') || 0;
+	const otherSoundsAudio = qs('#other_sound_effects_audio');
 	
-	if (isQuickSave && slotNumber >= 6) {
-		console.log("ez a tartalék slot vagy új játék") //legyen majd rendes üzenet a ui-on
+	if (isQuickSave && +slotNumber >= 6) {
+		otherSoundsAudio.volume = gameSettings.settings.audio.soundEffects/100;
+		otherSoundsAudio.src = `${isInElectron() ? '.' : '../..'}/sounds/sound_effects/denied-2.mp3`;
+		otherSoundsAudio.play();
+
 		return;
 	}
 
@@ -57,6 +61,14 @@ export const saveGame = (pageType, pageContainer, gameSettings, sceneNumber, ste
 	currentGameSlotObject.endingSceneType = endingSceneType;
 
 	if (isQuickSave) {
+		[quickSaveYesBtn, quickSaveNoBtn].forEach((button) => {
+			button.addEventListener('mouseover', () => {
+				otherSoundsAudio.volume = gameSettings.settings.audio.soundEffects/100;
+				otherSoundsAudio.src = `${isInElectron() ? '.' : '../..'}/sounds/sound_effects/menu-hover.mp3`;
+				otherSoundsAudio.play();
+			});
+		});
+
 		quickSaveYesBtn.addEventListener("click", () => {
 			currentGameSlotObject.currentScene = sceneNumber.toString().padStart(4, '0');
 			currentGameSlotObject.currentStep = stepNumber;
@@ -68,10 +80,20 @@ export const saveGame = (pageType, pageContainer, gameSettings, sceneNumber, ste
 			
 			saveProgressWithImage(pageContainer, currentGameSetting, slotNumber);
 
+			otherSoundsAudio.volume = gameSettings.settings.audio.soundEffects/100;
+			otherSoundsAudio.src = `${isInElectron() ? '.' : '../..'}/sounds/sound_effects/proceed.mp3`;
+			otherSoundsAudio.play();
+
 			closeSavePopup(saveContainer);
 		});
 	
-		quickSaveNoBtn.addEventListener("click", () => closeSavePopup(saveContainer));
+		quickSaveNoBtn.addEventListener("click", () => {
+			otherSoundsAudio.volume = gameSettings.settings.audio.soundEffects/100;
+			otherSoundsAudio.src = `${isInElectron() ? '.' : '../..'}/sounds/sound_effects/cancel.mp3`;
+			otherSoundsAudio.play();
+
+			closeSavePopup(saveContainer);
+		});
 
 		return;
 	}

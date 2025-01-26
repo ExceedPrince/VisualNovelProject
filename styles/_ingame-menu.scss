@@ -250,7 +250,7 @@
 
             &.noGrid {
                 height: unset;
-                display: block;
+                display: block !important;
 
                 h2 {
                     text-align: center;
@@ -330,7 +330,7 @@
 
         &.noGrid {
             height: unset;
-            display: block;
+            display: block !important;
 
             h2 {
                 text-align: center;

@@ -4,6 +4,15 @@
     inherits: false;
 }
 
+@keyframes fadeIn-d-block {
+    from {
+        opacity: 0%;
+    }
+    to {
+        opacity: 100%;
+    }
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0%;
@@ -163,7 +172,7 @@
     }
 }
 
-@keyframes highlighting-circle {
+@keyframes h-circle {
     0% {
         --angle: 0deg;
     }

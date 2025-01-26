@@ -91,7 +91,7 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 	}, 120_000)
 
 	saveBtn.disabled = true;
-	quickSaveBtn.disabled = true;
+	quickSaveBtn.disabled = +slotNumber >= 6;
 	quickReadBtn.disabled = true;
 	changeBackground(backgroundContainer, data[partindex].story[step], gameSettings);
 
@@ -159,7 +159,7 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 			qs('#storyContainer').addEventListener("keydown", arrowNavigation);
 
 			saveBtn.disabled = false;
-			quickSaveBtn.disabled = isNewGame === true ? true : false;
+			quickSaveBtn.disabled = +slotNumber >= 6;
 			quickReadBtn.disabled = false;
 	
 			typingText(gameSettings, data[partindex].story[step], data[partindex].story[step].text, characterText, storyContainer);
@@ -774,7 +774,7 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 
 					isQuickReading = false;
 					saveBtn.disabled = false;
-					quickSaveBtn.disabled = false;
+					quickSaveBtn.disabled = +slotNumber >= 6;
 
 					setTimeout(() => {
 						storyContainer.click();
@@ -786,7 +786,7 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 		} else {
 			setTimeout(() => {
 				saveBtn.disabled = false;
-				quickSaveBtn.disabled = false;
+				quickSaveBtn.disabled = +slotNumber >= 6;
 
 				storyContainer.focus();
 				storyContainer.addEventListener("keydown", arrowNavigation);

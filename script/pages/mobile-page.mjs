@@ -148,23 +148,6 @@ export const mobilePage = (mobileData, mobilePartindex, gameSettings, isFromLoad
 	}
 
 	setTimeout(() => {
-		/*charContainerFilling(data[partindex].story[step]);
-
-		if (storyContainer) {
-			storyContainer.focus();
-			storyContainer.isTyping = isTyping;
-	
-			storyContainer.addEventListener("click", clickNavigation);
-			qs('#storyContainer').addEventListener("keydown", arrowNavigation);
-
-			saveBtn.disabled = false;
-			quickSaveBtn.disabled = isNewGame === true ? true : false;
-			quickReadBtn.disabled = false;
-	
-			typingText(gameSettings, data[partindex].story[step], data[partindex].story[step].text, characterText, storyContainer);
-			root.classList.remove('fadeIn');
-		}*/
-
 		if (mobileContainer) {
 			mobileContainer.focus();
 			mobileContainer.isTyping = isTyping;
@@ -202,7 +185,7 @@ export const mobilePage = (mobileData, mobilePartindex, gameSettings, isFromLoad
 		}
 
 		saveBtn.disabled = false;
-		quickSaveBtn.disabled = false;
+		quickSaveBtn.disabled = +slotNumber >= 6;
 		localStorage.setItem('sceneChanged', 'false');
 	}, 1000);
 

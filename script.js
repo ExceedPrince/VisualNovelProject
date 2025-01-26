@@ -99,7 +99,6 @@ function adjustScale() {
 		}
 
 		if (qs('.mainMenu_options.option-chosen')) {
-			console.log('chosen-es')
 			marker.style.left = qs('.mainMenu_options.option-chosen').offsetLeft + 'px';
 			marker.style.width = qs('.mainMenu_options.option-chosen').offsetWidth + 'px';
 		}

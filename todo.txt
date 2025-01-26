@@ -1,7 +1,0 @@
-3. mobil resp.
-4. story resp.
-5. főmenü resp.
-6. ingame menü resp.
-
-story-ban a gombok a kép alján hogyan disabled és hogyan nem (0%)
-menü gallériánál a görgő (chrome kell hozzá)
