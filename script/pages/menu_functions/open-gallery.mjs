@@ -72,11 +72,9 @@ const showGallery = (root, gameSettings, galleryInner) => {
 
     qsa('.gallery_tiles img').forEach((img) => {
         img.addEventListener('mouseover', () => {
-           // if (!root.classList.contains('fadeOut')) {
-                otherSoundsAudio.volume = gameSettings.settings.audio.soundEffects/100;
-                otherSoundsAudio.src = `${isInElectron() ? '.' : '../../..'}/sounds/sound_effects/load-hover.mp3`;
-                otherSoundsAudio.play();
-           // }
+            otherSoundsAudio.volume = gameSettings.settings.audio.soundEffects/100;
+            otherSoundsAudio.src = `${isInElectron() ? '.' : '../../..'}/sounds/sound_effects/load-hover.mp3`;
+            otherSoundsAudio.play();
         });
 
         img.addEventListener('click', (event) => {

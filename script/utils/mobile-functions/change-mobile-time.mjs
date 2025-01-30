@@ -11,7 +11,11 @@ export const changeMobileTime = (currentTime, endTime, mobilePartindex, timeStat
     const [currentHour, currentMinute] = currentTime.split(":");
     const [endHour, endMinute] = endTime.split(":");
 
-    let convertedCurrentTime = +currentHour * 60 + +currentMinute;
+    const currentScene = mobileParts[mobilePartindex];
+    const currentSceneConversations = Object.entries(currentScene.textingPartner);
+    const timeData = collectTimeData(currentScene, currentSceneConversations);
+
+    let convertedCurrentTime = +currentHour * 60 + (timeData.sheStartsAt.some((obj) => obj.value === currentTime) ? +currentMinute - 1 : +currentMinute);
     const convertedEndTime = +endHour * 60 + +endMinute;
 
     const mobileTime = qs('#mobileTime');
@@ -23,9 +27,7 @@ export const changeMobileTime = (currentTime, endTime, mobilePartindex, timeStat
         return `${hour === 24 ? '00' : hour < 10 ? '0' + hour : hour}:${minute < 10 ? '0' + minute : minute}`;
     };
 
-    const currentScene = mobileParts[mobilePartindex];
-    const currentSceneConversations = Object.entries(currentScene.textingPartner);
-    const timeData = collectTimeData(currentScene, currentSceneConversations);
+
     const chronologicalTimeData = createChronologicalList(timeData);
     let intervalNum = 2000;
     let isSpeededUp = false;
@@ -151,7 +153,7 @@ function createChronologicalList(data) {
     const convertToMinutes = (time) => {
         const [hours, minutes] = time.split(':').map(Number);
         let totalMinutes = hours * 60 + minutes;
-        if (hours < 6) { // only requiremet at this moment is: do not have messenger talk in very early hours in the morning
+        if (hours < 6) { // only requirement at this moment is: do not have messenger talk in very early hours in the morning
             totalMinutes += 24 * 60;
         }
         return totalMinutes;

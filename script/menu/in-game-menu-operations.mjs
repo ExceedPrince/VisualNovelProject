@@ -5,7 +5,6 @@ import { showLoadGameWindow } from "./show-load-game-window.mjs";
 import { showSettingsWindow } from "./show-settings-window.mjs";
 import { showQuitWindow } from "./show-quit-window.mjs";
 import { BACK_TO_MENU_OPEN, SAVE_OPEN, LOAD_OPEN, SETTINGS_OPEN, QUIT_OPEN } from '../constants/statics.mjs';
-import { isInElectron } from "../utils/is-in-electron.mjs";
 
 export const inGameMenuOperations = (pageType, innerMenu_window, gameSettings, slotNumber, sceneNumber, stepNumber, endingSceneType = null, timeState = null) => {
     const navbar_backToMainMenu = qs('#navbar_backToMainMenu');

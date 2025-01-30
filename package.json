@@ -2,7 +2,7 @@
   "name": "constrained_love",
   "productName": "Constrained Love",
   "author": "ExceedPrince",
-  "version": "0.99.0",
+  "version": "1.0.0",
   "description": "",
   "main": "main.js",
   "scripts": {
@@ -14,8 +14,19 @@
   },
   "build": {
     "appId": "com.exceedprince.constrainedlove",
+    "productName": "Constrained Love",
     "mac": {
-      "target": "dmg"
+      "target": ["dmg", "zip"],
+      "category": "public.app-category.games",
+      "icon": "img/assets/game_icon_mac.icns"
+    },
+    "dmg": {
+      "background": "img/assets/heart.png",
+      "iconSize": 128,
+      "window": {
+        "width": 660,
+        "height": 400
+      }
     },
     "win": {
       "target": "nsis",

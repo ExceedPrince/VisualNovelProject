@@ -4,7 +4,7 @@ import { convertDataTwoWays } from "../utils/convert-data-two-ways.mjs";
 import { GAME_DATA_1, GAME_DATA_2 } from "../constants/statics.mjs";
 import { isInElectron } from "../utils/is-in-electron.mjs";
 
-export const showSettingsWindow = (settings_window, gameSettings) => {
+export const showSettingsWindow = async (settings_window, gameSettings) => {
     if (settings_window.children.length === 0) {
         settings_window.insertAdjacentHTML('beforeend', `
             <div id="settings_ranges">
@@ -154,6 +154,13 @@ export const showSettingsWindow = (settings_window, gameSettings) => {
     });
 
     const settingReset_btn = qs('#settingReset_btn');
+    const isFullScreen_checkbox = qs('#isFullScreen_checkbox');
+    const isFullscreenElectron = await window.electron.checkIsFullscreen();
+    
+    if (isInElectron() && gameSettings.settings.screen.isFullScreen !== isFullscreenElectron) {
+        isFullScreen_checkbox.checked = isFullscreenElectron;
+        gameSettings.settings.screen.isFullScreen = isFullscreenElectron;
+	}
 
     settingReset_btn.addEventListener('mouseover', () => {
         otherSoundsAudio.volume = gameSettings.settings.audio.soundEffects/100;
@@ -188,7 +195,6 @@ export const showSettingsWindow = (settings_window, gameSettings) => {
         const brightness_input = qs('#brightness_input');
         const saturation_input = qs('#saturation_input');
         const colorTemperature_input = qs('#colorTemperature_input');
-        const isFullScreen_checkbox = qs('#isFullScreen_checkbox');
         const isTypingOff_checkbox = qs('#isTypingOff_checkbox');
 
         brightness_sectionSpan.innerText = defaultGameData.settings.screen.brightness;
@@ -199,7 +205,6 @@ export const showSettingsWindow = (settings_window, gameSettings) => {
         saturation_input.value = defaultGameData.settings.screen.saturation;
         colorTemperature_input.value = defaultGameData.settings.screen.colorTemperature;
 
-        //isFullScreen_checkbox.checked = defaultGameData.settings.audio.isFullScreen;
         isTypingOff_checkbox.checked = defaultGameData.settings.audio.isTypingOff_checkbox;
 
         useGameSettings(defaultGameData.settings, qs('#root'), qs('#colorCover'));

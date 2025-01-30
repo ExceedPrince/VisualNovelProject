@@ -45,3 +45,7 @@ ipcMain.on('toggle-fullscreen', () => {
     mainWindow.setFullScreen(!isFullScreen);
   }
 });
+
+ipcMain.handle('is-fullscreen', () => {
+  return mainWindow.isFullScreen();
+});

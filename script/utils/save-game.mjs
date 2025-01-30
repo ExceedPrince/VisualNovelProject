@@ -3,7 +3,6 @@ import { saveProgressWithImage } from './save-progress-with-image.mjs';
 import { closeSavePopup } from './close-save-popup.mjs';
 import { showAllSavingSlots } from './show-all-saving-slots.mjs';
 import { qs } from './commons.mjs';
-import { getGameData } from './get-game-data.mjs';
 import { isInElectron } from './is-in-electron.mjs';
 
 export const saveGame = (pageType, pageContainer, gameSettings, sceneNumber, stepNumber = 1, endingSceneType = null, isQuickSave = false) => {

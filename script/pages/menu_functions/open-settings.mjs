@@ -35,7 +35,7 @@ export const openSettings = (mainColumn_1, gameSettings, state) => {
     }, mainColumn_1.firstChild ? 2000 : 0);
 };
 
-const showSettings = (gameSettings, settingsInner) => {
+const showSettings = async (gameSettings, settingsInner) => {
     settingsInner.insertAdjacentHTML('beforeend', `
         <div id="settings_ranges">
             <p id="brightness_section">Brightness: <span>${gameSettings.settings.screen.brightness}</span>%</p>
@@ -182,6 +182,13 @@ const showSettings = (gameSettings, settingsInner) => {
     });
 
     const settingReset_btn = qs('#settingReset_btn');
+    const isFullScreen_checkbox = qs('#isFullScreen_checkbox');
+    const isFullscreenElectron = await window.electron.checkIsFullscreen();
+    
+    if (isInElectron() && gameSettings.settings.screen.isFullScreen !== isFullscreenElectron) {
+        isFullScreen_checkbox.checked = isFullscreenElectron;
+        gameSettings.settings.screen.isFullScreen = isFullscreenElectron;
+	}
 
     settingReset_btn.addEventListener('mouseover', () => {
         otherSoundsAudio.volume = gameSettings.settings.audio.soundEffects/100;
@@ -216,7 +223,6 @@ const showSettings = (gameSettings, settingsInner) => {
         const brightness_input = qs('#brightness_input');
         const saturation_input = qs('#saturation_input');
         const colorTemperature_input = qs('#colorTemperature_input');
-        const isFullScreen_checkbox = qs('#isFullScreen_checkbox');
         const isTypingOff_checkbox = qs('#isTypingOff_checkbox');
 
         brightness_sectionSpan.innerText = defaultGameData.settings.screen.brightness;
@@ -227,7 +233,6 @@ const showSettings = (gameSettings, settingsInner) => {
         saturation_input.value = defaultGameData.settings.screen.saturation;
         colorTemperature_input.value = defaultGameData.settings.screen.colorTemperature;
 
-        //isFullScreen_checkbox.checked = defaultGameData.settings.audio.isFullScreen;
         isTypingOff_checkbox.checked = defaultGameData.settings.audio.isTypingOff_checkbox;
 
         useGameSettings(defaultGameData.settings, qs('#root'), qs('#colorCover'));

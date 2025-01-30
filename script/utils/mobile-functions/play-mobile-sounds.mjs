@@ -68,4 +68,3 @@ export function playMobileSounds(isSoundEffect, isBGMusic, name, gameSettings, c
 		}
 	}
 }
-

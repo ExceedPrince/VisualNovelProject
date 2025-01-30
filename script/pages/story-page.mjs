@@ -127,7 +127,6 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 				}
 				
 				if (data[partindex].story[index].bgMusic?.command === 'START') {
-					//currentStep.bgMusic.name = gameSettings.savingSlots[slotNumber].lastPlayedMusic;
 					currentStep.bgMusic.name = data[partindex].story[index].bgMusic.name;
 					currentStep.bgMusic.command = 'START';
 					break;

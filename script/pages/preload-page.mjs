@@ -1,5 +1,4 @@
 import { qs } from '../utils/commons.mjs';
-import { navigateToThankYouPage } from '../utils/ending-functions/navigate-to-thank-you-page.mjs';
 import { isInElectron } from '../utils/is-in-electron.mjs';
 import { useGameSettings } from '../utils/use-game-settings.mjs';
 
