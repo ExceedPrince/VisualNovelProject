@@ -383,7 +383,6 @@ export const scene_22 = [
                         text: "Hav a lit nite!🌒",
                         waitingTime: 2,
                         typingTime: 2,
-                        canSpeedUp: [true, "22:21"]
                     },
                 ],
             },

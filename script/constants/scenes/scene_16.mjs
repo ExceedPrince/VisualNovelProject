@@ -577,6 +577,7 @@ export const scene_16 = [
                         waitingTime: 3,
                         typingTime: [3.5, 5, 5, 4],
                         choicePath: "brianna~mobileImportants~0016-b-23",
+
                     },
                     {
                         id: 28, 
@@ -592,7 +593,7 @@ export const scene_16 = [
                         typingTime: [5.5, null, 2, 3],
                         choicePath: "brianna~mobileImportants~0016-b-23",
                         bgMusic: {
-                            name: 'Mobile_night_romantic',
+                            name: ['Mobile_night_romantic', 'Mobile_night_romantic', 'Mobile_night_romantic', 'Mobile_night_romantic'],
                             command: [null, null, 'START', null],
                         },
                     },

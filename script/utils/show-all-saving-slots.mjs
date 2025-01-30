@@ -63,6 +63,7 @@ export const showAllSavingSlots = (pageType, gameSettings, slotNumber, sceneNumb
                     currentGameSlotObject.dateTime = createDateForSaving();
                     currentGameSlotObject.id = slotId.toString();
 
+					//itt szedje össze valahogy az aktuális beszélgetéseket, nézzen bele, és ha épp kezdőidőpotban vagyunk, akko -2 perc
                     if (textingStatus) currentGameSlotObject.textingStatus = textingStatus;
         
                     // Update the game settings

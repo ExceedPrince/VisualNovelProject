@@ -405,7 +405,7 @@ export const choiceDataBase = {
 		}
 	},
 	"0033-r": {
-		"28": {
+		"27": {
 			character: 'reina',
 			location: 'mobileImportants',
 			question: "How should I respond to this fantasy situation?",

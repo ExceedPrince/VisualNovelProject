@@ -13,7 +13,7 @@ export const scene_21 = [
 				image: [null, null, null],
 				class: [null, null, null],
 			  	name: "",
-			  	text: "After the morning date with Reina, now it’s time for my afternoon activity. I still can’t wrap my head around why Hailey wants to use her massage voucher with me. In so many ways, this doesn’t feel right. I mean, who am I to talk after Reina's been cheating on her husband with me and that doesn’t bother me?",
+			  	text: "After the morning date with Reina, now it's time for my afternoon activity. I still can't wrap my head around why Hailey wants to use her massage voucher with me. In so many ways, this doesn't feel right. I mean, who am I to talk after Reina's been cheating on her husband with me and that doesn't bother me?",
 				choiceNext: false,
             },
 			"2": {
@@ -22,7 +22,7 @@ export const scene_21 = [
 				image: [null, null, null],
 				class: [null, null, null],
 			  	name: "",
-			  	text: "Anyway, it’s a set plan, roughly an hour where I just have to lie down. What could possibly go wrong?",
+			  	text: "Anyway, it's a set plan, roughly an hour where I just have to lie down. What could possibly go wrong?",
 				choiceNext: false,
 			},
 			"3": {
@@ -32,7 +32,7 @@ export const scene_21 = [
 				image: [null, null, null],
 				class: [null, null, null],
 			  	name: "",
-			  	text: "When I arrived at the massage parlor, Hailey was already waiting for me. We checked in, they guided us to the locker rooms where the men and women go separate ways, and we’d only meet again in the massage room.",
+			  	text: "When I arrived at the massage parlor, Hailey was already waiting for me. We checked in, they guided us to the locker rooms where the men and women go separate ways, and we'd only meet again in the massage room.",
 				choiceNext: false,
 			},
 			"4": {
@@ -41,7 +41,7 @@ export const scene_21 = [
 				image: [null, null, null],
 				class: [null, null, null],
 			  	name: "",
-			  	text: "I remember Hailey mentioning that the view would be a big experience for me. I still have no clue what she meant. Sure, the place isn’t bad, but it’s no five-star spa. In the room, either I’ll be alone, or there will be a divider, so I really can't imagine what special sight I’m supposed to expect.",
+			  	text: "I remember Hailey mentioning that the view would be a big experience for me. I still have no clue what she meant. Sure, the place isn't bad, but it's no five-star spa. In the room, either I'll be alone, or there will be a divider, so I really can't imagine what special sight I'm supposed to expect.",
 				choiceNext: false,
 			},
 			"5": {
@@ -50,7 +50,7 @@ export const scene_21 = [
 				image: [null, null, null],
 				class: [null, null, null],
 			  	name: "",
-			  	text: "They asked me to strip down to my boxers, wrap a towel around my waist, and then head to the massage room once I’m ready. I did as instructed, opened the door, and instead of the serene, peaceful, zen vibe I expected, my heart nearly leaped out of my chest...",
+			  	text: "They asked me to strip down to my boxers, wrap a towel around my waist, and then head to the massage room once I'm ready. I did as instructed, opened the door, and instead of the serene, peaceful, zen vibe I expected, my heart nearly leaped out of my chest...",
 				choiceNext: false,
 			},
 			"6": {
@@ -65,7 +65,7 @@ export const scene_21 = [
 				image: [null, null, null],
 				class: [null, null, null],
 			  	name: "",
-			  	text: "Not only was I not going to be alone in the room, but there wasn’t even a divider between me and Hailey! She was there, just in a towel herself, settling onto the massage table.",
+			  	text: "Not only was I not going to be alone in the room, but there wasn't even a divider between me and Hailey! She was there, just in a towel herself, settling onto the massage table.",
 				choiceNext: false,
 			},
 			"7": {
@@ -74,7 +74,7 @@ export const scene_21 = [
 				image: [null, null, null],
 				class: [null, null, null],
 			  	name: "",
-			  	text: "Our eyes immediately met. If there was a mirror, I’d bet money my face would be fire-engine red.",
+			  	text: "Our eyes immediately met. If there was a mirror, I'd bet money my face would be fire-engine red.",
 				choiceNext: false,
             },
 			"8": {
@@ -83,7 +83,7 @@ export const scene_21 = [
 				image: [null, null, null],
 				class: [null, null, null],
 			  	name: "",
-			  	text: "I thought nothing could top Reina’s surprise in the fitting room today, but here we are, and my heart’s racing again. I was completely frozen. I know it’s rude to stare, but I couldn’t stop; the shock just held me in place.",
+			  	text: "I thought nothing could top Reina's surprise in the fitting room today, but here we are, and my heart's racing again. I was completely frozen. I know it's rude to stare, but I couldn't stop; the shock just held me in place.",
 				choiceNext: false,
 			},
 			"9": {
@@ -103,7 +103,7 @@ export const scene_21 = [
 				class: [null, null, null],
 			  	name: "",
                 textClass: 'italic',
-			  	text: "She had this all planned, didn’t she? How else could she have known I’d walk in at this exact moment, not earlier when she wasn’t here or later when she was already lying down and I wouldn’t see anything?",
+			  	text: "She had this all planned, didn't she? How else could she have known I'd walk in at this exact moment, not earlier when she wasn't here or later when she was already lying down and I wouldn't see anything?",
 				choiceNext: false,
 			},
 			"11": {
@@ -121,7 +121,7 @@ export const scene_21 = [
 				image: [null, null, null],
 				class: [null, null, null],
 			  	name: "Tyler",
-			  	text: "Perfect!? This is like, the worst timing ever, I’m sorry!",
+			  	text: "Perfect!? This is like, the worst timing ever, I'm sorry!",
 				choiceNext: false,
 			},
 			"13": {
@@ -139,7 +139,7 @@ export const scene_21 = [
 				image: [null, null, null],
 				class: [null, null, null],
 			  	name: "Hailey",
-			  	text: "No, please, don’t go! Stay, it doesn’t bother me at all!",
+			  	text: "No, please, don't go! Stay, it doesn't bother me at all!",
 				choiceNext: false,
 			},
 			"15": {
@@ -148,7 +148,7 @@ export const scene_21 = [
 				image: [null, null, null],
 				class: [null, null, null],
 			  	name: "Tyler",
-			  	text: "It doesn’t? Hailey! I’ve never even seen you in a swimsuit, let alone... like this! This is a huge leap from saying you’re not bothered by me seeing you naked!",
+			  	text: "It doesn't? Hailey! I've never even seen you in a swimsuit, let alone... like this! This is a huge leap from saying you're not bothered by me seeing you naked!",
 				choiceNext: false,
 			},
 			"16": {
@@ -184,7 +184,7 @@ export const scene_21 = [
 				image: [null, null, null],
 				class: [null, null, null],
 			  	name: "Tyler",
-			  	text: "Hailey, this isn’t... funny!",
+			  	text: "Hailey, this isn't... funny!",
 				choiceNext: false,
 			},
 			"20": {
@@ -193,7 +193,7 @@ export const scene_21 = [
 				image: [null, null, null],
 				class: [null, null, null],
 			  	name: "Hailey",
-			  	text: "Hehe. But I’m having a blast watching you squirm! You’re so cute when you’re all flustered, I could just eat you up!",
+			  	text: "Hehe. But I'm having a blast watching you squirm! You're so cute when you're all flustered, I could just eat you up!",
 				choiceNext: false,
 			},
 			"21": {
@@ -202,7 +202,7 @@ export const scene_21 = [
 				image: [null, null, null],
 				class: [null, null, null],
 			  	name: "Tyler",
-			  	text: "Alright, Hailey, that’s enough! If you’re trying to jump on me, I’m not sure this is the place for it. We’d probably both get kicked out.",
+			  	text: "Alright, Hailey, that's enough! If you're trying to jump on me, I'm not sure this is the place for it. We'd probably both get kicked out.",
 				choiceNext: false,
 			},
 			"22": {
@@ -211,7 +211,7 @@ export const scene_21 = [
 				image: [null, null, null],
 				class: [null, null, null],
 			  	name: "Hailey",
-			  	text: "Aww... you’re right. But just ‘cause I can’t do it here doesn’t mean I can’t pull it off somewhere else without getting in trouble!",
+			  	text: "Aww... you're right. But just ‘cause I can't do it here doesn't mean I can't pull it off somewhere else without getting in trouble!",
 				choiceNext: false,
 			},
 			"23": {
@@ -229,7 +229,7 @@ export const scene_21 = [
 				image: [null, null, null],
 				class: [null, null, null],
 			  	name: "Hailey",
-			  	text: "Hehe. Okay, okay, I’m chillin’. But see? I told you it’d be fun... and that you’d probably enjoy the view. Was I right, or was I so right?",
+			  	text: "Hehe. Okay, okay, I'm chillin'. But see? I told you it'd be fun... and that you'd probably enjoy the view. Was I right, or was I so right?",
 				choiceNext: false,
 			},
 			"25": {
@@ -238,7 +238,7 @@ export const scene_21 = [
 				image: [null, null, null],
 				class: [null, null, null],
 			  	name: "Tyler",
-			  	text: "Hmm... fine, I won’t say you were wrong...",
+			  	text: "Hmm... fine, I won't say you were wrong...",
 				choiceNext: false,
             },
 			"26": {
@@ -247,7 +247,7 @@ export const scene_21 = [
 				image: [null, null, null],
 				class: [null, null, null],
 			  	name: "Hailey",
-			  	text: "Hehe, love to hear it! Honestly, I don’t even know if I’ve ever been on a date where I felt this excited and happy. You just always seem to do that to me!",
+			  	text: "Hehe, love to hear it! Honestly, I don't even know if I've ever been on a date where I felt this excited and happy. You just always seem to do that to me!",
 				choiceNext: false,
             },
 			"27": {
@@ -273,9 +273,9 @@ export const scene_21 = [
                 choicePath: 'hailey~importants~0021-27',
 			  	name: "Tyler",
 			  	text: [
-                    "Hailey... why me? Why are you doing this with me? I’m just a regular trainer, I don’t live some luxurious life. Why are you so... shameless about letting me get this close?",
-                    "Hailey, are you doing this because you don’t get enough time with your boyfriend and can’t, like, satisfy these urges with him?",
-                    "A date? This is totally new to me—I wasn’t coming into this massage thing with that kinda mindset."
+                    "Hailey... why me? Why are you doing this with me? I'm just a regular trainer, I don't live some luxurious life. Why are you so... shameless about letting me get this close?",
+                    "Hailey, are you doing this because you don't get enough time with your boyfriend and can't, like, satisfy these urges with him?",
+                    "A date? This is totally new to me—I wasn't coming into this massage thing with that kinda mindset."
                 ],
 				choiceNext: false,
 			},
@@ -294,7 +294,7 @@ export const scene_21 = [
                 choicePath: 'hailey~importants~0021-27',
 			  	name: "Hailey",
 			  	text: [
-                    "‘Cause with you, it feels like this whole new world opened up, way more exciting than the one I’m living in right now",
+                    "‘Cause with you, it feels like this whole new world opened up, way more exciting than the one I'm living in right now",
                     "Could I ask you, Tyler, maybe not to bring him up during a sweet little one-on-one like this?",
                     "Yeah? W-Well, what exactly were you thinking this was all about?"
                 ],
@@ -308,9 +308,9 @@ export const scene_21 = [
                 choicePath: 'hailey~importants~0021-27',
 			  	name: "Tyler",
 			  	text: [
-                    "Really? I mean, I’m just a broke trainer, not some celebrity. What on earth do you find exciting about my life?",
-                    "Sorry, but I think it's fair to bring him up—he’s your partner. You being naked in front of me and calling this a date, well, it's not exactly ethical on your part. After all this, I think it’s only right to ask: why are you doing this?",
-                    "I thought this was just about returning the favor for the tennis session. Remember, I only agreed to this massage thing reluctantly, because I didn’t feel it was necessary. I certainly wasn’t expecting anything more than that."
+                    "Really? I mean, I'm just a broke trainer, not some celebrity. What on earth do you find exciting about my life?",
+                    "Sorry, but I think it's fair to bring him up—he's your partner. You being naked in front of me and calling this a date, well, it's not exactly ethical on your part. After all this, I think it's only right to ask: why are you doing this?",
+                    "I thought this was just about returning the favor for the tennis session. Remember, I only agreed to this massage thing reluctantly, because I didn't feel it was necessary. I certainly wasn't expecting anything more than that."
                 ],
 				choiceNext: false,
 			},
@@ -324,9 +324,9 @@ export const scene_21 = [
                 choicePath: 'hailey~importants~0021-27',
 			  	name: "Hailey",
 			  	text: [
-                    "Pretty much everything. You work hard for what you have, and you’re super empathetic. I don’t really feel that from my partner. Sure, money’s great, but... without challenges, I don’t feel like I’ve earned or deserve what I have. I envy that about you, and that’s why being with you is so exciting.",
-                    "Because, at the end of the day, I’m still a woman with needs. I went through so much trouble to plan this, and then he cancels for some important work project. I’m starting to feel like he’s more in love with his job than with me.",
-                    "Wow... that was pretty cold. I thought there was something between us, that maybe you’d want to spend time with me."
+                    "Pretty much everything. You work hard for what you have, and you're super empathetic. I don't really feel that from my partner. Sure, money's great, but... without challenges, I don't feel like I've earned or deserve what I have. I envy that about you, and that's why being with you is so exciting.",
+                    "Because, at the end of the day, I'm still a woman with needs. I went through so much trouble to plan this, and then he cancels for some important work project. I'm starting to feel like he's more in love with his job than with me.",
+                    "Wow... that was pretty cold. I thought there was something between us, that maybe you'd want to spend time with me."
                 ],
 				choiceNext: false,
 			},
@@ -339,8 +339,8 @@ export const scene_21 = [
 			  	name: ["Tyler", "Hailey", "Hailey"],
 			  	text: [
                     "Wow... I never thought my simple, everyday life full of struggles could be exciting to anyone, especially someone from your kind of wealthy world.",
-                    "And I don’t know how long I can keep doing this, but I don’t want to spend my life like this, with a man who’s not really there for me! Sure, I may live more modestly, but at least someone actually cares about me!",
-                    "There is a connection, sure—you’re one of my clients whose progress I’m really proud of, and I love working with you."
+                    "And I don't know how long I can keep doing this, but I don't want to spend my life like this, with a man who's not really there for me! Sure, I may live more modestly, but at least someone actually cares about me!",
+                    "There is a connection, sure—you're one of my clients whose progress I'm really proud of, and I love working with you."
                 ],
 				choiceNext: false,
 			},
@@ -352,9 +352,9 @@ export const scene_21 = [
                 choicePath: 'hailey~importants~0021-27',
 			  	name: ["Hailey", "Tyler", "Hailey"],
 			  	text: [
-                    "Well, you better believe it, ‘cause this is real. I’ve been trying to catch your attention for a while now, and it seems like all I had to do was be a little more forward to finally make you notice.",
-                    "I totally understand where you're coming from, but I don’t think having an affair is the solution. There’s always room to talk things out with your partner.",
-                    "I see... so that’s it? Just a client? Is that all I am to you?"
+                    "Well, you better believe it, ‘cause this is real. I've been trying to catch your attention for a while now, and it seems like all I had to do was be a little more forward to finally make you notice.",
+                    "I totally understand where you're coming from, but I don't think having an affair is the solution. There's always room to talk things out with your partner.",
+                    "I see... so that's it? Just a client? Is that all I am to you?"
                 ],
 				choiceNext: false,
 			},
@@ -367,7 +367,7 @@ export const scene_21 = [
 			  	name: ["Hailey", "Hailey", "Tyler"],
 			  	text: [
                     "So, the real question is, are you totally free too? Like, can there even be something between us?",
-                    "You better believe I’ve tried more than once, but he never listens. Like, he has no idea that there’s even a problem.",
+                    "You better believe I've tried more than once, but he never listens. Like, he has no idea that there's even a problem.",
                     "Yeah, for now. You know how strict the rules are for me in the gym."
                 ],
 				choiceNext: false,
@@ -381,7 +381,7 @@ export const scene_21 = [
 			  	name: ["Tyler", "Tyler", "Hailey"],
 			  	text: [
                     "Well, the truth is...",
-                    "If that’s the case, then I think...",
+                    "If that's the case, then I think...",
                     "I get that, but..."
                 ],
 				choiceNext: false,
@@ -399,7 +399,7 @@ export const scene_21 = [
 				class: [null, null, null],
                 choicePath: 'hailey~importants~0021-27',
 			  	name: "",
-			  	text: "There’s a knock on the door, cutting our conversation short.",
+			  	text: "There's a knock on the door, cutting our conversation short.",
 				choiceNext: false,
 			},
 			"37": {
@@ -415,7 +415,7 @@ export const scene_21 = [
 				image: [null, null, null],
 				class: [null, null, null],
 			  	name: "Hailey",
-			  	text: "Oh, it’s starting! Let’s lie down!",
+			  	text: "Oh, it's starting! Let's lie down!",
 				choiceNext: false,
 			},
 			"38": {
@@ -424,7 +424,7 @@ export const scene_21 = [
 				image: [null, null, null],
 				class: [null, null, null],
 			  	name: "Hailey",
-			  	text: "We’re all set!",
+			  	text: "We're all set!",
 				choiceNext: false,
 			},
 			"39": {
@@ -443,7 +443,7 @@ export const scene_21 = [
 				image: [null, null, null],
 				class: [null, null, null],
 			  	name: "",
-			  	text: "The rest of the session passes in silence, and while the conversation wasn’t over, I was pretty sure Hailey would bring it up again afterward, but she didn’t.",
+			  	text: "The rest of the session passes in silence, and while the conversation wasn't over, I was pretty sure Hailey would bring it up again afterward, but she didn't.",
 				choiceNext: false,
 			},
 			"41": {
@@ -452,7 +452,7 @@ export const scene_21 = [
 				image: [null, null, null],
 				class: [null, null, null],
 			  	name: "",
-			  	text: "She didn’t even hint at it, like she’d forgotten the whole thing. Oh well, at least I dodged an awkward topic for now.",
+			  	text: "She didn't even hint at it, like she'd forgotten the whole thing. Oh well, at least I dodged an awkward topic for now.",
 				choiceNext: false,
 			},
 			"42": {

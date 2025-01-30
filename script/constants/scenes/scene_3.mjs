@@ -175,7 +175,7 @@ export const scene_3 = [
 				image: [null, "Reina/Reina_casual_grin", null],
 				class: [null, null, null],
 			  	name: "Tyler",
-			  	text: "Sure",
+			  	text: "Sure.",
 				choiceNext: false,
 			},
 			"20": {

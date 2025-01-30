@@ -7,22 +7,22 @@ import { isInElectron } from '../is-in-electron.mjs';
 
 const mobileExitDialogs = {
     timeSkipNext: [
-        {title: 'Time moves on...', btn: 'Push Forward'},
-        {title: 'Later that day...', btn: 'Proceed Further'},
-        {title: 'After some time...', btn: 'Onward'},
-        {title: 'Hours pass by...', btn: 'Advance'}
+        {title: 'The day moves forward...', btn: 'Let\'s keep going'},
+        {title: 'Later that day...', btn: 'See what\'s next'},
+        {title: 'After some time...', btn: 'See what happens'},
+        {title: 'Hours pass by...', btn: 'Move ahead'}
     ],
     exit: [
         {title: 'Let\'s close the day here', btn: 'Go to Bed'},
-        {title: 'Time to End the Conversations', btn: 'Say Goodnight'},
+        {title: 'Time to End the Conversations', btn: 'Prepare for tomorrow'},
         {title: 'Let\'s Wrap Up the Day', btn: 'Get Some Rest'},
         {title: 'Let\'s Wind Down the Day', btn: 'Turn In'},
-        {title: 'The Evening is Over', btn: 'Goodnight'},
+        {title: 'A well-deserved rest awaits', btn: 'Time to rest'},
         {title: 'Let\'s Enjoy some Quiet Moments', btn: 'Call it a Night'},
         {title: 'Let\'s Conclude the Day', btn: 'Sleep Well'},
         {title: 'Time to Take a Rest', btn: 'End Day'},
         {title: 'Let\'s Let the Conversations Fade', btn: 'Say Goodbye'},
-        {title: 'Night is Approaching', btn: 'Bedtime'},
+        {title: 'I\'m ready to recharge', btn: 'Let the day conclude'},
     ]
 }
 

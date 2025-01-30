@@ -5,8 +5,8 @@ export const scene_33 = [
     { sceneId: "0032" }, //storyScene: 0032
     {
 		sceneId: "0033",
-        startTime: "15:46",
-        endTime: "19:27",
+        startTime: "14:16",
+        endTime: "17:57",
         timeSkipNext: {
             content: "In the late afternoon...",
             nextSceneType: "STORY",
@@ -20,8 +20,8 @@ export const scene_33 = [
 		textingPartner: {
             Daena: {
                 isMandatory: false,
-                sheStartsAt: "15:48",
-                sheEndsAt: "17:39",
+                sheStartsAt: "14:18",
+                sheEndsAt: "16:09",
                 messages: [
                     {
                         id: 0, 
@@ -282,8 +282,8 @@ export const scene_33 = [
             },
             Reina: {
                 isMandatory: false,
-                sheStartsAt: "16:23",
-                sheEndsAt: "19:20",
+                sheStartsAt: "14:53",
+                sheEndsAt: "17:50",
                 messages: [
                     {
                         id: 0, 
@@ -498,7 +498,7 @@ export const scene_33 = [
                         waitingTime: null,
                         typingTime: null,
                         choiceNow: true,
-                        choicePath: "reina~mobileImportants~0033-r-28",
+                        choicePath: "reina~mobileImportants~0033-r-27",
                     },
                     {
                         id: 28, 
@@ -511,7 +511,7 @@ export const scene_33 = [
                         ], 
                         waitingTime: 4,
                         typingTime: [1, 6, 4.5, 3.5],
-                        choicePath: "reina~mobileImportants~0033-r-28",
+                        choicePath: "reina~mobileImportants~0033-r-27",
                         bgMusic: {
                             name: ['Mobile_daily_sad', 'Mobile_daily_sad', 'Mobile_daily_sad', 'Date_with_Reina'],
                             command: ['START', 'START', 'START', 'START'],
@@ -528,7 +528,7 @@ export const scene_33 = [
                         ], 
                         waitingTime: 2,
                         typingTime: [2, 5, 5.5, 2],
-                        choicePath: "reina~mobileImportants~0033-r-28",
+                        choicePath: "reina~mobileImportants~0033-r-27",
                     },
                     {
                         id: 30, 
@@ -541,7 +541,7 @@ export const scene_33 = [
                         ], 
                         waitingTime: null,
                         typingTime: null,
-                        choicePath: "reina~mobileImportants~0033-r-28",
+                        choicePath: "reina~mobileImportants~0033-r-27",
                     },
                     {
                         id: 31, 
@@ -554,7 +554,7 @@ export const scene_33 = [
                         ], 
                         waitingTime: 3,
                         typingTime: [5, 3, 1, 1],
-                        choicePath: "reina~mobileImportants~0033-r-28",
+                        choicePath: "reina~mobileImportants~0033-r-27",
                     },
                     {
                         id: 32, 
@@ -568,7 +568,7 @@ export const scene_33 = [
                         ], 
                         waitingTime: [null, 2, 2, 2],
                         typingTime: [null, 5, 5, 2],
-                        choicePath: "reina~mobileImportants~0033-r-28",
+                        choicePath: "reina~mobileImportants~0033-r-27",
                         bgMusic: {
                             name: ['Mobile_daily_sad', 'Mobile_daily_sad', 'Mobile_daily_sad', 'Mobile_daily_ecchi'],
                             command: ['START', 'START', 'START', 'START'],
@@ -585,7 +585,7 @@ export const scene_33 = [
                         ], 
                         waitingTime: [4, null, null, null],
                         typingTime: [8, null, null, null],
-                        choicePath: "reina~mobileImportants~0033-r-28",
+                        choicePath: "reina~mobileImportants~0033-r-27",
                     },
                     {
                         id: 34, 
@@ -598,7 +598,7 @@ export const scene_33 = [
                         ], 
                         waitingTime: [null, 3, 3, 3],
                         typingTime: [null, 1, 3, 4],
-                        choicePath: "reina~mobileImportants~0033-r-28",
+                        choicePath: "reina~mobileImportants~0033-r-27",
                     },
                     {
                         id: 35, 
@@ -607,11 +607,11 @@ export const scene_33 = [
                             "Alright...",
                             "Now that that's settled...",
                             "That would be a serious milestone, and I'd like to take things one step at a time",
-                            "But you'll have to hold on until then, so don't even think about using this picture for that!"
+                            "But you'll have to hold on until then, so don't even think about using this picture for... that!"
                         ], 
                         waitingTime: 4,
                         typingTime: [1, 2.5, 7, 8],
-                        choicePath: "reina~mobileImportants~0033-r-28",
+                        choicePath: "reina~mobileImportants~0033-r-27",
                     },
                     {
                         id: 36, 

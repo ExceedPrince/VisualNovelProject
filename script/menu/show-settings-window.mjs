@@ -11,7 +11,7 @@ export const showSettingsWindow = (settings_window, gameSettings) => {
                 <p id="brightness_section">Brightness: <span>${gameSettings.settings.screen.brightness}</span>%</p>
                 <input type="range" id="brightness_input" name="brightness" data-location="screen" value="${gameSettings.settings.screen.brightness}" min="0" max="200" step="1" />
                 <p id="saturation_section">Saturation: <span>${gameSettings.settings.screen.saturation}</span>%</p>
-                <input type="range" id="saturation_input" name="saturation" data-location="screen" value="${gameSettings.settings.screen.saturation}" min="0" max="100" step="1" />
+                <input type="range" id="saturation_input" name="saturation" data-location="screen" value="${gameSettings.settings.screen.saturation}" min="0" max="200" step="1" />
                 <p id="colorTemperature_section">Color Temperature: <span>${gameSettings.settings.screen.colorTemperature}</span>%</p>
                 <input type="range" id="colorTemperature_input" name="colorTemperature" data-location="screen" value="${gameSettings.settings.screen.colorTemperature}" min="0" max="100" step="1" />
                 <p id="bgMusic_section">Background Music: <span>${gameSettings.settings.audio.bgMusic}</span>%</p>

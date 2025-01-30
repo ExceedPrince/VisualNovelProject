@@ -2,14 +2,14 @@ import { qs } from './commons.mjs';
 
 export const useGameSettings = (settings, root, colorCover) => {
     const brightness = settings.screen.brightness;
-    const grayScale = 100 - settings.screen.saturation;
+    const saturate = settings.screen.saturation;
     const colorTemperature = valueForColorCover(settings.screen.colorTemperature);
 
     root.style['filter'] = 
-        `brightness(${brightness}%) grayscale(${grayScale}%)`;
+        `brightness(${brightness}%) saturate(${saturate}%)`;
     colorCover.style['background'] = colorTemperature;
     colorCover.style['filter'] = 
-        `brightness(${brightness}%) grayscale(${grayScale}%)`;
+        `brightness(${brightness}%) saturate(${saturate}%)`;
 
     const bg_music_audio = qs('#bg_music_audio');
     const otherSoundsAudio = qs('#other_sound_effects_audio');
