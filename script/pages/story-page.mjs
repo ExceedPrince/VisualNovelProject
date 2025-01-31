@@ -471,6 +471,10 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 				}
 			}
 
+			if (!stepObject.class[index] && charContainer) {
+				console.log("belépett", charContainer)
+			}
+
 			if (stepObject.class[index] && charContainer) {
 				if (isStepBack) {
 					charContainer.className = `chars notVisible`
