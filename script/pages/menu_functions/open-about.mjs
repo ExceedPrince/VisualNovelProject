@@ -32,8 +32,8 @@ export const openAbout = (mainColumn_1, state) => {
 const showAbout = (about_inner) => {
     const aboutContent = `
         <h2>About Constrained Love</h2>
-        <p><b>Version:</b> 1.0</p>
-        <p><b>Built with:</b> Electron 29.2.0</p>
+        <p><b>Version:</b> 1.0.0</p>
+        <p><b>Built with:</b> Electron 29.4.6</p>
         <div id="about_description">
             <p>This game is my own personal product, a labor of creativity and dedication. The images in the game are a mix of my own work and contributions from MidJourney AI. Some of the music and sound effects were created using Suno AI, while others were downloaded from websites offering free, unrestricted use.</p>
             <p>The code for this game was entirely written by me, utilizing HTML, SCSS (CSS), and JavaScript, and is rendered with Electron. While the source code is open for anyone to view, using it or any of its media content for personal or commercial purposes without my permission is prohibited, as it infringes upon my personal rights as the creator.</p>
