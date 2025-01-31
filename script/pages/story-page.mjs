@@ -38,7 +38,7 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 	const root = qs('#root');
 	root.classList.remove('fadeOut');
 	root.classList.add('fadeIn');
-	let isTyping = !gameSettings.settings.screen.isTypingOff;
+	let isTyping = !gameSettings?.settings?.screen?.isTypingOff || true;
 	let firstLoad = true;
 	localStorage.setItem('sceneChanged', 'false');
 

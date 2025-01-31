@@ -257,7 +257,7 @@ export const scene_14 = [
 				charContainer: ['char-left', null, 'char-right'],
 				image: ['Hailey/Hailey_casual_angry', null, 'Brianna/Brianna_casual_angry'],
 				class: [null, null, 'fadeRight'],
-			  	name: "Lindsay",
+			  	name: "Brianna",
 			  	text: "I don't have a husband, I'm divorced.",
 				choiceNext: false,
 			},
