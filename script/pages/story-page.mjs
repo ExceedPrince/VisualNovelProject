@@ -38,7 +38,7 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 	const root = qs('#root');
 	root.classList.remove('fadeOut');
 	root.classList.add('fadeIn');
-	let isTyping = !gameSettings.settings.screen.isTypingOff;
+	let isTyping = !gameSettings?.settings?.screen?.isTypingOff || true;
 	let firstLoad = true;
 	localStorage.setItem('sceneChanged', 'false');
 
@@ -469,6 +469,10 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 				if (selectedContainer === 'char-right') {
 					stepObject.class[index] = 'fadeRight';
 				}
+			}
+
+			if (!stepObject.class[index] && charContainer) {
+				console.log("belépett", charContainer)
 			}
 
 			if (stepObject.class[index] && charContainer) {

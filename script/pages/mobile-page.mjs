@@ -24,7 +24,7 @@ export const mobilePage = (mobileData, mobilePartindex, gameSettings, isFromLoad
 	const root = qs('#root');
 	root.classList.remove('fadeOut');
 	root.classList.add('fadeIn');
-	let isTyping = !gameSettings.settings.screen.isTypingOff;
+	let isTyping = !gameSettings?.settings?.screen?.isTypingOff || true;;
     let step = 1;
     gameSettings.savingSlots[slotNumber].currentStep = step;
 	const textingStatus = isFromLoad ? gameSettings.savingSlots[slotNumber].textingStatus : {};

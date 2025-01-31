@@ -192,7 +192,7 @@ export const scene_27 = [
 					command: 'START'
 				},
                 specialSceneNow: true,
-				specialSceneId: "0025-13",
+				specialSceneId: "0027-19",
 				background: "special_scenes/0027-19",
 				charContainer: [null, null, null],
 				image: [null, null, null],
