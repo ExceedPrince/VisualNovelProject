@@ -8,11 +8,15 @@ import { choiceDataBase } from "../../constants/choice-database.mjs";
 import { playMobileSounds } from "./play-mobile-sounds.mjs";
 
 function putTextMessageToHTML(chatRowElement, textingObj, chatId, gameSettings) {
-    chatRowElement.innerHTML = `
-        <div class="chatRow_bubble">
-            ${decideComponentFromMultipleInMobile(textingObj.messages[chatId], textingObj.messages[chatId].text, gameSettings)}
-        </div>
-    `;
+    const textToWrite = decideComponentFromMultipleInMobile(textingObj.messages[chatId], textingObj.messages[chatId].text, gameSettings);
+    
+    if (textToWrite) {
+        chatRowElement.innerHTML = `
+            <div class="chatRow_bubble">
+                ${textToWrite}
+            </div>
+        `;
+    }
 };
 
 export const continueConversation = async (boxId, textingObj, chatId, gameSettings, chatState, timeState, mobilePartindex) => {
@@ -269,20 +273,25 @@ export const continueConversation = async (boxId, textingObj, chatId, gameSettin
                     await wait(2000);
                 }
 
-                if (textarea.textContent.length < 1) {
+                const chosenAnswer = decideComponentFromMultipleInMobile(textingObj.messages[chatId], textingObj.messages[chatId].text, gameSettings);
+
+                const mouseAudio = qs('#mouse_audio');
+
+                if (textarea?.textContent.length < 1) {
+                    mouseAudio.volume = 0;
                     textarea.click();
                 }
 
-                const chosenAnswer = decideComponentFromMultipleInMobile(textingObj.messages[chatId], textingObj.messages[chatId].text, gameSettings);
                 if (chosenAnswer?.length) {
                     await wait((chosenAnswer.length + 1) * 30);
-
-                    messageSendBtn.classList.remove('disabled');
-    
-                    await wait(200);
-    
-                    messageSendBtn.click();
                 }
+                messageSendBtn.classList.remove('disabled');
+    
+                await wait(200);
+
+                messageSendBtn.click();
+
+                mouseAudio.volume = gameSettings.settings.audio.soundEffects/100;
             }
         }
     }

@@ -16,7 +16,10 @@
     "appId": "com.exceedprince.constrainedlove",
     "productName": "Constrained Love",
     "mac": {
-      "target": ["dmg", "zip"],
+      "target": [
+        "dmg",
+        "zip"
+      ],
       "category": "public.app-category.games",
       "icon": "img/assets/game_icon_mac.icns"
     },

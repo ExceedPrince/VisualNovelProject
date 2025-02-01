@@ -97,7 +97,7 @@ export const scene_7 = [
 				charContainer: [null, null, null],
 				image: [null, null, null],
 				class: [null, null, null],
-			  	name: "Daena",
+			  	name: "Brianna",
 			  	text: "This early?",
 				choiceNext: false,
 			},

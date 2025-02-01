@@ -1,0 +1,36 @@
+==================================================
+Constrained Love - Patch Notes
+==================================================
+Version: 1.0.1  |  Release Date: 2025-02-02
+--------------------------------------------------
+Bug fixes: 
+🔹 Typo in the story
+🔹 If the player does not select an option during a chat conversation, it may appear with the message "undefined".
+
+==================================================
+Version: 1.0.0  |  Release Date: 2025-01-31
+--------------------------------------------------
+**First official release!**
+"Constrained Love" is now available to Windows players.
+
+🔹 **Main functions:**
+   - Complete story from the first chapter to the end.
+   - Interactive dialogue system with several branches.
+   - Decision-based gameplay that affects the outcome.
+   - Multiple endings depending on in-game choices.
+
+🔹 **Characters:**
+   - 5 main characters with their own personalities and backstories.
+
+🔹 **Graphics and UI:**
+   - AI generated wallpapers with multiple locations.
+   - Easy to use user interface.
+
+🔹 **Music and sound effects:**
+   - AI generated background music.
+   - Lifelike sound effects to enhance the gaming experience.
+
+🔹 **Other:**
+   - Save system with multiple save slots.
+   - Basic settings menu (color, brightness, volume, typing animation, etc.).
+   - Full screen and windowed mode support.
