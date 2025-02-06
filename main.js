@@ -1,6 +1,8 @@
 // Importing required modules from Electron
 const { app, session, BrowserWindow, ipcMain  } = require('electron');
 const path = require('path');
+const fs = require('fs');
+const { pathToFileURL } = require('url');
 
 let mainWindow;
 
@@ -48,4 +50,24 @@ ipcMain.on('toggle-fullscreen', () => {
 
 ipcMain.handle('is-fullscreen', () => {
   return mainWindow.isFullScreen();
+});
+
+ipcMain.handle('save-slot-image', async (event, slotNumber, imageData) => {
+  try {
+      const base64Data = imageData.replace(/^data:image\/png;base64,/, '');
+      const saveDir = path.join(app.getPath('userData'), 'CL_save_images');
+      const filePath = path.join(saveDir, `CL_save_slot_${slotNumber}.png`);
+
+      if (!fs.existsSync(saveDir)) {
+          fs.mkdirSync(saveDir, { recursive: true });
+      }
+
+      fs.writeFileSync(filePath, Buffer.from(base64Data, 'base64'));
+
+      const fileUrl = pathToFileURL(filePath).href;
+      return fileUrl;
+  } catch (error) {
+      console.error('Error at saving image:', error);
+      return null;
+  }
 });

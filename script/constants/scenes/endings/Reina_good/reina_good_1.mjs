@@ -449,7 +449,7 @@ export const reina_good_1 = [
 				image: [null, null, null],
 				class: [null, null, null],
 			  	name: "",
-			  	text: "This moment isn’t just about the outer beatuy. I’ve fought so hard for it because I desire Reina deeply, both body and soul.",
+			  	text: "This moment isn’t just about the outer beauty. I’ve fought so hard for it because I desire Reina deeply, both body and soul.",
 				choiceNext: false,
 			},
             "48": {

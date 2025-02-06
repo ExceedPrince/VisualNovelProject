@@ -21,6 +21,7 @@ import { selectEnding } from '../utils/ending-functions/select-ending.mjs';
 import { startOutroVideo } from '../utils/ending-functions/start-outro-video.mjs';
 import { isInElectron } from '../utils/is-in-electron.mjs';
 import { cantGoBackPopup } from '../utils/cant-go-back-popup.mjs';
+import { colorizeTexts } from '../utils/colorize-texts.mjs';
 
 export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFromLoad = false) => {
 	if (partindex >= data.length) {
@@ -57,7 +58,7 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 					<img src="" alt="character" class="notVisible">
 				</div>
 			</div>
-			<div id="textContainer">
+			<div id="textContainer" class="">
 				<div id="textContainer-inner">
 					<div id="char-name">${setStoryComponentFromMultiple(data[partindex].story[step].name, data[partindex].story[step], gameSettings)}</div>
 					<p id="char-text"></p>
@@ -100,6 +101,7 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 	} else {
 		characterName.classList.add('d-none');
 	}
+	colorizeTexts(textContainer, setStoryComponentFromMultiple(data[partindex].story[step].name, data[partindex].story[step], gameSettings));
 
 	navbarIcon.addEventListener("mouseover", () => {
 		otherSoundsAudio.volume = gameSettings.settings.audio.soundEffects/100;
@@ -307,6 +309,8 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 		) {
 			playSound(gameSettings, data[partindex].story[step], gameSettings.settings.audio);
 		}
+
+		colorizeTexts(textContainer, setStoryComponentFromMultiple(data[partindex].story[step].name, data[partindex].story[step], gameSettings));
 	};
 
 	function arrowNavigation(event) {
@@ -448,6 +452,8 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 				playSound(gameSettings, data[partindex].story[step], gameSettings.settings.audio);
 			}
 		}
+
+		colorizeTexts(textContainer, setStoryComponentFromMultiple(data[partindex].story[step].name, data[partindex].story[step], gameSettings));
 	};
 
 	function charContainerFilling(stepObject, isStepBack = false) {
@@ -750,6 +756,8 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 					characterText.className = "";
 				}
 
+				colorizeTexts(textContainer, setStoryComponentFromMultiple(data[partindex].story[step].name, data[partindex].story[step], gameSettings));
+
 				if (data[partindex].story[step].stepSkip && step + setStoryComponentFromMultiple(data[partindex].story[step].stepSkip, data[partindex].story[step], gameSettings) >= data[partindex].lengthNum) {
 					Object.defineProperty(data[partindex].story[step], "bgMusic", {value: {"command": 'FADE_OUT'}})
 				}
@@ -777,6 +785,8 @@ export const storyPage = (data, partindex, gameSettings, isNewGame = false, isFr
 
 					setTimeout(() => {
 						storyContainer.click();
+
+						colorizeTexts(textContainer, setStoryComponentFromMultiple(data[partindex].story[step].name, data[partindex].story[step], gameSettings));
 					}, 500);
 				}
 			}

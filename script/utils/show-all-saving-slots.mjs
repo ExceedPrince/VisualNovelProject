@@ -8,7 +8,11 @@ export const showAllSavingSlots = (pageType, gameSettings, slotNumber, sceneNumb
 		saveBoxInner.insertAdjacentHTML("beforeend", `
 			<div id="saveSlot_${slot.id}" class="saveSlot">
 				<div class="saveSlot_inner">
-				<image src="${slot.image || (isInElectron() ? '.' : '../..') + '/img/assets/empty_slot.png'}"/>
+				<img 
+					src="${slot.image || (isInElectron() ? '.' : '../..') + '/img/assets/empty_slot.png'}" 
+					onerror="this.onerror=null; this.src='${(isInElectron() ? '.' : '../..') + '/img/assets/missing_slot_img.png'}';"
+					alt="Save Slot Image"
+				/>
 				</div>
 				<p class="saveSlot_date">${slot.dateTime || '-'}</p>
 			</div>
@@ -94,6 +98,10 @@ export const showAllSavingSlots = (pageType, gameSettings, slotNumber, sceneNumb
             gameSettings.savingSlots[slotId] = currentGameSlotObject;
 			
 			saveProgressWithImage(pageContainer, gameSettings, slotId);
+
+			otherSoundsAudio.volume = gameSettings.settings.audio.soundEffects/100;
+			otherSoundsAudio.src = `${isInElectron() ? '.' : '../..'}/sounds/sound_effects/proceed.mp3`;
+			otherSoundsAudio.play();
 
 			closeSavePopup(saveContainer);
 		});

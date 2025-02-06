@@ -14,4 +14,9 @@ export const reinaCriterias = (reina_data, slotNumber, reinaCorrectChoices, daen
     (reinaCorrectChoices === reina_data.REQ_ENDING_VALUE - 1 &&
         (gameSettings.savingSlots[slotNumber].decisions.reina.importants[reina_data.CRITICAL_CHOICES.critical_1[0]] === solutionKey.reina.importants[reina_data.CRITICAL_CHOICES.critical_1[0]] &&
         gameSettings.savingSlots[slotNumber].decisions.reina.importants[reina_data.CRITICAL_CHOICES.critical_2[0]] === solutionKey.reina.importants[reina_data.CRITICAL_CHOICES.critical_2[0]] &&
-        gameSettings.savingSlots[slotNumber].decisions.reina.importants[reina_data.CRITICAL_CHOICES.critical_3[0]] === solutionKey.reina.importants[reina_data.CRITICAL_CHOICES.critical_3[0]]));
+        gameSettings.savingSlots[slotNumber].decisions.reina.importants[reina_data.CRITICAL_CHOICES.critical_3[0]] === solutionKey.reina.importants[reina_data.CRITICAL_CHOICES.critical_3[0]])) ||
+    (reinaCorrectChoices >= reina_data.REQ_ENDING_VALUE - 3 &&
+        (gameSettings.savingSlots[slotNumber].decisions.reina.importants[reina_data.CRITICAL_CHOICES.critical_1[0]] === solutionKey.reina.importants[reina_data.CRITICAL_CHOICES.critical_1[0]] &&
+        gameSettings.savingSlots[slotNumber].decisions.reina.importants[reina_data.CRITICAL_CHOICES.critical_2[0]] === solutionKey.reina.importants[reina_data.CRITICAL_CHOICES.critical_2[0]] &&
+        gameSettings.savingSlots[slotNumber].decisions.reina.importants[reina_data.CRITICAL_CHOICES.critical_3[0]] === solutionKey.reina.importants[reina_data.CRITICAL_CHOICES.critical_3[0]] &&
+        daenaCorrectChoices + briannaCorrectChoices + haileyCorrectChoices <= 12));

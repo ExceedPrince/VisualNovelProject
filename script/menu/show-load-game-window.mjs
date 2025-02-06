@@ -11,7 +11,12 @@ export const showLoadGameWindow = (loadGame_window, state, gameSettings, timeSta
             loadGame_window.insertAdjacentHTML("beforeend", `
                 <div id="loadSlot_${slot.id}" class="loadSlot">
                     <div class="loadSlot_inner ${slot.image ? 'loadable' : ''}">
-                        <img src="${slot.image || (isInElectron() ? '.' : '../..') + '/img/assets/empty_slot.png'}" data-slot-number="${slot.id}"/>
+                        <img 
+                            src="${slot.image || (isInElectron() ? '.' : '../..') + '/img/assets/empty_slot.png'}" 
+                            data-slot-number="${slot.id}"
+                            onerror="this.onerror=null; this.src='${(isInElectron() ? '.' : '../..') + '/img/assets/missing_slot_img.png'}';"
+                            alt="Save Slot Image"
+                        />
                     </div>
                     <p class="loadSlot_date">${slot.dateTime || '-'}</p>
                 </div>

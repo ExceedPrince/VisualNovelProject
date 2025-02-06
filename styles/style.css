@@ -251,6 +251,14 @@ body {
   background-repeat: no-repeat;
   background-position: bottom;
 }
+#storyContainer #textContainer.tyler #textContainer-inner #char-name {
+  color: #a6f3ff;
+  text-shadow: 1.5px 1.5px 0 #001d6b, -1.5px 1.5px 0 #001d6b, -1.5px -1.5px 0 #001d6b, 1.5px -1.5px 0 #001d6b;
+}
+#storyContainer #textContainer.tyler #textContainer-inner #char-text {
+  color: #a6f3ff;
+  text-shadow: 1.5px 1.5px 0 #001d6b, -1.5px 1.5px 0 #001d6b, -1.5px -1.5px 0 #001d6b, 1.5px -1.5px 0 #001d6b;
+}
 #storyContainer #textContainer #textContainer-inner {
   position: relative;
   width: 100%;

@@ -1,10 +1,20 @@
 ==================================================
 Constrained Love - Patch Notes
 ==================================================
+Version: 1.1.0  |  Release Date: 2025-02-??
+--------------------------------------------------
+
+🔹 Typo in the story.
+🔹 The narration, and the protagonist's words and thoughts are colorized differently.
+🔹 It was too hard to achieve Reina's good ending, so it received another and easier way.
+🔹 Changing the saving system due to storage capacity problems.
+🔹 Mac users can also run and play the game.
+
+==================================================
 Version: 1.0.1  |  Release Date: 2025-02-02
 --------------------------------------------------
-Bug fixes: 
-🔹 Typo in the story
+
+🔹 Typo in the story.
 🔹 If the player does not select an option during a chat conversation, it may appear with the message "undefined".
 
 ==================================================
