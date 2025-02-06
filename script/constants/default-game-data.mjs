@@ -121,13 +121,13 @@ export const defaultGameData = {
             decisions: {
                 reina: {
                     importants: {
-                        '0003-30': 'option_2',
-                        '0011-40': 'option_0', //Daena
-                        '0017-46': 'option_1', //Hailey
-                        '0020-54': 'option_1',
-                        '0023-44': 'option_0', //Brianna
-                        '0023-62': 'option_1',
-                        '0027-40': 'option_1',
+                        '0003-30': null,
+                        '0011-40': null, //Daena
+                        '0017-46': null, //Hailey
+                        '0020-54': null,
+                        '0023-44': null, //Brianna
+                        '0023-62': null,
+                        '0027-40': null,
                     },
                     notImportants: {
                         '0002-10': null,
@@ -135,7 +135,7 @@ export const defaultGameData = {
                         '0027-13': null,
                     },
                     mobileImportants: {
-                        '0009-r-23': 'option_0',
+                        '0009-r-23': null,
                         '0022-r-9': null,
                         '0028-r-15': null,
                         '0033-r-27': null,
@@ -144,10 +144,10 @@ export const defaultGameData = {
                 },
                 brianna: {
                     importants: {
-                        '0014-38': 'option_1', //Hailey
-                        '0018-36': 'option_0', //Daena
-                        '0023-44': 'option_0', //Reina
-                        '0025-32': 'option_2',
+                        '0014-38': null, //Hailey
+                        '0018-36': null, //Daena
+                        '0023-44': null, //Reina
+                        '0025-32': null,
                         '0032-40': null,
                     },
                     notImportants: {
@@ -161,33 +161,33 @@ export const defaultGameData = {
                 },
                 daena: {
                     importants: {
-                        '0005-19': 'option_1',
-                        '0011-40': 'option_0', //Reina
-                        '0018-36': 'option_0', //Brianna
-                        '0024-36': 'option_0', //Hailey
-                        '0031-48': 'option_1',
+                        '0005-19': null,
+                        '0011-40': null, //Reina
+                        '0018-36': null, //Brianna
+                        '0024-36': null, //Hailey
+                        '0031-48': null,
                     },
                     notImportants: {
                         '0015-18': null
                     },
                     mobileImportants: {
-                        '0016-d-31': 'option_2',
-                        '0033-d-13': 'option_2',
+                        '0016-d-31': null,
+                        '0033-d-13': null,
                     },
                     mobileNotImportants: {},
                 },
                 hailey: {
                     importants: {
-                        '0008-41': 'option_1',
-                        '0014-38': 'option_1', //Brianna
-                        '0017-46': 'option_1', //Reina
-                        '0021-27': 'option_0',
-                        '0024-36': 'option_0', //Daena
+                        '0008-41': null,
+                        '0014-38': null, //Brianna
+                        '0017-46': null, //Reina
+                        '0021-27': null,
+                        '0024-36': null, //Daena
                     },
                     notImportants: {},
                     mobileImportants: {
-                        '0013-h-25': 'option_1',
-                        '0022-h-20': 'option_2',
+                        '0013-h-25': null,
+                        '0022-h-20': null,
                     },
                     mobileNotImportants: {},
                 },

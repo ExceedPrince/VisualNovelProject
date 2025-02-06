@@ -125,7 +125,6 @@ export const selectEnding = (endingType, mainStoryData, gameSettings) => {
         const briannaCorrectChoices = answerCounter(BRIANNA_LOWER, solutionKey, slotNumber, gameSettings);
         const reinaCorrectChoices = answerCounter(REINA_LOWER, solutionKey, slotNumber, gameSettings);
 
-        console.log(daenaCorrectChoices, haileyCorrectChoices, briannaCorrectChoices, reinaCorrectChoices)
         // Daena good ending
         if (daenaCriterias(DAENA_DATA, slotNumber, daenaCorrectChoices, reinaCorrectChoices, briannaCorrectChoices, haileyCorrectChoices, solutionKey, gameSettings) === true) {
             const daenaFinal = mergeGoodEndings('Daena', daena_good, reina_bad, hailey_bad, brianna_bad);
