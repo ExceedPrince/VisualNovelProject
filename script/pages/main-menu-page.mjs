@@ -55,7 +55,7 @@ export const mainMenuPage = (gameSettings) => {
                 <img src="${isInElectron() ? '.' : '../..'}/img/assets/logo.png" alt="logo"/>
                 <h1>Constrained Love</h1>
             </div>
-            <h1 id="versionNumber">v1.1.0</h1>
+            <h1 id="versionNumber">v1.1.1</h1>
             <div id="mainColumn_1" class="mainMenu_column"></div>
             <div id="mainEndingContainer" class="noClick"></div>
 
