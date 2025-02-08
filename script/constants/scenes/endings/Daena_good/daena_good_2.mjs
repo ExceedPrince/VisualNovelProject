@@ -1,7 +1,7 @@
 export const daena_good_2 = [
     {
         sceneId: "",
-        lengthNum: 20,
+        lengthNum: 18,
 		endingSceneType: '',
         story: {
 			"1": {
